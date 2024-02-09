@@ -26,7 +26,17 @@
     -->
     <title>React App</title>
   </head>
-  <body>
+    <br></br>
+    <br></br>
+    <h1>Input a Slide!</h1>
+    <form id="uploadForm" enctype="multipart/form-data">
+        <label for="img">Select image:</label>
+        <input type="file" id="img" name="img" accept="image/*">
+        <input type="submit" value="Upload">
+    </form>
+
+    <script src="upload.js"></script>
+
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--
