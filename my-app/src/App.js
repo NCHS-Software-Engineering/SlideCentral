@@ -1,18 +1,15 @@
-import './App.css';
-import logo from './logo1.png';
+import { Carousel } from "./Carousel";
+
+
+
 
 function App() {
-  return (
-    <div className="App">
-      <img src={logo} className="App-logo" alt="logo" />
-      <header className="App-header">
-        
-         </header>
-      <p>
-          Welcome to the SlideCentral!
-      </p>
-    </div>
-  );
+  return <div className="App">
+    <Carousel />
+
+
+  </div>;
+ 
 }
 
 export default App;
