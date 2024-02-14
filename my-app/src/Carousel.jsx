@@ -12,39 +12,51 @@ export const Carousel = () => {
             title: "Example 2",
             description: "JAMES CONNOR",
             icon: require("./Media/slide2.png"),
-        },
-        {
-            title: "Example 3",
-            description: "JAMES BOND",
-            icon: require("./Media/logo1.png"),
-        },
+        }
     ]
 
+  
+  const updateIndex = (newIndex) => {
+    if (newIndex < 0) {
+        newIndex = 0;
+    }else if (newIndex >= items.length) {
+        newIndex = items.length - 1;
+    }
+
+    setActiveIndex(newIndex);
+  }
 
   return (
     <div className = "carousel">
         <div className = "inner"
-             style={{transform: `translate:(-${activeIndex * 100})`}}>
+             style={{transform: `translate(-${activeIndex * 100}%)`}}>
             {items.map((item) => {
                 return <CarouselItem item = {item}/>    
             })}
         </div>
         
         <div className = "carousel-buttons"> 
-            <button classname = "button-arrow">
-            <span class="material-symbols-outlined">arrow_back_ios</span>
+            <button onClick={()=>{
+                updateIndex(activeIndex - 1);
+            
+            }}  classname = "button-arrow">
+            <span className="material-symbols-outlined">arrow_back_ios</span>
             </button>
             <div classname= "indicators">
                 {items.map((item, index) => {
                     return(
-                        <button className="indicator-buttons"> 
+                        <button onClick={()=>{
+                            updateIndex(index);
+                        }}
+                        
+                        className="indicator-buttons"> 
                 
-                    <span class="material-symbols-outlined">
+                    <span className={`material-symbols-outlined  ${index === activeIndex? "indicator-symbol-active": "indicator-symbol"}`}>
                      radio_button_checked
                     </span>
 
                 </button>
-                    );
+                );
 
                 })}
 
@@ -52,7 +64,13 @@ export const Carousel = () => {
 
                 
             </div>
-            <button classname = "button-arrow">
+
+            <button onClick={()=>{
+                updateIndex(activeIndex + 1);
+            
+            }}
+            classname = "button-arrow">
+
             <span class="material-symbols-outlined">arrow_forward_ios</span>
             </button>        
         </div>

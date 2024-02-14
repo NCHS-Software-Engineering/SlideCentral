@@ -6,7 +6,6 @@ export const CarouselItem = ({ item }) => {
         
         <div></div>
         <img className = "carousel-img" src = {item.icon} />
-        <div className = "carousel=item-text">{item.description}</div>
         
     </div>
   );

@@ -17,6 +17,7 @@ body{
 .carousel{
     overflow: hidden;
     width: 700px;
+    display: flex;
     flex-direction: column;
     justify-content: center;
 }
@@ -36,14 +37,44 @@ body{
 }
 
 .carousel-img{
-    width: 250px;
+    width: 100%;
     padding: 0 20px 0 20px; 
 }
 
-.carousel-item-text{
-    font-size: 1.15rem;
-    margin: 40px 0 40px 0;
-    padding: 0 20px 0 20px;
-    white-space: normal;
-    color: #5f416d
+.carousel-buttons{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 20px 0 0 0;
+    background: none;
+}
+
+.button-arrow{
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.indicators {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.indicator-buttons{
+    border:none;
+    cursor: pointer;
+}
+
+.indicators > button {
+    margin: 5px;
+    background: none;
+}
+
+.indicator-symbol{
+    color: #26343f;
+}
+
+.indicator-symbol-active{
+    color: #ffffff;
 }
