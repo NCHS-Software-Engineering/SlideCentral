@@ -5,13 +5,19 @@ export const Carousel = () => {
     const [ activeIndex, setActiveIndex ] = React.useState(0)
     const items = [
         {   title: "Example 1",
-            description: "JAMES PETERSON",
             icon: require("./Media/slide1.png"),
         },
         {   
             title: "Example 2",
-            description: "JAMES CONNOR",
             icon: require("./Media/slide2.png"),
+        },
+        {   
+            title: "Example 3",
+            icon: require("./Media/slide3.png"),
+        },
+        {   
+            title: "Example 4",
+            icon: require("./Media/slide4.png"),
         }
     ]
 
@@ -39,8 +45,8 @@ export const Carousel = () => {
             <button onClick={()=>{
                 updateIndex(activeIndex - 1);
             
-            }}  classname = "button-arrow">
-            <span className="material-symbols-outlined">arrow_back_ios</span>
+            }}  classname = "button-arrow" style = {{background: "none"}}>
+            <span class="material-symbols-outlined">arrow_back_ios</span>
             </button>
             <div classname= "indicators">
                 {items.map((item, index) => {
@@ -69,10 +75,14 @@ export const Carousel = () => {
                 updateIndex(activeIndex + 1);
             
             }}
-            classname = "button-arrow">
+            classname = "button-arrow" style = {{background: "none"}}>
 
-            <span class="material-symbols-outlined">arrow_forward_ios</span>
-            </button>        
+                <span class="material-symbols-outlined">arrow_forward_ios</span>
+            </button> 
+
+            <button className = "fullscreen-button"> 
+                <span class="material-symbols-outlined">fullscreen</span>
+            </button>       
         </div>
 
     </div>
