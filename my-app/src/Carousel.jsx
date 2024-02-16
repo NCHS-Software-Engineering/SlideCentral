@@ -1,7 +1,11 @@
 import React, {useState} from 'react'
 import { CarouselItem } from './CarouselItem2'
+import { FullScreen, useFullScreenHandle } from "react-full-screen";
+
 
 export const Carousel = () => {
+    
+    const handle = useFullScreenHandle();
     const [ activeIndex, setActiveIndex ] = React.useState(0)
     const items = [
         {   title: "Example 1",
@@ -33,14 +37,21 @@ export const Carousel = () => {
   }
 
   return (
+    
+    
+
+    
+       
+      
     <div className = "carousel">
+        <FullScreen className = "fullScreen" handle={handle}>
         <div className = "inner"
              style={{transform: `translate(-${activeIndex * 100}%)`}}>
             {items.map((item) => {
                 return <CarouselItem item = {item}/>    
             })}
         </div>
-        
+        </FullScreen>
         <div className = "carousel-buttons"> 
             <button onClick={()=>{
                 updateIndex(activeIndex - 1);
@@ -80,11 +91,13 @@ export const Carousel = () => {
                 <span class="material-symbols-outlined">arrow_forward_ios</span>
             </button> 
 
-            <button className = "fullscreen-button"> 
+            <button className = "fullscreen-button" onClick={handle.enter} > 
                 <span class="material-symbols-outlined">fullscreen</span>
             </button>       
         </div>
-
+    
     </div>
+    
+    
   )
 }

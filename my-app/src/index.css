@@ -16,11 +16,22 @@ body{
 
 .carousel{
     overflow: hidden;
-    width: 700px;
+    width: 100vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     
+}
+
+.fullScreen{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    width: 100vh;
+    background-color: #aa78c2;
+
 }
 
 .inner{
@@ -33,7 +44,7 @@ body{
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    height: 490px;
+    height: 100%;
     
 }
 
@@ -45,7 +56,7 @@ body{
 .carousel-buttons{
     display: flex;
     justify-content: space-evenly;
-    margin: 20px 0 0 0;
+    margin: 0 0 0 0;
     
     
 }
