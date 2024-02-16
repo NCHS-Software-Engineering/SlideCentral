@@ -11,7 +11,7 @@ document.getElementById('uploadForm').addEventListener('submit', function(event)
 
 
 
-    if (file.type !== 'image') {
+    if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/gif' && file.type !== 'image/jpg') {
         alert('Only image files can be uploaded.');
         return;
     }
