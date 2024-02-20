@@ -5,7 +5,7 @@ body{
     font-family: 'Roboto';
 }
 
-.App{
+.App {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -28,9 +28,13 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 70vh;
-    width: 100vh;
+    height: auto;
     background-color: #aa78c2;
+    position: absolute; /* or absolute */
+    width: 100vw;
+    z-index: 9999;
+    height: auto;
+    left: 0;
 
 }
 
@@ -57,8 +61,6 @@ body{
     display: flex;
     justify-content: space-evenly;
     margin: 0 0 0 0;
-    
-    
 }
 
 .button-arrow{
