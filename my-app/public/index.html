@@ -1,50 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Slide Central</title>
-    <link rel="stylesheet" href="style.css"/>
-    <link rel="stylesheet" href="background.css"/>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
   </head>
-    
   <body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="index.html"><img src="images/sclogo1.png" alt="Slide Central Logo" class="nav-logo"/></a></li>
-        
-        <li><a href="index.html" class="wordlinks">Home</a></li>
-        <li><a href="#" class="wordlinks">Slideshow</a></li>
-        <li><a href="help.html" class="wordlinks">Help</a></li>
-        <li><a href="information.html" class="wordlinks">Information</a></li>
-      </ul>
-    </nav>
-  </header>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
 
-  <main>
-    <div class="welcome">
-      <div class="welcome-text">
-        <h1>Welcome to <span class="scund">SLIDECENTRAL</span></h1>
-        <p> An app built for Naperville Central students and teachers looking to boost awareness for clubs, activities, and sports. </p>
-      </div>
-      <img src="images/sslogonobg1.png" alt="Large Slide Central Logo" class="large-logo"/>
-    </div>
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
 
-    <section class="get-started">
-      <div class="get-started-content">
-        <h2>GET STARTED</h2>
-        <p>It's really easy to make a slide for your club, activity, sport, or event! Simply sign in with your student or teacher Google account below to get started.</p>
-        <a href = "signedin/signin.html"><button id="signIn" class="google-sign-in">Sign in with Google</button></a>
-        <button id="viewSlides" class="view-slides">VIEW SLIDES</button>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>Created by Connor Furby, Shreyas Yerabati, Preston Probst, and Dylan Kosloski</p>
-  </footer>
-
-  <script src="script.js"></script>
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
   </body>
 </html>
