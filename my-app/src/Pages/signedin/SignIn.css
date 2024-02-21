@@ -1,0 +1,101 @@
+.nav-logo { /* logo picture */
+    height: 50px;
+    border-right: none;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+  
+  body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+  }
+  .signincontainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: black;
+  }
+  .card {
+      background: #3A3B3C;
+      border-radius: 8px;
+      -webkit-box-shadow:0px 0px 96px 54px rgba(255,0,0,0.71);
+      -moz-box-shadow: 0px 0px 96px 54px rgba(255,0,0,0.71);
+      box-shadow: 0px 0px 96px 54px rgba(255,0,0,0.71);
+      overflow: hidden;
+      margin: 10px;
+      border: 5px solid white;
+      background: rgba( 68, 62, 62, 0.3 );
+      backdrop-filter: blur( 4px );
+      -webkit-backdrop-filter: blur( 4px );
+  }
+  .header {
+      color: white;
+      padding: 20px;
+      text-align: center;
+      background: rgba( 139, 0, 0, 0.3 );
+      backdrop-filter: blur( 4px );
+      -webkit-backdrop-filter: blur( 4px );
+  }
+  .content {
+      padding: 20px;
+      display: flex;
+  }
+  .option {
+      flex: 1;
+      margin: 10px;
+      text-align: center;
+  }
+  .option img {
+      width: 300px;
+      height: auto;
+      border-bottom: 3px solid red;
+      border-radius: 10px;
+  }
+  .option h3 {
+      background-color: red;
+      border-radius: 10px;
+      color: white;
+      margin: 0;
+      padding: 10px;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  .option h3:hover {
+    color: #000435;
+    border-left: 3px solid #000435;
+    border-right: 3px solid #000435;
+    transition: 0.3s;
+  }
+  
+  
+  
+  
+  
+  /*
+  SCROLL BAR
+  */
+  ::-webkit-scrollbar {
+      width: 12px; 
+  }
+  
+  ::-webkit-scrollbar-track {
+      background: black;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #808080, #8B0000);
+      border-radius: 6px; 
+      margin: 100px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, #a9a9a9, #b22222);
+  }

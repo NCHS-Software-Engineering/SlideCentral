@@ -1,4 +1,6 @@
 import React from 'react'
+import './Style.css'
+import './Background.css'
 
 export const Help = () => {
   return (
@@ -7,20 +9,20 @@ export const Help = () => {
             <meta charset="UTF-8"/>
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <title>Help</title>
-            <link rel="stylesheet" href="style.css"/>
-            <link rel="stylesheet" href="background.css"/>
+            <link rel="stylesheet" href="Style.css"/>
+            <link rel="stylesheet" href="Background.css"/>
         </head>
 
             <body>
             <header>
             <nav>
                 <ul>
-                <li><a href="index.html"><img src="images/sclogo1.png" alt="Slide Central Logo" class="nav-logo"/></a></li>
+                <li><a href="/"><img src="images/sclogo1.png" alt="Slide Central Logo" class="nav-logo"/></a></li>
                 
-                <li><a href="index.html" class="wordlinks">Home</a></li>
+                <li><a href="/" class="wordlinks">Home</a></li>
                 <li><a href="#" class="wordlinks">Slideshow</a></li>
-                <li><a href="help.html" class="wordlinks">Help</a></li>
-                <li><a href="information.html" class="wordlinks">Information</a></li>
+                <li><a href="/help" class="wordlinks">Help</a></li>
+                <li><a href="/information" class="wordlinks">Information</a></li>
                 </ul>
             </nav>
             </header>
