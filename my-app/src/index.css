@@ -29,10 +29,7 @@ body{
     justify-content: center;
     align-items: center;
     height: auto;
-    background-color: #aa78c2;
-    position: absolute; /* or absolute */
-    width: 100vw;
-    z-index: 9999;
+    background-color: #aa78c2; /* or absolute */
     height: auto;
     left: 0;
 
