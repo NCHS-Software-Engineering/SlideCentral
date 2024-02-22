@@ -15,7 +15,7 @@ export const teacherDash = () => {
 <header>
   <nav>
     <ul>
-      <li><a href="../../index.html"><img src="../../images/sclogo1.png" alt="Slide Central Logo" class="nav-logo"/></a></li>
+      <li><a href="../../index.html"><img src="../../images/sclogo1.png" alt="Slide Central Logo" class="nav-logo2"/></a></li>
 
       <li><a href="teacherdashboard.html" class="wordlinks">Teacher Dashboard</a></li>
     </ul>

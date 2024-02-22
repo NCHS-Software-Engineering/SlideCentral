@@ -22,7 +22,7 @@ export const Home = () => {
   <nav>
     <ul>
       <li><a href="/"><img src="images/sclogo1.png" alt="Slide Central Logo" class="nav-logo"/></a></li>
-      
+
       <li><a href="/" class="wordlinks">Home</a></li>
       <li><a href="#" class="wordlinks">Slideshow</a></li>
       <li><a href="/help" class="wordlinks">Help</a></li>
@@ -53,8 +53,6 @@ export const Home = () => {
 <footer>
   <p>Created by Connor Furby, Shreyas Yerabati, Preston Probst, and Dylan Kosloski</p>
 </footer>
-
-<script src="script.js"></script>
 </body>
 
   
@@ -62,3 +60,6 @@ export const Home = () => {
     </div>
   )
 }
+
+
+export default Home;
