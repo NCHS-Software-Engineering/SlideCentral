@@ -2,7 +2,7 @@
 NAVIGATION BAR
 */
 header { /* background of header */
-  padding: 10px 0;
+  padding: 0 0;
   background: rgba( 255, 0, 0, 0.25 );
   box-shadow: 0 8px 32px 0 rgba( 255, 0, 0, 0.37 );
   backdrop-filter: blur( 3.5px );
@@ -57,7 +57,7 @@ nav ul li img { /* logo picture */
   font-weight: bold;
 }
 
-.active { /* link is currently being accessed */
+ nav .active { /* link is currently being accessed */
   color: #ff0000;
   font-style: bold;
   text-decoration: underline;
