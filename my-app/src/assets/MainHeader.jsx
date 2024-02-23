@@ -1,12 +1,14 @@
 import NavLogo from './images/sclogo1.png';
 import {NavLink} from 'react-router-dom';
+import './Style.css';
+import './Background.css';
 
 function MainHeader() {
   return (
     <header>
       <nav>
             <ul>
-                <li><NavLink to="/"><img src={NavLogo} alt="Slide Central Logo" class="nav-logo"/></NavLink></li>
+                <li><NavLink to="/"><img src={NavLogo} alt="Slide Central Logo" className="nav-logo"/></NavLink></li>
 
                 <li><NavLink to="/" className="wordlinks">Home</NavLink></li>
                 <li><NavLink to="/" className="wordlinks">Slideshow</NavLink></li>

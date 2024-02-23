@@ -1,8 +1,12 @@
+import './Style.css';
+import './Background.css';
+
+
 function Help() {
     return (
         <main>
-            <div class="help-content-container">
-                <section class="feedback-section">
+            <div className="help-content-container">
+                <section className="feedback-section">
                     <h2>Report a Bug:</h2>
                     <p>Email us a screenshot or explanation of a bug or issue with the system!</p>
 
@@ -13,24 +17,24 @@ function Help() {
                     <p>Have feedback on the app that you would like to share with the developers? Email us</p>
                 </section>
                 
-                <aside class="contact-section">
+                <aside className="contact-section">
                     <h2>Our Contacts:</h2>
-                    <div class="contact-info">
+                    <div className="contact-info">
                         <h3>Connor Furby:</h3>
                         <p>Phone: (773)-202-LUNA</p>
                         <p>Email: cfurby@stunaperville203.org</p>
                     </div>
-                    <div class="contact-info">
+                    <div className="contact-info">
                         <h3>Preston Probst:</h3>
                         <p>Phone: (773)-202-LUNA</p>
                         <p>Email: pprobst@stunaperville203.org</p>
                     </div>
-                    <div class="contact-info">
+                    <div className="contact-info">
                         <h3>Shreyas Yerabati:</h3>
                         <p>Phone: (773)-202-LUNA</p>
                         <p>Email: syerabati@stunaperville203.org</p>
                     </div>
-                    <div class="contact-info">
+                    <div className="contact-info">
                         <h3>Dylan Kosloski:</h3>
                         <p>Phone: (773)-202-LUNA</p>
                         <p>Email: dkosloski@stunaperville203.org</p>
