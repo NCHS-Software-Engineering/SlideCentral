@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const SlideshowItem = ({ item }) => {
+export const CarouselItem = ({ item }) => {
   return (
     <div className = "carousel-item">
         

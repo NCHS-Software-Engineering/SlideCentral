@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.carousel{
+    overflow: hidden;
+    width: 100vh;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+.fullScreen{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    background-color: #aa78c2; /* or absolute */
+    height: auto;
+    left: 0;
+
+}
+
+.inner{
+    white-space: nowrap;
+    transition: transform 0.3s;
+    
+}
+
+.carousel-item{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    
+}
+
+.carousel-img{
+    width: 100%;
+    padding: 0 20px 0 20px; 
+}
+
+.carousel-buttons{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0 0 0 0;
+}
+
+.button-arrow{
+    background: none;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+}
+
+.indicators {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.indicator-buttons{
+    border:none;
+    cursor: pointer;
+    background: none;
+}
+
+.indicators > button {
+    margin: 5px;
+    background: none;
+}
+
+.indicator-symbol{
+    color: #26343f;
+}
+
+.indicator-symbol-active{
+    color: #ffffff;
+}

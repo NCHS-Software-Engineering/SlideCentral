@@ -1,7 +1,7 @@
 import React from 'react';
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
 import { CarouselItem } from './CarouselItem2';
-
+import './Carousel.css';
 
 export const Carousel = () => {
     
@@ -101,3 +101,5 @@ export const Carousel = () => {
     
   )
 }
+
+export default Carousel;

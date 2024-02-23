@@ -1,4 +1,4 @@
-import LargeSlideCentralLogo from './images/sslogonobg1.png';
+import LargeSlideCentralLogo from './Media/images/sslogonobg1.png';
 import './Style.css';
 import './Background.css';
 
