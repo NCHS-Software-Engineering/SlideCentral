@@ -10,7 +10,6 @@ export const Routing = () => {
   return (
     <Router> 
       <Routes> 
-        <Route path="/" element = {   <Home />  } />
         <Route path="/help" element = {   <Help />  } />
         <Route path="/information" element = {   <Information />  } />
         <Route path="/signin" element = {   <SignIn />  } />
