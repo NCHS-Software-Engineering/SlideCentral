@@ -5,7 +5,7 @@ import Footer from './Footer.jsx';
 import Home from './Home.jsx';
 import Help from './Help.jsx';
 import Information from './Information.jsx';
-
+import Carousel from './Carousel.jsx';
 
 function App() {
   return (
@@ -15,6 +15,7 @@ function App() {
         <div className = "content">
           <Routes>
             <Route index element={<Home/>} />
+            <Route path="/slideshow" element={<Carousel />} />
             <Route path="/help" element={<Help />} />
             <Route path="/information" element={<Information />} />
           </Routes>
