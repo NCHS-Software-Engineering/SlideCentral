@@ -9,19 +9,19 @@ export const Carousel = () => {
     const [ activeIndex, setActiveIndex ] = React.useState(0)
     const items = [
         {   title: "Example 1",
-            icon: require("./Media/slides/slide1.png"),
+            icon: require("../Media/slides/slide1.png"),
         },
         {   
             title: "Example 2",
-            icon: require("./Media/slides/slide2.png"),
+            icon: require("../Media/slides/slide2.png"),
         },
         {   
             title: "Example 3",
-            icon: require("./Media/slides/slide3.png"),
+            icon: require("../Media/slides/slide3.png"),
         },
         {   
             title: "Example 4",
-            icon: require("./Media/slides/slide4.png"),
+            icon: require("../Media/slides/slide4.png"),
         }
     ]
 

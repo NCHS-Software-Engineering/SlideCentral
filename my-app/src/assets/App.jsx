@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; 
-import MainHeader from './MainHeader.jsx';
-import Footer from './Footer.jsx';
+import MainHeader from './HomeScreen/MainHeader.jsx';
+import Footer from './HomeScreen/Footer.jsx';
 
-import Home from './Home.jsx';
-import Help from './Help.jsx';
-import Information from './Information.jsx';
-import Carousel from './Carousel.jsx';
+import Home from './HomeScreen/Home.jsx';
+import Help from './HomeScreen/Help.jsx';
+import Information from './HomeScreen/Information.jsx';
+import Carousel from './HomeScreen/Carousel.jsx';
 
 import SignIn  from './SignedIn/SignIn.jsx';
 

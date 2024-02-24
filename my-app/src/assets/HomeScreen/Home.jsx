@@ -1,4 +1,4 @@
-import LargeSlideCentralLogo from './Media/images/sslogonobg1.png';
+import LargeSlideCentralLogo from '../Media/images/sslogonobg1.png';
 import './Style.css';
 import './Background.css';
 import { Link } from "react-router-dom";

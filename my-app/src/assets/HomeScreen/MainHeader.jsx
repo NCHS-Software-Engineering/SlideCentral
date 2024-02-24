@@ -1,4 +1,4 @@
-import NavLogo from './Media/images/sclogo1.png';
+import NavLogo from '../Media/images/sclogo1.png';
 import {NavLink} from 'react-router-dom';
 import './Style.css';
 import './Background.css';

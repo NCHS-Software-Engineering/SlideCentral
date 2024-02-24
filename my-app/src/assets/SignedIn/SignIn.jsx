@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from './SignIn.module.css';
-import '../Background.css';
+import '../HomeScreen/Background.css';
 
 import TeacherImg from '../Media/images/teacher.webp';
 import StudentImg from '../Media/images/student.jpeg';
@@ -11,7 +11,7 @@ function SignIn () {
         <main>
             <Link to="../"><img src={NavLogo} alt="Slide Central Logo" className={styles.navLogo}/></Link>
 
-            <div className={styles.signincontainer}>
+            <div className={styles.signincontainer} >
                 <div className={styles.card}>
                     <div className={styles.header}>
                         <h1>Are you using SlideCentral as a...</h1>
