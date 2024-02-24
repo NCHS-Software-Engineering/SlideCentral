@@ -36,6 +36,7 @@
     justify-content: center;
     height: 100%;
     border: 10px solid red;
+    border-radius: 10px;
 }
 
 .carousel-img{
@@ -46,21 +47,42 @@
 .carousel-buttons{
     display: flex;
     justify-content: space-evenly;
-    margin: 0 0 0 0;
+    margin: 10px 0 0 0;
+    padding: 10px;
+}
+
+.sidetoside {
+    border: 3px solid white;
+    border-radius: 10px;
+    background: rgba(255, 0, 0, 0.75);
+    backdrop-filter: blur( 3.5px );
+    -webkit-backdrop-filter: blur( 3.5px );
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0 10px 0 15px;
+}
+
+.fullscreen-button {
+    background: darkred;
+    color: black;
+    border-radius: 10px;
+    border: 3px solid white;
+    cursor: pointer;
+    margin-left: 10px;
+    padding: 11px 10px 10px 11px;
 }
 
 .button-arrow{
     background: none;
     border: none;
     cursor: pointer;
-    background: transparent;
+    color: black;
 }
 
 .indicators {
     display: flex;
     justify-content: space-around;
     align-items: center;
-
 }
 
 .indicator-buttons{
@@ -79,5 +101,5 @@
 }
 
 .indicator-symbol-active{
-    color: #ffffff;
+    color: white;
 }

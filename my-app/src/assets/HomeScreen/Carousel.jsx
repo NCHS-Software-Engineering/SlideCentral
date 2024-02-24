@@ -1,4 +1,5 @@
-import React from 'react';
+
+import React, { useEffect } from 'react';
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
 import { CarouselItem } from './CarouselItem2';
 import './Carousel.css';
@@ -26,15 +27,36 @@ export const Carousel = () => {
     ]
 
   
-  const updateIndex = (newIndex) => {
-    if (newIndex < 0) {
-        newIndex = 0;
-    }else if (newIndex >= items.length) {
-        newIndex = items.length - 1;
+    const updateIndex = (newIndex) => {
+        if (newIndex < 0) {
+            newIndex = items.length - 1;
+        } else if (newIndex >= items.length) {
+            newIndex = 0;
+        }
+
+        setActiveIndex(newIndex);
     }
 
-    setActiveIndex(newIndex);
-  }
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            switch (event.key) {
+                case 'ArrowLeft':
+                    updateIndex(activeIndex - 1);
+                    break;
+                case 'ArrowRight':
+                    updateIndex(activeIndex + 1);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        document.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+        }
+    }, [activeIndex]);
 
   return (
     
@@ -53,44 +75,45 @@ export const Carousel = () => {
             </div>
             </FullScreen>
             <div className = "carousel-buttons"> 
-                <button onClick={()=>{
-                    updateIndex(activeIndex - 1);
-                
-                }}  classname = "button-arrow" style = {{background: "none"}}>
-                <span class="material-symbols-outlined">arrow_back_ios</span>
-                </button>
-                <div classname= "indicators">
-                    {items.map((item, index) => {
-                        return(
-                            <button onClick={()=>{
-                                updateIndex(index);
-                            }}
-                            
-                            className="indicator-buttons"> 
+                <div className = "sidetoside">
+                    <button onClick={()=>{
+                        updateIndex(activeIndex - 1);
                     
-                        <span className={`material-symbols-outlined  ${index === activeIndex? "indicator-symbol-active": "indicator-symbol"}`}>
-                        radio_button_checked
-                        </span>
-
+                    }}  className = "button-arrow" >
+                    <span class="material-symbols-outlined">arrow_back_ios</span>
                     </button>
-                    );
+                    <div className= "indicators">
+                        {items.map((item, index) => {
+                            return(
+                                <button onClick={()=>{
+                                    updateIndex(index);
+                                }}
+                                
+                                className="indicator-buttons"> 
+                        
+                            <span className={`material-symbols-outlined  ${index === activeIndex? "indicator-symbol-active": "indicator-symbol"}`}>
+                            radio_button_checked
+                            </span>
 
-                    })}
+                        </button>
+                        );
+
+                        })}
 
 
 
+                        
+                    </div>
+
+                    <button onClick={()=>{
+                        updateIndex(activeIndex + 1);
                     
+                    }}
+                    className = "button-arrow">
+
+                        <span class="material-symbols-outlined">arrow_forward_ios</span>
+                    </button> 
                 </div>
-
-                <button onClick={()=>{
-                    updateIndex(activeIndex + 1);
-                
-                }}
-                classname = "button-arrow" style = {{background: "none"}}>
-
-                    <span class="material-symbols-outlined">arrow_forward_ios</span>
-                </button> 
-
                 <button className = "fullscreen-button" onClick={handle.enter} > 
                     <span class="material-symbols-outlined">fullscreen</span>
                 </button>       

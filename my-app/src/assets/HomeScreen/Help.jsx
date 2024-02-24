@@ -1,7 +1,6 @@
 import './Style.css';
 import './Background.css';
 
-
 function Help() {
     return (
         <main>
@@ -21,22 +20,18 @@ function Help() {
                     <h2>Our Contacts:</h2>
                     <div className="contact-info">
                         <h3>Connor Furby:</h3>
-                        <p>Phone: (773)-202-LUNA</p>
                         <p>Email: cfurby@stunaperville203.org</p>
                     </div>
                     <div className="contact-info">
                         <h3>Preston Probst:</h3>
-                        <p>Phone: (773)-202-LUNA</p>
                         <p>Email: pprobst@stunaperville203.org</p>
                     </div>
                     <div className="contact-info">
                         <h3>Shreyas Yerabati:</h3>
-                        <p>Phone: (773)-202-LUNA</p>
                         <p>Email: syerabati@stunaperville203.org</p>
                     </div>
                     <div className="contact-info">
                         <h3>Dylan Kosloski:</h3>
-                        <p>Phone: (773)-202-LUNA</p>
                         <p>Email: dkosloski@stunaperville203.org</p>
                     </div>
                 </aside>
