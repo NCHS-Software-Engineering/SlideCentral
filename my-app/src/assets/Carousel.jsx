@@ -42,7 +42,7 @@ export const Carousel = () => {
 
     
        
-      
+    <div className = "carousel-container">
     <div className = "carousel">
         <FullScreen className = "fullScreen" handle={handle}>
         <div className = "inner"
@@ -97,7 +97,7 @@ export const Carousel = () => {
         </div>
     
     </div>
-    
+    </div>
     
   )
 }

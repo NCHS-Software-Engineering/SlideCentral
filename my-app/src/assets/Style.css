@@ -1,6 +1,42 @@
+
+.App {
+  min-height: 100vh;
+  font-family: Arial, Helvetica;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.footer-section {
+  bottom:0;
+  width: 100%;
+  margin-top: 25px;
+}
+
+footer { /* footer of site with created by */
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  bottom: 0;
+  width: 100%;
+  margin-top: auto;
+  background: rgba( 68, 62, 62, 0.5 );
+  backdrop-filter: blur( 4px );
+  -webkit-backdrop-filter: blur( 4px );
+}
+
+
 /*
 NAVIGATION BAR
 */
+
 header { /* background of header */
   padding: 0 0;
   background: rgba( 255, 0, 0, 0.25 );
@@ -164,19 +200,6 @@ html, body { /* defaults for the entire body */
   border: 3px solid #000435;
   transition: 0.3s;
 }
-
-footer { /* footer of site with created by */
-  color: white;
-  text-align: center;
-  padding: 10px 0;
-  bottom: 0;
-  width: 100%;
-  margin-top: auto;
-  background: rgba( 68, 62, 62, 0.5 );
-  backdrop-filter: blur( 4px );
-  -webkit-backdrop-filter: blur( 4px );
-}
-
 
 
 
