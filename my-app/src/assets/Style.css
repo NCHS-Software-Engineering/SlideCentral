@@ -52,7 +52,7 @@ header { /* background of header */
 nav ul { /* all items together */
   list-style: none;
   padding: 0;
-  margin-left: 30px;
+  margin-left: 5px;
 
   display: flex;
   align-items: center;

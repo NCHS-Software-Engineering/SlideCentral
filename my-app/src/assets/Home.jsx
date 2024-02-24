@@ -1,7 +1,7 @@
 import LargeSlideCentralLogo from './Media/images/sslogonobg1.png';
 import './Style.css';
 import './Background.css';
-
+import { Link } from "react-router-dom";
 
 function Home() {
     return (
@@ -18,7 +18,7 @@ function Home() {
                 <div className="get-started-content">
                     <h2>GET STARTED</h2>
                     <p>It's really easy to make a slide for your club, activity, sport, or event! Simply sign in with your student or teacher Google account below to get started.</p>
-                    <a href = "signedin/signin.html"><button id="signIn" className="google-sign-in">Sign in with Google</button></a>
+                    <Link to="/signin"><button id="signIn" className="google-sign-in">Sign in with Google</button></Link>
                     <button id="viewSlides" className="view-slides">VIEW SLIDES</button>
                 </div>
             </section>
