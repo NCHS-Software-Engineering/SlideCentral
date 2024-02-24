@@ -84,10 +84,11 @@ nav ul li { /* each individual item */
 }
 
 .wordlinks:hover { /* nav hover */
-  color: #000435;
-  border-left: 3px solid #000435;
-  border-right: 3px solid #000435;
+  color: red;
+  border: 3px solid red;
   transition: 0.3s;
+  background-color: #8B0000;
+  border-radius: 10px;
 }
 
 nav ul li img { /* logo picture */
@@ -97,8 +98,9 @@ nav ul li img { /* logo picture */
 }
 
  nav .active { /* link is currently being accessed */
-  color: #ff0000;
+  color: red;
   font-style: bold;
+  font-size: 20px;
   text-decoration: underline;
 }
 
