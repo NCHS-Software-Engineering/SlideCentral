@@ -12,12 +12,15 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
+  margin-bottom: 70px;
+  min-height: 82.5vh;
 }
 
 .footer-section {
   bottom:0;
   width: 100%;
   margin-top: 25px;
+  position: absolute;
 }
 
 footer { /* footer of site with created by */
@@ -261,14 +264,12 @@ HELP
   min-width: 300px;
   padding: 10px 30px 0px 10px;
   border-right: 5px solid grey;
-  border-bottom: 2px solid grey;
 }
 
 .contact-section {
   flex: 1;
   min-width: 300px;
   padding: 10px 40px 0px 30px;
-  border-bottom: 2px solid grey;
 }
 
 .contact-info {

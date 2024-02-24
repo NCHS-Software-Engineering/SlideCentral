@@ -36,7 +36,7 @@
   }
   .header {
       color: white;
-      padding: 20px;
+       padding: 20px;
       text-align: center;
       background: rgba( 139, 0, 0, 0.3 );
       backdrop-filter: blur( 4px );
@@ -75,27 +75,4 @@
     transition: 0.3s;
   }
   
-  
-  
-  
-  
-  /*
-  SCROLL BAR
-  */
-  ::-webkit-scrollbar {
-      width: 12px; 
-  }
-  
-  ::-webkit-scrollbar-track {
-      background: black;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-      background: linear-gradient(180deg, #808080, #8B0000);
-      border-radius: 6px; 
-      margin: 100px;
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-      background: linear-gradient(180deg, #a9a9a9, #b22222);
-  }
+

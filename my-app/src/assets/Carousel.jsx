@@ -43,60 +43,60 @@ export const Carousel = () => {
     
        
     <div className = "carousel-container">
-    <div className = "carousel">
-        <FullScreen className = "fullScreen" handle={handle}>
-        <div className = "inner"
-             style={{transform: `translate(-${activeIndex * 100}%)`}}>
-            {items.map((item) => {
-                return <CarouselItem item = {item}/>    
-            })}
-        </div>
-        </FullScreen>
-        <div className = "carousel-buttons"> 
-            <button onClick={()=>{
-                updateIndex(activeIndex - 1);
-            
-            }}  classname = "button-arrow" style = {{background: "none"}}>
-            <span class="material-symbols-outlined">arrow_back_ios</span>
-            </button>
-            <div classname= "indicators">
-                {items.map((item, index) => {
-                    return(
-                        <button onClick={()=>{
-                            updateIndex(index);
-                        }}
-                        
-                        className="indicator-buttons"> 
-                
-                    <span className={`material-symbols-outlined  ${index === activeIndex? "indicator-symbol-active": "indicator-symbol"}`}>
-                     radio_button_checked
-                    </span>
-
-                </button>
-                );
-
+        <div className = "carousel">
+            <FullScreen className = "fullScreen" handle={handle}>
+            <div className = "inner"
+                style={{transform: `translate(-${activeIndex * 100}%)`}}>
+                {items.map((item) => {
+                    return <CarouselItem item = {item}/>    
                 })}
-
-
-
-                
             </div>
+            </FullScreen>
+            <div className = "carousel-buttons"> 
+                <button onClick={()=>{
+                    updateIndex(activeIndex - 1);
+                
+                }}  classname = "button-arrow" style = {{background: "none"}}>
+                <span class="material-symbols-outlined">arrow_back_ios</span>
+                </button>
+                <div classname= "indicators">
+                    {items.map((item, index) => {
+                        return(
+                            <button onClick={()=>{
+                                updateIndex(index);
+                            }}
+                            
+                            className="indicator-buttons"> 
+                    
+                        <span className={`material-symbols-outlined  ${index === activeIndex? "indicator-symbol-active": "indicator-symbol"}`}>
+                        radio_button_checked
+                        </span>
 
-            <button onClick={()=>{
-                updateIndex(activeIndex + 1);
-            
-            }}
-            classname = "button-arrow" style = {{background: "none"}}>
+                    </button>
+                    );
 
-                <span class="material-symbols-outlined">arrow_forward_ios</span>
-            </button> 
+                    })}
 
-            <button className = "fullscreen-button" onClick={handle.enter} > 
-                <span class="material-symbols-outlined">fullscreen</span>
-            </button>       
+
+
+                    
+                </div>
+
+                <button onClick={()=>{
+                    updateIndex(activeIndex + 1);
+                
+                }}
+                classname = "button-arrow" style = {{background: "none"}}>
+
+                    <span class="material-symbols-outlined">arrow_forward_ios</span>
+                </button> 
+
+                <button className = "fullscreen-button" onClick={handle.enter} > 
+                    <span class="material-symbols-outlined">fullscreen</span>
+                </button>       
+            </div>
+        
         </div>
-    
-    </div>
     </div>
     
   )
