@@ -7,6 +7,33 @@
     align-items: center;
 }
 
+.pbaronecontainerone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10px;
+    width: 100%;
+    margin: 10px 0 0 0;
+
+}
+
+.pbaronecontainertwo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    border: 3px solid white;
+    border-radius: 10px;
+    padding: 0 5px 0 5px;
+}
+
+.pbarone {
+    background-color: red;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .carousel{
     overflow: hidden;
     width: 100vh;
