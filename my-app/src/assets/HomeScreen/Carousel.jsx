@@ -10,6 +10,7 @@ export const Carousel = () => {
     const handle = useFullScreenHandle(); // Create a handle for the full screen mode
     const [ activeIndex, setActiveIndex ] = React.useState(0) // Create a state for the active index
     const [ progress, setProgress ] = useState(0); // Create a state for the progress bar
+    const [ isFullScreen, setIsFullScreen ] = useState(false); // Create a state for fullscreen mode
     const items = images.map((image, index) => ({ // Create an array of items for the carousel
         title: `Example ${index + 1}`,
         icon: image,
@@ -78,11 +79,11 @@ export const Carousel = () => {
     <div>
         <div className = "carousel-container">
             <div className = "carousel">
-                <FullScreen className = "fullScreen" handle={handle}>
+            <FullScreen className = {isFullScreen ? "fullScreen fullscreen" : "fullScreen"} handle={handle} onChange={isFull => setIsFullScreen(isFull)}>
                 <div className = "inner"
                     style={{transform: `translate(-${activeIndex * 100}%)`}}>
                     {items.map((item) => {
-                        return <CarouselItem item = {item}/>    
+                        return <CarouselItem item={item} isFullScreen={isFullScreen}/>    
                     })}
                 </div>
                 </FullScreen>
