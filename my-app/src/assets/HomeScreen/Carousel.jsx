@@ -5,34 +5,34 @@ import { CarouselItem } from './CarouselItem2';
 import './Carousel.css';
 import { images } from '../Media/slides';
 
-export const Carousel = () => {
+export const Carousel = () => { 
     
-    const handle = useFullScreenHandle();
-    const [ activeIndex, setActiveIndex ] = React.useState(0)
-    const [ progress, setProgress ] = useState(0);
-    const items = images.map((image, index) => ({
+    const handle = useFullScreenHandle(); // Create a handle for the full screen mode
+    const [ activeIndex, setActiveIndex ] = React.useState(0) // Create a state for the active index
+    const [ progress, setProgress ] = useState(0); // Create a state for the progress bar
+    const items = images.map((image, index) => ({ // Create an array of items for the carousel
         title: `Example ${index + 1}`,
         icon: image,
     }));
 
   
-    const updateIndex = (newIndex) => {
+    const updateIndex = (newIndex) => { // Update the activeIndex state
         if (newIndex < 0) {
-            newIndex = items.length - 1; // Wrap around to the last slide if the index is less than 0
+            newIndex = items.length - 1;
         } else if (newIndex >= items.length) {
-            newIndex = 0; // Wrap around to the first slide if the index is greater than or equal to the number of slides
+            newIndex = 0;
         }
     
         setActiveIndex(newIndex);
-        setProgress(0); // Reset progress when slide changes
+        setProgress(0);
     }
 
-    const handleInputChange = (event) => {
-        const newIndex = parseInt(event.target.value, 10) - 1; // Subtract 1 because slide numbers start at 1
+    const handleInputChange = (event) => { // Update the activeIndex state when the input changes
+        const newIndex = parseInt(event.target.value, 10) - 1; 
         updateIndex(newIndex);
     }
 
-    useEffect(() => {
+    useEffect(() => { // Add event listeners for the left and right arrow keys
         const handleKeyDown = (event) => {
             switch (event.key) {
                 case 'ArrowLeft':
@@ -53,12 +53,12 @@ export const Carousel = () => {
         }
     }, [activeIndex]);
 
-    useEffect(() => {
+    useEffect(() => { // Create a timer to automatically change the activeIndex every 15 seconds
         const timer = setInterval(() => {
             updateIndex(activeIndex + 1);
         }, 15000);
 
-        const progressTimer = setInterval(() => {
+        const progressTimer = setInterval(() => { // Create a timer to update the progress bar every 0.1 seconds
             setProgress((oldProgress) => {
                 if (oldProgress >= 100) {
                     return 0;
