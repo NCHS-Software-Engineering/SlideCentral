@@ -17,6 +17,7 @@
 
 }
 
+
 .pbaronecontainertwo {
     display: flex;
     justify-content: center;
@@ -34,6 +35,27 @@
     justify-content: center;
     align-items: center;
 }
+
+.slide-input {
+    background: none;
+    border: none;
+    appearance: textfield; /* Removes the arrows in some browsers */
+    -moz-appearance: textfield; /* Removes the arrows in Firefox */
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    font-size: 20px;
+}
+
+.slide-input::-webkit-inner-spin-button, /* Removes the arrows in Chrome */
+.slide-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.slide-input:focus {
+    outline: none;
+}
+
 .carousel{
     overflow: hidden;
     width: 100vh;
@@ -78,6 +100,17 @@
     padding: 10px;
 }
 
+.carousel-buttons label {
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    margin: 0 10px 0 10px;
+    background-color: red;
+    border-radius: 10px;
+    border: 3px solid white;
+    padding: 10px 5px 10px 10px;
+    font-size: 20px;
+
+}
 .sidetoside {
     border: 3px solid white;
     border-radius: 10px;
@@ -95,7 +128,6 @@
     border-radius: 10px;
     border: 3px solid white;
     cursor: pointer;
-    margin-left: 10px;
     padding: 11px 10px 10px 11px;
 }
 
@@ -104,6 +136,10 @@
     border: none;
     cursor: pointer;
     color: black;
+}
+
+.button-arrow:focus {
+    outline: none;
 }
 
 .indicators {

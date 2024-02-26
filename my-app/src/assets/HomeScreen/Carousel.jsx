@@ -3,40 +3,33 @@ import React, { useEffect, useState } from 'react';
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
 import { CarouselItem } from './CarouselItem2';
 import './Carousel.css';
+import { images } from '../Media/slides';
 
 export const Carousel = () => {
     
     const handle = useFullScreenHandle();
     const [ activeIndex, setActiveIndex ] = React.useState(0)
     const [ progress, setProgress ] = useState(0);
-    const items = [
-        {   title: "Example 1",
-            icon: require("../Media/slides/slide1.png"),
-        },
-        {   
-            title: "Example 2",
-            icon: require("../Media/slides/slide2.png"),
-        },
-        {   
-            title: "Example 3",
-            icon: require("../Media/slides/slide3.png"),
-        },
-        {   
-            title: "Example 4",
-            icon: require("../Media/slides/slide4.png"),
-        }
-    ]
+    const items = images.map((image, index) => ({
+        title: `Example ${index + 1}`,
+        icon: image,
+    }));
 
   
     const updateIndex = (newIndex) => {
         if (newIndex < 0) {
-            newIndex = items.length - 1;
+            newIndex = items.length - 1; // Wrap around to the last slide if the index is less than 0
         } else if (newIndex >= items.length) {
-            newIndex = 0;
+            newIndex = 0; // Wrap around to the first slide if the index is greater than or equal to the number of slides
         }
-
+    
         setActiveIndex(newIndex);
         setProgress(0); // Reset progress when slide changes
+    }
+
+    const handleInputChange = (event) => {
+        const newIndex = parseInt(event.target.value, 10) - 1; // Subtract 1 because slide numbers start at 1
+        updateIndex(newIndex);
     }
 
     useEffect(() => {
@@ -133,6 +126,10 @@ export const Carousel = () => {
                             <span class="material-symbols-outlined">arrow_forward_ios</span>
                         </button> 
                     </div>
+                    <label>
+                    Slide: 
+                        <input type="number" value={activeIndex + 1} onChange={handleInputChange} min="1" max={items.length} className="slide-input"/>
+                    </label>
                     <button className = "fullscreen-button" onClick={handle.enter} > 
                         <span class="material-symbols-outlined">fullscreen</span>
                     </button>       
