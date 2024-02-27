@@ -74,6 +74,33 @@ export const Carousel = () => {
         }
     }, [activeIndex]);
 
+    useEffect(() => { // Add event listeners for the left and right arrow keys and the f key for fullscreen mode
+        const handleKeyDown = (event) => {
+            switch (event.key) {
+                case 'ArrowLeft':
+                    updateIndex(activeIndex - 1);
+                    break;
+                case 'ArrowRight':
+                    updateIndex(activeIndex + 1);
+                    break;
+                case 'f':
+                    if (isFullScreen) {
+                        handle.exit();
+                    } else {
+                        handle.enter();
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    
+        document.addEventListener('keydown', handleKeyDown);
+    
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+        }
+    }, [activeIndex, isFullScreen]);
 
   return (
     <div>
