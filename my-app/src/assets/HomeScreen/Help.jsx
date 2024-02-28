@@ -20,19 +20,19 @@ function Help() {
                     <h2>Our Contacts:</h2>
                     <div className="contact-info">
                         <h3>Connor Furby:</h3>
-                        <p>Email: cfurby@stunaperville203.org</p>
+                        <p>Email: cafurby@stu.naperville203.org</p>
                     </div>
                     <div className="contact-info">
                         <h3>Preston Probst:</h3>
-                        <p>Email: pprobst@stunaperville203.org</p>
+                        <p>Email: pjprobst@stu.naperville203.org</p>
                     </div>
                     <div className="contact-info">
                         <h3>Shreyas Yerabati:</h3>
-                        <p>Email: syerabati@stunaperville203.org</p>
+                        <p>Email: sryerabati@stu.naperville203.org</p>
                     </div>
                     <div className="contact-info">
                         <h3>Dylan Kosloski:</h3>
-                        <p>Email: dkosloski@stunaperville203.org</p>
+                        <p>Email: dtkosloski@stu.naperville203.org</p>
                     </div>
                 </aside>
             </div>
