@@ -6,7 +6,6 @@ function Upload() {
     const [selectedFile, setSelectedFile] = useState(null);
     const [preview, setPreview] = useState();
 
-    // create a preview as a side effect, whenever selected file is changed
     useEffect(() => {
         if (!selectedFile) {
             setPreview(undefined);
@@ -16,7 +15,6 @@ function Upload() {
         const objectUrl = URL.createObjectURL(selectedFile);
         setPreview(objectUrl);
 
-        // free memory when ever this component is unmounted
         return () => URL.revokeObjectURL(objectUrl);
     }, [selectedFile]);
 
@@ -26,8 +24,39 @@ function Upload() {
             return;
         }
 
-        // I've kept this example simple by using the first image instead of multiple
         setSelectedFile(e.target.files[0]);
+    };
+
+    const onSubmit = e => {
+        e.preventDefault();
+
+        if (!selectedFile) {
+            alert('No file selected for upload.');
+            return;
+        }
+
+        if (selectedFile.type !== 'image/jpeg' && selectedFile.type !== 'image/png' && selectedFile.type !== 'image/gif' && selectedFile.type !== 'image/jpg') {
+            alert('Only image files can be uploaded.');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('image', selectedFile);
+
+        fetch('http://localhost:5000/upload', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('Image uploaded successfully!');
+            } else {
+                alert('Failed to upload image.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     };
 
     return (
@@ -35,7 +64,7 @@ function Upload() {
             <br></br>
             <br></br>
             <h1>Input a Slide!</h1>
-            <form id="uploadForm" encType="multipart/form-data" action="http://localhost:5000/upload" method="POST">
+            <form id="uploadForm" encType="multipart/form-data" onSubmit={onSubmit}>
                 <input type="file" name="image" id="imageInput" accept="image/*" onChange={onSelectFile} />
                 {selectedFile &&  <img id="output" src={preview} />}
                 <button type="submit">Upload</button>
