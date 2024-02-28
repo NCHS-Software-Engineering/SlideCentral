@@ -6,6 +6,7 @@ import Home from './HomeScreen/Home.jsx';
 import Help from './HomeScreen/Help.jsx';
 import Information from './HomeScreen/Information.jsx';
 import Carousel from './HomeScreen/Carousel.jsx';
+import Upload from './HomeScreen/Upload.jsx';
 
 import SignIn  from './SignedIn/SignIn.jsx';
 
@@ -19,6 +20,7 @@ function Layout() {
           <Route path="/slideshow" element={<Carousel />} />
           <Route path="/help" element={<Help />} />
           <Route path="/information" element={<Information />} />
+          <Route path="/upload" element={<Upload />} />
         </Routes>
       </div>
       <div className="footer-section">
