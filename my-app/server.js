@@ -17,7 +17,7 @@ app.use((req, res, next) => {
 // Set up Multer storage
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'imgs'); // Save uploaded files to the "imgs" directory
+    cb(null, './src/assets/Media/slides'); // Save uploaded files to the "imgs" directory
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + '-' + file.originalname); // Rename the file with a timestamp
