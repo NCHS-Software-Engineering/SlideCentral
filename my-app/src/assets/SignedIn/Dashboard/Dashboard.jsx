@@ -1,8 +1,11 @@
+import DComponentActivities from "./DComponentActivities";
+import DComponentNotifications from "./DComponentNotifications";
 
 function Dashboard() {
     return (
       <main>
-        <h1>hey</h1>
+        <DComponentActivities/>
+        <DComponentNotifications />
       </main>
     )
 }

@@ -16,11 +16,11 @@ function SignIn () {
                     <div className={styles.content}>
                         <div className={styles.option}>
                             <img src={TeacherImg} alt="Teacher"/>
-                            <Link to="/dashboard"><h3>Teacher / Coach / Sponsor</h3></Link>
+                            <Link to="./dashboard"><h3>Teacher / Coach / Sponsor</h3></Link>
                         </div>
                         <div className={styles.option}>
                             <img src={StudentImg} alt="Student"/>
-                            <Link to="/dashboard"><h3>Student / Club Leader</h3></Link>
+                            <Link to="./dashboard"><h3>Student / Club Leader</h3></Link>
                         </div>
                     </div>
                 </div>

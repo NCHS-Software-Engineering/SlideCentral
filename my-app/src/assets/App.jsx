@@ -48,8 +48,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/signin/*" element={<SignedInLayout />} />
         <Route path="/*" element={<Layout />} />
+        <Route path="signedin/*" element={<SignedInLayout />} />
       </Routes>
     </Router>
   );
