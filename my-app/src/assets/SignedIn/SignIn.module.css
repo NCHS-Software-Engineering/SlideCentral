@@ -4,23 +4,23 @@
     text-decoration: none;
     color: white;
     font-weight: bold;
-    position: absolute;
     margin-top: 17px;
     margin-left: 16px;
-  }
+    margin-right: 10px;
+    }
   
-  body {
+body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
   }
-  .signincontainer {
+.signincontainer {
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
   }
-  .card {
+.card {
       background: #3A3B3C;
       border-radius: 8px;
       -webkit-box-shadow:0px 0px 96px 54px rgba(255,0,0,0.71);
@@ -33,7 +33,7 @@
       backdrop-filter: blur( 4px );
       -webkit-backdrop-filter: blur( 4px );
   }
-  .header {
+.header {
       color: white;
        padding: 20px;
       text-align: center;
@@ -41,22 +41,22 @@
       backdrop-filter: blur( 4px );
       -webkit-backdrop-filter: blur( 4px );
   }
-  .content {
+.content {
       padding: 20px;
       display: flex;
   }
-  .option {
+.option {
       flex: 1;
       margin: 10px;
       text-align: center;
   }
-  .option img {
+.option img {
       width: 300px;
       height: auto;
       border-bottom: 3px solid red;
       border-radius: 10px;
   }
-  .option h3 {
+.option h3 {
       background-color: red;
       border-radius: 10px;
       color: white;
@@ -64,10 +64,10 @@
       padding: 10px;
   }
   
-  a {
+a {
     text-decoration: none;
   }
-  .option h3:hover {
+.option h3:hover {
     transition: 0.3s;
     color: red;
     border-left: 3px solid red;
@@ -76,4 +76,35 @@
     background-color: #8B0000;
   }
   
+.breadcrumb {
+    display: flex;
+    align-items: center;
+}
 
+.breadcrumbItem {
+    color: red;
+    font-size: 25px;
+    text-decoration: underline;
+    margin: 0 10px;
+    height: 100%;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.logoAndLinks {
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb {
+    display: flex;
+    gap: 10px; /* Adjust this value as needed */
+    height: 100%;
+    padding-top: 10px;
+}
+
+.arrow {
+    margin: 0 10px;
+}
