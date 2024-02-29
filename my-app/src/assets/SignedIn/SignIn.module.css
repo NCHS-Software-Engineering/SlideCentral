@@ -18,7 +18,7 @@ body {
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
+      min-height: calc(100vh - 160px);
   }
 .card {
       background: #3A3B3C;
@@ -33,6 +33,7 @@ body {
       backdrop-filter: blur( 4px );
       -webkit-backdrop-filter: blur( 4px );
   }
+
 .header {
       color: white;
        padding: 20px;
