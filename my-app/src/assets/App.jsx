@@ -34,7 +34,7 @@ function SignedInLayout() {
   return (
     <div className="App">
       <SignedInNavbar />
-      <div className="content">
+      <div className="signedin-content">
         <Routes>
           <Route index element={<SignIn />} />
           <Route path="/dashboard" element={<Dashboard/>} />

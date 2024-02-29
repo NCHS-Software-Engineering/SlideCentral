@@ -1,0 +1,87 @@
+.dashboard {
+    display: flex;
+}
+
+.dashboard > * {
+    flex: 1;
+}
+
+.main-content {
+    height: calc(100% - 71px);
+    overflow: auto;
+}
+
+.signedin-content {
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+    margin-bottom: 70px;
+    min-height: 82.5vh;
+}
+
+.activities-container {
+    margin: 10px;
+    border: 3px solid white;
+    padding: 15px 15px 5px;
+    border-radius: 10px;
+}
+
+.activity-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.activity-link {
+    color: white;
+    text-decoration: underline;
+    background-color: red;
+    border: 2px solid white;
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 25px;
+    flex-grow: 1;
+}
+
+.edit-button, .delete-button {
+    margin-left: 1em;
+    background-color: #9b870c;
+    color: white;
+    border: 2px solid white;
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 15px;
+}
+
+.delete-button {
+    background-color: darkred;
+}
+
+.no-activities-message {
+    color: white;
+}
+
+.add-activity-button {
+    display: block;
+    margin-top: 1em;
+}
+
+.activity-form {
+    margin-top: 1em;
+}
+
+.activity-label {
+    display: block;
+    margin-bottom: 0.5em;
+}
+
+.activity-input {
+    width: 98%;
+    padding: 0.5em;
+}
+
+.submit-button {
+    display: block;
+    margin-top: 0.5em;
+}
