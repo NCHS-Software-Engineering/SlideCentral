@@ -35,7 +35,7 @@ function Upload() {
             return;
         }
 
-        if (selectedFile.type !== 'image/jpeg' && selectedFile.type !== 'image/png' && selectedFile.type !== 'image/gif' && selectedFile.type !== 'image/jpg') {
+        if (selectedFile.type !== 'image/jpeg' && selectedFile.type !== 'image/png' && selectedFile.type !== 'image/jpg') {
             alert('Only image files can be uploaded.');
             return;
         }
