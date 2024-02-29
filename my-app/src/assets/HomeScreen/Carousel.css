@@ -19,20 +19,18 @@
 
 .pbaronecontainertwo {
     display: flex;
-    justify-content: center;
-    align-items: center;
     width: 25%;
     border: 3px solid white;
     border-radius: 10px;
-    padding: 0 5px 0 5px;
+    padding: 0 5px 0 0;
 }
 
 .pbarone {
     background-color: red;
     height: 20px;
     display: flex;
-    justify-content: center;
     align-items: center;
+    border-radius: 5px;
 }
 
 .slide-input {
