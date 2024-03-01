@@ -104,6 +104,11 @@ export const Carousel = () => {
 
     return (
         <div>
+            <div className="pbaronecontainerone">
+                <div className="pbaronecontainertwo">
+                    <div style={{ width: `${progress}%` }} className="pbarone"></div>
+                </div>
+            </div>
             <div className="carousel-container">
                 <div className="carousel-wrapper">
                     <button onClick={() => {
@@ -135,11 +140,6 @@ export const Carousel = () => {
                     <button className="fullscreen-button" onClick={handle.enter}>
                         <span class="material-symbols-outlined">fullscreen</span>
                     </button>
-                </div>
-            </div>
-            <div className="pbaronecontainerone">
-                <div className="pbaronecontainertwo">
-                    <div style={{ width: `${progress}%` }} className="pbarone"></div>
                 </div>
             </div>
         </div>

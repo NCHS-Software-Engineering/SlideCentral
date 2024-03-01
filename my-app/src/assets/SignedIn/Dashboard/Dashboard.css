@@ -19,6 +19,39 @@
     min-height: 82.5vh;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .activities-container {
     margin: 10px;
     border: 3px solid white;
@@ -31,17 +64,24 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
+    border-bottom: 1px solid white;
 }
 
 .activity-link {
     color: white;
     text-decoration: underline;
-    background-color: red;
-    border: 2px solid white;
     border-radius: 10px;
     padding: 5px;
     font-size: 25px;
     flex-grow: 1;
+    margin-bottom: 10px;
+}
+
+.activity-link span {
+    background-color: red;
+    border: 3px solid white;
+    border-radius: 10px;
+    padding: 5px 15px 5px 10px;
 }
 
 .edit-button, .delete-button {
@@ -60,11 +100,18 @@
 
 .no-activities-message {
     color: white;
+    text-decoration: underline;
+    font-size: 20px;
 }
 
 .add-activity-button {
     display: block;
     margin-top: 1em;
+    background-color: red;
+    color: white;
+    border: 3px solid white;
+    border-radius: 10px;
+    font-size: 15px;
 }
 
 .activity-form {
@@ -74,6 +121,8 @@
 .activity-label {
     display: block;
     margin-bottom: 0.5em;
+    color: white;
+    font-size: 20px;
 }
 
 .activity-input {
@@ -84,4 +133,28 @@
 .submit-button {
     display: block;
     margin-top: 0.5em;
+    background-color: red;
+    color: white;
+    border: 3px solid white;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.submit-button:hover, .add-activity-button:hover, .activity-link span:hover{
+    background-color: darkred;
+    border: 3px solid red;
+    transition: 0.3s;
+    color: red;
+}
+
+.activity-link:hover {
+    text-decoration-color: red;
+    transition: 0.3s;
+}
+
+.edit-button:hover, .delete-button:hover {
+    background-color: darkred;
+    border: 2px solid red;
+    transition: 0.3s;
+    color: red;
 }

@@ -60,7 +60,7 @@ function DComponentActivities() {
     <div className="activities-container">
         {activities.map((activity, index) => (
             <div key={index} className="activity-item">
-                <Link to={`${location.pathname}/${activity.replace(/\s/g, '-')}`} className="activity-link">{activity}</Link>
+                <Link to={`${location.pathname}/${activity.replace(/\s/g, '-')}`} className="activity-link"><span>{activity}</span></Link>
                 <button onClick={() => handleEditClick(index)} className="edit-button">Edit</button>
                 <button onClick={() => handleDeleteClick(index)} className="delete-button">Delete</button>
             </div>
@@ -70,7 +70,7 @@ function DComponentActivities() {
         {showInput && (
             <form onSubmit={handleInputSubmit} className="activity-form">
                 <label className="activity-label">
-                    Enter Name Here:
+                    Enter Activity Name Here:
                     <input type="text" value={inputValue} onChange={handleInputChange} className="activity-input" />
                 </label>
                 <button type="submit" className="submit-button">Submit</button>
