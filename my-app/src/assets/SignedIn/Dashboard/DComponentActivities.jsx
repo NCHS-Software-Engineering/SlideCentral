@@ -46,6 +46,10 @@ function DComponentActivities() {
         window.alert('Invalid Club Name, please use letters, numbers, dashes or spaces');
         return;
     }
+    if (inputValue.length < 3 || inputValue.length > 30) {
+        window.alert('Activity name should be between 3 and 30 characters long');
+        return;
+    }
     if (editIndex !== null) {
         const newActivities = [...activities];
         newActivities[editIndex] = inputValue;
@@ -60,7 +64,7 @@ function DComponentActivities() {
     <div className="activities-container">
         {activities.map((activity, index) => (
             <div key={index} className="activity-item">
-                <Link to={`${location.pathname}/${activity.replace(/\s/g, '-')}`} className="activity-link"><span>{activity}</span></Link>
+                <Link to={`${location.pathname}/${activity.replace(/\s/g, '-')}-dashboard`} className="activity-link"><span>{activity} Dashboard</span></Link>
                 <button onClick={() => handleEditClick(index)} className="edit-button">Edit</button>
                 <button onClick={() => handleDeleteClick(index)} className="delete-button">Delete</button>
             </div>

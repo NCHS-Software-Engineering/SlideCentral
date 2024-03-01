@@ -83,7 +83,7 @@ a {
 }
 
 .breadcrumbItem {
-    color: red;
+    color: white;
     font-size: 25px;
     text-decoration: underline;
     margin: 0 10px;
@@ -114,4 +114,21 @@ a {
 
 .arrow {
     margin: 0 10px;
+    font-size: 30px;
+}
+
+.breadcrumbItem:hover { /* nav hover */
+  color: red;
+  border: 3px solid red;
+  transition: 0.3s;
+  background-color: #8B0000;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+ .active { /* link is currently being accessed */
+  color: red;
+  font-style: bold;
+  font-size: 30px;
+  text-decoration: underline;
 }

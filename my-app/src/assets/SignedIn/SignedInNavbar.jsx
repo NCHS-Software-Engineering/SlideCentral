@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, NavLink } from "react-router-dom";
 import NavLogo from '../Media/images/sclogo1.png';
 import styles from './SignIn.module.css';
 
@@ -25,7 +25,7 @@ function SignedInNavbar() {
 
                             return (
                                 <span key={index}>
-                                    <span className={styles.breadcrumbItem} onClick={() => navigate(to)}>{toTitleCase(value)}</span>
+                                    <NavLink exact to={to} className={styles.breadcrumbItem} activeClassName={styles.active}>{toTitleCase(value)}</NavLink>
                                     {index < pathnames.length - 2 && <span className={styles.arrow}>→</span>}
                                 </span>
                             );
