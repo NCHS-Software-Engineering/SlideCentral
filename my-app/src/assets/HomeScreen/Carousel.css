@@ -5,6 +5,7 @@
     justify-content: center;
     display: flex;
     align-items: center;
+    flex-direction: column;
 }
 
 .pbaronecontainerone {
@@ -94,7 +95,7 @@
 .carousel-img{
     width: 100%;
     height: 100%;
-    object-fit: cover; /* This will ensure the aspect ratio of the images is maintained */
+    object-fit: cover; 
 }
 
 .carousel-buttons{
@@ -102,6 +103,26 @@
     justify-content: space-evenly;
     margin: 10px 0 0 0;
     padding: 10px;
+}
+
+.carousel-wrapper {
+    position: relative;
+}
+
+.button-arrow-left {
+    position: absolute;
+    top: 50%;
+    left: -60px;
+    transform: translateY(-50%);
+    padding: 40px 5px 40px 15px;
+}
+
+.button-arrow-right {
+    position: absolute;
+    top: 50%;
+    right: -60px;
+    transform: translateY(-50%);
+    padding: 40px 10px;
 }
 
 .carousel-buttons label {
@@ -136,47 +157,14 @@
 }
 
 .button-arrow{
-    background: none;
-    border: none;
+    background-color: darkred;
+    border: 3px solid white;
+    border-radius: 10px;
+    color: white;
     cursor: pointer;
-    color: black;
 }
 
 .button-arrow:focus {
     outline: none;
 }
 
-.indicators {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.indicator-buttons{
-    border:none;
-    cursor: pointer;
-    background: none;
-}
-
-.indicators > button {
-    margin: 5px;
-    background: none;
-}
-
-.indicator-symbol{
-    color: #26343f;
-}
-
-.indicator-symbol-active{
-    color: white;
-}
-
-.fade {
-    animation-name: fade;
-    animation-duration: 1.5s;
-}
-  
-  @keyframes fade {
-    from {opacity: .4} 
-    to {opacity: 1}
-}

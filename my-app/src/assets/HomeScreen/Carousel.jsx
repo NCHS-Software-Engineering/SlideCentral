@@ -102,76 +102,48 @@ export const Carousel = () => {
         }
     }, [activeIndex, isFullScreen]);
 
-  return (
-    <div>
-        <div className = "carousel-container">
-            <div className = "carousel">
-            <FullScreen className = {isFullScreen ? "fullScreen fullscreen" : "fullScreen"} handle={handle} onChange={isFull => setIsFullScreen(isFull)}>
-                <div className = "inner"
-                    style={{transform: `translate(-${activeIndex * 100}%)`}}>
-                    {items.map((item) => {
-                        return <CarouselItem item={item} isFullScreen={isFullScreen}/>    
-                    })}
-                </div>
-                </FullScreen>
-                <div className = "carousel-buttons"> 
-                    <div className = "sidetoside">
-                        <button onClick={()=>{
-                            updateIndex(activeIndex - 1);
-                        
-                        }}  className = "button-arrow" >
+    return (
+        <div>
+            <div className="carousel-container">
+                <div className="carousel-wrapper">
+                    <button onClick={() => {
+                        updateIndex(activeIndex - 1);
+                    }} className="button-arrow button-arrow-left">
                         <span class="material-symbols-outlined">arrow_back_ios</span>
-                        </button>
-                        <div className= "indicators">
-                            {items.map((item, index) => {
-                                return(
-                                    <button onClick={()=>{
-                                        updateIndex(index);
-                                    }}
-                                    
-                                    className="indicator-buttons"> 
-                            
-                                <span className={`material-symbols-outlined  ${index === activeIndex? "indicator-symbol-active": "indicator-symbol"}`}>
-                                radio_button_checked
-                                </span>
-
-                            </button>
-                            );
-
-                            })}
-
-
-
-                            
-                        </div>
-
-                        <button onClick={()=>{
-                            updateIndex(activeIndex + 1);
-                        
-                        }}
-                        className = "button-arrow">
-
-                            <span class="material-symbols-outlined">arrow_forward_ios</span>
-                        </button> 
+                    </button>
+                    <div className="carousel">
+                        <FullScreen className={isFullScreen ? "fullScreen fullscreen" : "fullScreen"} handle={handle} onChange={isFull => setIsFullScreen(isFull)}>
+                            <div className="inner"
+                                style={{ transform: `translate(-${activeIndex * 100}%)` }}>
+                                {items.map((item) => {
+                                    return <CarouselItem item={item} isFullScreen={isFullScreen} />
+                                })}
+                            </div>
+                        </FullScreen>
                     </div>
+                    <button onClick={() => {
+                        updateIndex(activeIndex + 1);
+                    }} className="button-arrow button-arrow-right">
+                        <span class="material-symbols-outlined">arrow_forward_ios</span>
+                    </button>
+                </div>
+                <div className="carousel-buttons">
                     <label>
-                    Slide: 
-                        <input type="number" value={activeIndex + 1} onChange={handleInputChange} min="1" max={items.length} className="slide-input"/>
+                        Slide:
+                        <input type="number" value={activeIndex + 1} onChange={handleInputChange} min="1" max={items.length} className="slide-input" />
                     </label>
-                    <button className = "fullscreen-button" onClick={handle.enter} > 
+                    <button className="fullscreen-button" onClick={handle.enter}>
                         <span class="material-symbols-outlined">fullscreen</span>
-                    </button>       
+                    </button>
+                </div>
+            </div>
+            <div className="pbaronecontainerone">
+                <div className="pbaronecontainertwo">
+                    <div style={{ width: `${progress}%` }} className="pbarone"></div>
                 </div>
             </div>
         </div>
-        <div className ="pbaronecontainerone">
-            <div className = "pbaronecontainertwo">
-                <div style={{ width: `${progress}%`}} className="pbarone"></div>
-            </div>
-        </div>
-    </div>
-    
-  )
+    )
 }
 
 export default Carousel;
