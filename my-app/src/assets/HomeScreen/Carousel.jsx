@@ -54,20 +54,20 @@ export const Carousel = () => {
         }
     }, [activeIndex]);
 
-    useEffect(() => { // Create a timer to automatically change the activeIndex every 15 seconds
+    useEffect(() => { // Create a timer to change the activeIndex state every 15 seconds
         const timer = setInterval(() => {
             updateIndex(activeIndex + 1);
         }, 15000);
-
-        const progressTimer = setInterval(() => { // Create a timer to update the progress bar every 0.1 seconds
+    
+        const progressTimer = setInterval(() => { 
             setProgress((oldProgress) => {
                 if (oldProgress >= 100) {
                     return 0;
                 }
-                return oldProgress + 100 / (15 * 10); // Increase progress every 0.1 seconds
+                return oldProgress + 100 / (15 * 100); 
             });
-        }, 100);
-
+        }, 10); 
+    
         return () => {
             clearInterval(timer);
             clearInterval(progressTimer);
@@ -104,11 +104,6 @@ export const Carousel = () => {
 
     return (
         <div>
-            <div className="pbaronecontainerone">
-                <div className="pbaronecontainertwo">
-                    <div style={{ width: `${progress}%` }} className="pbarone"></div>
-                </div>
-            </div>
             <div className="carousel-container">
                 <div className="carousel-wrapper">
                     <button onClick={() => {
@@ -132,6 +127,11 @@ export const Carousel = () => {
                         <span class="material-symbols-outlined">arrow_forward_ios</span>
                     </button>
                 </div>
+                <div className="pbaronecontainerone">
+                    <div className="pbaronecontainertwo">
+                        <div style={{ width: `${progress}%` }} className="pbarone"></div>
+                    </div>
+                </div>
                 <div className="carousel-buttons">
                     <label>
                         Slide:
@@ -141,7 +141,7 @@ export const Carousel = () => {
                         <span class="material-symbols-outlined">fullscreen</span>
                     </button>
                 </div>
-            </div>
+            </div>  
         </div>
     )
 }

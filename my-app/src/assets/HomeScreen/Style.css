@@ -141,7 +141,7 @@ html, body { /* defaults for the entire body */
   margin-bottom: -10px;
 }
 
-.scund {
+.scund { /* slide central under welcome to slidecentral */
   text-decoration: underline;
   text-decoration-color: red;
 }
@@ -212,21 +212,21 @@ html, body { /* defaults for the entire body */
 /*
 SCROLL BAR
 */
-::-webkit-scrollbar {
+::-webkit-scrollbar { /* scrollbar */
     width: 12px; 
 }
 
-::-webkit-scrollbar-track {
+::-webkit-scrollbar-track { /* scrollbar track */
     background: black;
 }
 
-::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb { /* scrollbar thumb */
     background: linear-gradient(180deg, #808080, #8B0000);
     border-radius: 6px; 
     margin: 100px;
 }
 
-::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover { /* scrollbar thumb hover */
     background: linear-gradient(180deg, #a9a9a9, #b22222);
 }
 
@@ -238,53 +238,53 @@ SCROLL BAR
 /*
 HELP
 */
-.help-content-container {
+.help-content-container { /* help section div */
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   height: 100%;
 }
 
-.help-content-container h2 {
+.help-content-container h2 { /* help heading */
   color: red;
   font-style: bold;
   text-decoration: underline;
   font-size: 35px;
 }
-.help-content-container h3 {
+.help-content-container h3 { /* help subheading */
   color: #8B0000;
   font-style: bold;
   font-size: 30px;
 }
 
-.help-content-container p {
+.help-content-container p { /* help text */
   font-size: 25px;
 }
 
-.feedback-section {
+.feedback-section { /* feedback section div */
   flex: 1;
   min-width: 300px;
   padding: 10px 30px 0px 10px;
   border-right: 5px solid grey;
 }
 
-.contact-section {
+.contact-section { /* contact section div */
   flex: 1;
   min-width: 300px;
   padding: 10px 40px 0px 30px;
 }
 
-.contact-info {
+.contact-info { /* contact info div */
   margin-bottom: 20px;
   
 }
 
-@media (max-width: 600px) {
+@media (max-width: 600px) {  
   .content-container {
     flex-direction: column;
   }
 
-  .feedback-section, .contact-section {
+  .feedback-section, .contact-section { 
     min-width: 100%;
     max-width: 100%;
   }

@@ -4,23 +4,23 @@
     text-decoration: none;
     color: white;
     font-weight: bold;
-    margin-top: 17px;
-    margin-left: 16px;
+    margin-top: 16px;
+    margin-left: 15px;
     margin-right: 10px;
     }
   
-body {
+body { /* defaults for the entire body */
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
   }
-.signincontainer {
+.signincontainer { /* This is the container for the sign in page */
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: calc(100vh - 160px);
   }
-.card {
+.card { /* This is the container for the sign in card */
       background: #3A3B3C;
       border-radius: 8px;
       -webkit-box-shadow:0px 0px 96px 54px rgba(255,0,0,0.71);
@@ -34,7 +34,7 @@ body {
       -webkit-backdrop-filter: blur( 4px );
   }
 
-.header {
+.header { /* background of header */
       color: white;
        padding: 20px;
       text-align: center;
@@ -42,22 +42,22 @@ body {
       backdrop-filter: blur( 4px );
       -webkit-backdrop-filter: blur( 4px );
   }
-.content {
+.content {  /* all items together */
       padding: 20px;
       display: flex;
   }
-.option {
-      flex: 1;
+.option { /* all items together */
+      flex: 1; 
       margin: 10px;
       text-align: center;
   }
-.option img {
+.option img { /* each individual item */
       width: 300px;
       height: auto;
       border-bottom: 3px solid red;
       border-radius: 10px;
   }
-.option h3 {
+.option h3 { /* each individual item */
       background-color: red;
       border-radius: 10px;
       color: white;
@@ -65,10 +65,10 @@ body {
       padding: 10px;
   }
   
-a {
+a { /* all links */
     text-decoration: none;
   }
-.option h3:hover {
+.option h3:hover {  /* nav hover */
     transition: 0.3s;
     color: red;
     border-left: 3px solid red;
@@ -77,22 +77,22 @@ a {
     background-color: #8B0000;
   }
   
-.breadcrumb {
+.breadcrumb { /* all items together */
     display: flex;
     align-items: center;
 }
 
-.breadcrumbItem {
+.breadcrumbItem { /* each individual item */
     color: white;
     font-size: 25px;
     text-decoration: underline;
     margin: 0 10px;
     height: 100%;
 }
-.navbar {
+.navbar { /* This is the wrapper for the navbar */
     display: flex;
     justify-content: space-between;
-    padding: 0 0 16px 0;
+    padding: 0 0 17px 0;
     background: rgba( 255, 0, 0, 0.25 );
     box-shadow: 0 8px 32px 0 rgba( 255, 0, 0, 0.37 );
     backdrop-filter: blur( 3.5px );
@@ -100,19 +100,19 @@ a {
     border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
-.logoAndLinks {
+.logoAndLinks { /* all items together */
     display: flex;
     align-items: center;
 }
 
-.breadcrumb {
+.breadcrumb { /* all items together */
     display: flex;
-    gap: 10px; /* Adjust this value as needed */
+    gap: 10px; 
     height: 100%;
     padding-top: 10px;
 }
 
-.arrow {
+.arrow { /* This is the left arrow button */
     margin: 0 10px;
     font-size: 30px;
 }
