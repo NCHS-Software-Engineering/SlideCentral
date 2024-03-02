@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; 
+import {useEffect} from 'react';
 import MainHeader from './HomeScreen/MainHeader.jsx';
 import Footer from './HomeScreen/Footer.jsx';
 
@@ -12,6 +13,22 @@ import Dashboard from './SignedIn/Dashboard/Dashboard.jsx';
 import SignedInNavbar from "./SignedIn/SignedInNavbar.jsx";
 
 function Layout() {
+  function handleCallbackResponse(response) {
+    console.log("Encoded JWT ID token: " + response.credential);
+  }
+  useEffect(() => {
+    /* global google */
+    google.accounts.id.initialize({
+      client_id: "850963190516-cr7nme98i8i30huscmvl4g79q7pbo12d.apps.googleusercontent.com",
+      callback: handleCallbackResponse
+    });
+
+    google.accounts.id.renderButton(
+      document.getElementById("signInDiv"),
+      { theme: "outline", size: "large"}
+    );
+  }, []);
+
   return (
     <div className="App">
       <MainHeader />
@@ -45,6 +62,7 @@ function SignedInLayout() {
 }
 
 function App() {
+
   return (
     <Router>
       <Routes>

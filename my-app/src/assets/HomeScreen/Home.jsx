@@ -18,7 +18,7 @@ function Home() {
                 <div className="get-started-content">
                     <h2>GET STARTED</h2>
                     <p>It's really easy to make a slide for your club, activity, sport, or event! Simply sign in with your student or teacher Google account below to get started.</p>
-                    <Link to="/signedin"><button id="signIn" className="google-sign-in">Sign in with Google</button></Link>
+                    <div id="signInDiv"></div>
                     <Link to="/slideshow"><button id="viewSlides" className="view-slides">VIEW SLIDES</button></Link>
                 </div>
             </section>
