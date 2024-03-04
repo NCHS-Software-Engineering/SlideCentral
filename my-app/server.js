@@ -37,6 +37,12 @@ function resizeTo16x9(req, res, next) {
     });
 }
 
+// Function to count the number of image files in a directory
+function countImagesInDirectory(dirPath) {
+  const files = fs.readdirSync(dirPath);
+  return files.filter(file => /\.(png|jpe?g|svg)$/i.test(file)).length;
+}
+
 // Serve the HTML form
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
@@ -45,10 +51,18 @@ app.get('/', (req, res) => {
 // Use upload middleware followed by resizing middleware
 app.post('/upload', upload.single('image'), resizeTo16x9, (req, res) => {
   // At this point, req.file.buffer contains the resized image
-  // You can save it to disk or perform other operations
 
-  // Define the path where the image will be saved
-  const savePath = path.join(__dirname, 'src', 'assets', 'Media', 'slides', req.file.originalname);
+  // Define the directory where the image will be saved
+  const saveDir = path.join(__dirname, 'src', 'assets', 'Media', 'slides');
+
+  // Count the number of images in the directory
+  const imageCount = countImagesInDirectory(saveDir);
+
+  // Generate a new filename based on the image count
+  const newFilename = `slide${imageCount + 1}.png`; // Change the extension if needed
+
+  // Define the full path where the image will be saved
+  const savePath = path.join(saveDir, newFilename);
 
   // Write the image file to disk
   fs.writeFile(savePath, req.file.buffer, (err) => {
