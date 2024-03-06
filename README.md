@@ -8,7 +8,7 @@ SlideCentral is hosted on a website coded in ReactJS, and uses SQL to store all 
 # Instructions to run
 1. To start off, go into terminal and cd into the folder "my-app"
 2. Next, run the command `npm start` to start the website, and in a different
-	terminal, run `npm server.js` to start the local server.
+	terminal, run `node server.js` to start the local server.
 3. If any problems occur, run `npm install` to install any necessary dependencies
 
 
