@@ -5,7 +5,7 @@ import styles from './SignIn.module.css';
 function SignedInNavbar() {
     const location = useLocation();
     const navigate = useNavigate();
-    const pathnames = location.pathname.split('/').filter(x => x);
+    let pathnames = location.pathname.split('/').filter(x => x);
 
     // Function to convert string to title case and replace dashes with spaces
     const toTitleCase = (str) => {
@@ -19,18 +19,16 @@ function SignedInNavbar() {
             <div className={styles.logoAndLinks}>
                 <Link to="../"><img src={NavLogo} alt="Slide Central Logo" className={styles.navLogo}/></Link>
                 <div className={styles.breadcrumb}>
-                    {pathnames.length > 0 ? (
-                        pathnames.slice(1).map((value, index) => {
-                            const to = `/${pathnames.slice(0, index + 2).join("/")}`;
+                {pathnames.map((value, index) => {
+                    const to = `/${pathnames.slice(0, index + 1).join("/")}`;
 
-                            return (
-                                <span key={index}>
-                                    <NavLink exact to={to} className={styles.breadcrumbItem} activeClassName={styles.active}>{toTitleCase(value)}</NavLink>
-                                    {index < pathnames.length - 2 && <span className={styles.arrow}>→</span>}
-                                </span>
-                            );
-                        })
-                    ) : null}
+                    return (
+                        <span key={index}>
+                            <NavLink to={to} className={styles.breadcrumbItem} activeClassName={styles.active}>{toTitleCase(value)}</NavLink>
+                            {index < pathnames.length - 1 && <span className={styles.arrow}>→</span>}
+                        </span>
+                    );
+                })}
                 </div>
             </div>
         </div>

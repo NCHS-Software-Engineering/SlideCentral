@@ -7,7 +7,6 @@ import Help from './HomeScreen/Help.jsx';
 import Information from './HomeScreen/Information.jsx';
 import Carousel from './HomeScreen/Carousel.jsx';
 
-import SignIn  from './SignedIn/SignIn.jsx';
 import Dashboard from './SignedIn/Dashboard/Dashboard.jsx';
 import SignedInNavbar from "./SignedIn/SignedInNavbar.jsx";
 
@@ -37,8 +36,7 @@ function SignedInLayout() {
       <SignedInNavbar />
       <div className="signedin-content">
         <Routes>
-          <Route index element={<SignIn />} />
-          <Route path="/dashboard" element={<Dashboard/>} />
+          <Route index element={<Dashboard/>} />
         </Routes>
       </div>
     </div>
@@ -51,7 +49,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/*" element={<Layout />} />
-        <Route path="signedin/*" element={<SignedInLayout />} />
+        <Route path="dashboard/*" element={<SignedInLayout />} />
       </Routes>
     </Router>
   );

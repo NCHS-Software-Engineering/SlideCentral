@@ -180,10 +180,22 @@ html, body { /* defaults for the entire body */
   margin-bottom: -5px;
 }
 
-.google-sign-in { /* google sign in button */
+.mainbuttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#sign-in-with-google, .view-slides {
+  flex: 1;
+  margin: 0 10px; /* Adjust as needed */
+}
+
+#sign-in-with-google { /* google sign in button */
   background-color: #4285f4;
   color: white;
-  padding: 20px 40px;
+  padding: 7px 15px;
   margin-top: 10px;
   cursor: pointer;
   border: 3px solid grey;
