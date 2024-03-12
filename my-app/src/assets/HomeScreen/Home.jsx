@@ -31,8 +31,8 @@ function Home() {
         console.log('Email: ' + payload.email);
     
         let userType;
-        if (payload.email === 'cafurby@stu.naperville203.org') {
-            // If the email is 'cafurby@stu.naperville203.org', ask the user to choose the user type
+        if (payload.email === 'cafurby@stu.naperville203.org' || payload.email === 'sryerabati@stu.naperville203.org'|| payload.email === 'pjprobst@stu.naperville203.org'|| payload.email === 'dtkosloski@stu.naperville203.org') {
+            // If the email is 'cafurby@stu.naperville203.org or...` , ask the user to choose the user type
             const isTeacher = window.confirm('Are you a teacher?');
             userType = isTeacher ? 'teacher' : 'student';
         } else {
