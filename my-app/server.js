@@ -3,15 +3,57 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const sharp = require('sharp');
+const mysql = require('mysql2');
+const cors = require('cors');
 
 const app = express();
 const port = 5000;
+app.use(cors());
+
+const db = mysql.createConnection({
+  host: "db.redhawks.us",
+  user: "redhawks_slide",
+  password: "VAA0W5lMTgdn9LL",
+  database: "redhawks_slide"
+});
+
+db.connect((err) => {
+  if(err) throw err;
+  console.log('Connected to database');
+});
+
+
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   next();
+});
+
+app.use(express.json()); // Add this line to parse JSON body
+
+app.post('/api/save', (req, res) => {
+    const sub = req.body.sub;
+    const sub2 = req.body.sub2;
+    const sqlInsert = "INSERT INTO user_matrix (user_id) VALUES (?)";
+    const sqlInsert2 = "INSERT INTO user_matrix (user_name) VALUES (?)";
+    db.query(sqlInsert, sub, (err, result) => {
+        if (err) {
+            console.error(err);
+            res.status(500).send('Error saving to database.');
+        } else {
+            res.send('Data saved successfully.');
+        }
+    });
+    db.query(sqlInsert2, sub2, (err, result) => {
+      if (err) {
+          console.error(err);
+          res.status(500).send('Error saving to database.');
+      } else {
+          res.send('Data saved successfully.');
+      }
+  });
 });
 
 // Set up Multer storage

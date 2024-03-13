@@ -1,9 +1,9 @@
-import LargeSlideCentralLogo from '../Media/images/sslogonobg1.png';
-import './Style.css';
-import './Background.css';
-import { Link } from "react-router-dom";
+import axios from 'axios';
 import React, { useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import LargeSlideCentralLogo from '../Media/images/sslogonobg1.png';
+import './Background.css';
+import './Style.css';
 
 function Home() {
     const navigate = useNavigate();
@@ -31,10 +31,14 @@ function Home() {
         console.log('Name: ' + payload.name);
         console.log('Image URL: ' + payload.picture);
         console.log('Email: ' + payload.email);
+
+        axios.post('http://localhost:5000/api/save', { sub: payload.sub })
+            .then(response => console.log(response))
+            .catch(error => console.error(error));
     
         let userType;
-        if (payload.email === 'cafurby@stu.naperville203.org') {
-            // If the email is 'cafurby@stu.naperville203.org', ask the user to choose the user type
+        if (payload.email === 'cafurby@stu.naperville203.org' || payload.email === 'sryerabati@stu.naperville203.org'|| payload.email === 'pjprobst@stu.naperville203.org'|| payload.email === 'dtkosloski@stu.naperville203.org') {
+            // If the email is 'cafurby@stu.naperville203.org or...` , ask the user to choose the user type
             const isTeacher = window.confirm('Are you a teacher?');
             userType = isTeacher ? 'teacher' : 'student';
         } else {
