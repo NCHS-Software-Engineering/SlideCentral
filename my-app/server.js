@@ -34,19 +34,11 @@ app.use((req, res, next) => {
 app.use(express.json()); // Add this line to parse JSON body
 
 app.post('/api/save', (req, res) => {
-    const sub = req.body.sub;
-    const sub2 = req.body.sub2;
-    const sqlInsert = "INSERT INTO user_matrix (user_id) VALUES (?)";
-    const sqlInsert2 = "INSERT INTO user_matrix (user_name) VALUES (?)";
-    db.query(sqlInsert, sub, (err, result) => {
-        if (err) {
-            console.error(err);
-            res.status(500).send('Error saving to database.');
-        } else {
-            res.send('Data saved successfully.');
-        }
-    });
-    db.query(sqlInsert2, sub2, (err, result) => {
+  const sub = req.body.sub;
+  const sub2 = req.body.sub2;
+  const sub3 = req.body.sub3;
+  const sqlInsert = "INSERT INTO user_matrix (user_id, user_name, is_teacher) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE user_id = VALUES(user_id)";
+  db.query(sqlInsert, [sub, sub2, sub3], (err, result) => {
       if (err) {
           console.error(err);
           res.status(500).send('Error saving to database.');
