@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; 
+import ProtectedRoute from './ProtectedRoute';
 import MainHeader from './HomeScreen/MainHeader.jsx';
 import Footer from './HomeScreen/Footer.jsx';
 
@@ -9,6 +10,10 @@ import Carousel from './HomeScreen/Carousel.jsx';
 
 import Dashboard from './SignedIn/Dashboard/Dashboard.jsx';
 import SignedInNavbar from "./SignedIn/SignedInNavbar.jsx";
+
+function NotFound() {
+  return <h2>This page doesn't exist</h2>;
+}
 
 function Layout() {
 
@@ -21,6 +26,7 @@ function Layout() {
           <Route path="/slideshow" element={<Carousel />} />
           <Route path="/help" element={<Help />} />
           <Route path="/information" element={<Information />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
       <div className="footer-section">
@@ -37,6 +43,7 @@ function SignedInLayout() {
       <div className="signedin-content">
         <Routes>
           <Route index element={<Dashboard/>} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </div>
@@ -49,7 +56,8 @@ function App() {
     <Router>
       <Routes>
         <Route path="/*" element={<Layout />} />
-        <Route path="dashboard/*" element={<SignedInLayout />} />
+        <Route path="dashboard/*" element={<ProtectedRoute component={SignedInLayout} />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );
