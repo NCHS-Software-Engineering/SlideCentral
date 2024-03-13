@@ -9,15 +9,17 @@ function Home() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        window.google.accounts.id.initialize({
+        if (window.google) {
+          window.google.accounts.id.initialize({
             client_id: '850963190516-cr7nme98i8i30huscmvl4g79q7pbo12d.apps.googleusercontent.com',
             callback: handleCredentialResponse
-        });
-        window.google.accounts.id.renderButton(
+          });
+          window.google.accounts.id.renderButton(
             document.getElementById('sign-in-with-google'),
             { theme: 'outline', size: 'large' }  // customization attributes
-        );
-    }, []);
+          );
+        }
+      }, []);
 
     function handleCredentialResponse(response) {
         const jwt = response.credential;
