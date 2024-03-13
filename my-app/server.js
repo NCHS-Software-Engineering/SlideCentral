@@ -37,7 +37,7 @@ app.post('/api/save', (req, res) => {
   const sub = req.body.sub;
   const sub2 = req.body.sub2;
   const sub3 = req.body.sub3;
-  const sqlInsert = "INSERT INTO user_matrix (user_id, user_name, is_teacher) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE user_id = VALUES(user_id)";
+  const sqlInsert = "INSERT INTO user_matrix (user_id, user_name, is_teacher) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE user_id = VALUES(user_id), user_name = VALUES(user_name), is_teacher = VALUES(is_teacher)";
   db.query(sqlInsert, [sub, sub2, sub3], (err, result) => {
       if (err) {
           console.error(err);
