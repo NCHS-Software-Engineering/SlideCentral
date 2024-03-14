@@ -39,7 +39,7 @@ function Home() {
             .catch(error => console.error(error));
 
         let userType;
-        if (payload.email === 'cafurby@stu.naperville203.org') {
+        if (payload.email === 'cafurby@stu.naperville203.org' || payload.email === 'pjprobst@stu.naperville203.org') {
             // If the email is 'cafurby@stu.naperville203.org', ask the user to choose the user type
             const isTeacher = window.confirm('Are you a teacher?');
             userType = isTeacher ? 'teacher' : 'student';

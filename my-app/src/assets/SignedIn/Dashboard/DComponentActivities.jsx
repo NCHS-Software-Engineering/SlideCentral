@@ -1,6 +1,6 @@
+import axios from 'axios';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './Dashboard.css';
 
 function DComponentActivities() {
@@ -27,18 +27,27 @@ function DComponentActivities() {
     };
 
     const handleDeleteClick = (index) => {
-      const confirmation = window.confirm('Are you sure you want to delete this activity?');
-      if (confirmation) {
+        const confirmation = window.confirm('Are you sure you want to delete this activity?');
+        if (confirmation) {
           const activityName = window.prompt('Please enter the name of the activity to confirm deletion:');
           if (activityName === activities[index]) {
-              const newActivities = [...activities];
-              newActivities.splice(index, 1);
-              setActivities(newActivities);
+            const newActivities = [...activities];
+            newActivities.splice(index, 1);
+            setActivities(newActivities);
+      
+            // Send the updated activities to the server
+            axios.post('http://localhost:5000/activities', { activities: newActivities })
+            .then(() => {
+                console.log('Activities updated successfully.');
+              })
+              .catch(err => {
+                console.error('Error updating activities:', err);
+              });
           } else {
-              window.alert('The name you entered does not match the name of the activity. The activity was not deleted.');
+            window.alert('The name you entered does not match the name of the activity. The activity was not deleted.');
           }
-      }
-  };
+        }
+      };
 
   const handleInputSubmit = (event) => {
     event.preventDefault();
@@ -57,8 +66,28 @@ function DComponentActivities() {
     } else {
         setActivities([...activities, inputValue]);
     }
+    let newActivities;
+  if (editIndex !== null) {
+    newActivities = [...activities];
+    newActivities[editIndex] = inputValue;
+  } else {
+    newActivities = [...activities, inputValue];
+  }
+  setActivities(newActivities);
+
+  const activitiesString = newActivities.join(' ');
+
+    // Send the updated activities to the server
+    axios.post('http://localhost:5000/activities', { activities: newActivities })
+    .then(() => {
+        console.log('Activities updated successfully.');
+    })
+    .catch(err => {
+        console.error('Error updating activities:', err);
+    });
+
     setShowInput(false);
-  };
+    };
 
   return (
     <div className="activities-container">
