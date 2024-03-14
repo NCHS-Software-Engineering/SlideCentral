@@ -32,28 +32,29 @@ function Home() {
         console.log('Image URL: ' + payload.picture);
         console.log('Email: ' + payload.email);
 
-        const userTypeTF = payload.email.endsWith('@stu.naperville203.org') ? 0 : 1;
-
-        axios.post('http://localhost:5000/api/save', { sub: payload.sub, sub2: payload.name, sub3: userTypeTF })
-            .then(response => console.log(response))
-            .catch(error => console.error(error));
-
         let userType;
-        if (payload.email === 'cafurby@stu.naperville203.org') {
-            // If the email is 'cafurby@stu.naperville203.org', ask the user to choose the user type
-            const isTeacher = window.confirm('Are you a teacher?');
-            userType = isTeacher ? 'teacher' : 'student';
-        } else {
-            // Determine if the user is a student or a teacher based on the email domain
-            userType = payload.email.endsWith('@stu.naperville203.org') ? 'student' : 'teacher';
-        }
-        
-        console.log('User type: ' + userType);
+        let userTypeTF;
+    if (payload.email === 'cafurby@stu.naperville203.org') {
+        // If the email is 'cafurby@stu.naperville203.org', ask the user to choose the user type
+        const isTeacher = window.confirm('Are you a teacher?');
+        userType = isTeacher ? 'teacher' : 'student';
+        userTypeTF = isTeacher ? 1 : 0; // Update userTypeTF based on the user's choice
+    } else {
+        // Determine if the user is a student or a teacher based on the email domain
+        userType = payload.email.endsWith('@stu.naperville203.org') ? 'student' : 'teacher';
+        userTypeTF = payload.email.endsWith('@stu.naperville203.org') ? 0 : 1;
+    }
 
-        // Store the user type in the session storage
-        sessionStorage.setItem('userType', userType);
-    
-        navigate("/dashboard");
+    axios.post('http://localhost:5000/api/save', { sub: payload.sub, sub2: payload.name, sub3: userTypeTF })
+        .then(response => console.log(response))
+        .catch(error => console.error(error));
+
+    console.log('User type: ' + userType);
+
+    // Store the user type in the session storage
+    sessionStorage.setItem('userType', userType);
+
+    navigate("/dashboard");
     }
 
     return (
