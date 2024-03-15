@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useEffect } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import LargeSlideCentralLogo from '../Media/images/sslogonobg1.png';
@@ -32,14 +31,8 @@ function Home() {
         console.log('Image URL: ' + payload.picture);
         console.log('Email: ' + payload.email);
 
-        const userTypeTF = payload.email.endsWith('@stu.naperville203.org') ? 0 : 1;
-
-        axios.post('http://localhost:5000/api/save', { sub: payload.sub, sub2: payload.name, sub3: userTypeTF })
-            .then(response => console.log(response))
-            .catch(error => console.error(error));
-
         let userType;
-        if (payload.email === 'cafurby@stu.naperville203.org' || payload.email === 'pjprobst@stu.naperville203.org') {
+        if (payload.email === 'cafurby@stu.naperville203.org') {
             // If the email is 'cafurby@stu.naperville203.org', ask the user to choose the user type
             const isTeacher = window.confirm('Are you a teacher?');
             userType = isTeacher ? 'teacher' : 'student';
@@ -50,10 +43,10 @@ function Home() {
         
         console.log('User type: ' + userType);
 
-        // Store the user type in the session storage
-        sessionStorage.setItem('userType', userType);
-    
-        navigate("/dashboard");
+    // Store the user type in the session storage
+    sessionStorage.setItem('userType', userType);
+
+    navigate("/dashboard");
     }
 
     return (
