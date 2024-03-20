@@ -11,7 +11,9 @@ export const Carousel = () => {
     const [ activeIndex, setActiveIndex ] = React.useState(0) // Create a state for the active index
     const [ progress, setProgress ] = useState(0); // Create a state for the progress bar
     const [ isFullScreen, setIsFullScreen ] = useState(false); // Create a state for fullscreen mode
+    const [isLoading, setIsLoading] = useState(true); // Create a state for loading status
     const items = images.map((image, index) => ({ // Create an array of items for the carousel
+        
         title: `Example ${index + 1}`,
         icon: image,
     }));
@@ -32,6 +34,24 @@ export const Carousel = () => {
         const newIndex = parseInt(event.target.value, 10) - 1; 
         updateIndex(newIndex);
     }
+
+    useEffect(() => {
+        // Simulate image loading
+        const loadImages = async () => {
+            await Promise.all(
+                images.map((image) => {
+                    return new Promise((resolve, reject) => {
+                        const loadImg = new Image()
+                        loadImg.src = image
+                        loadImg.onload = () => resolve(image)
+                        loadImg.onerror = err => reject(err)
+                    })
+                })
+            )
+            setIsLoading(false)
+        }
+        loadImages()
+    }, [])
 
     useEffect(() => { // Add event listeners for the left and right arrow keys
         const handleKeyDown = (event) => {
@@ -104,6 +124,9 @@ export const Carousel = () => {
 
     return (
         <div>
+            {isLoading ? (
+                <div>Loading...</div> // Replace this with your loading spinner
+            ) : (
             <div className="carousel-container">
                 <div className="carousel-wrapper">
                     <button onClick={() => {
@@ -142,6 +165,7 @@ export const Carousel = () => {
                     </button>
                 </div>
             </div>  
+            )}
         </div>
     )
 }
