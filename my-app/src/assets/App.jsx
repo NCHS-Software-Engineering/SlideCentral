@@ -9,8 +9,8 @@ import Information from './HomeScreen/Information.jsx';
 import Carousel from './HomeScreen/Carousel.jsx';
 import Upload from './HomeScreen/Upload.jsx';
 
-import Dashboard from './SignedIn/Dashboard/Dashboard.jsx';
-import SignedInNavbar from "./SignedIn/SignedInNavbar.jsx";
+import Dashboard from './Dashboard/Dashboard.jsx';
+import SignedInNavbar from "./Dashboard/SignedInNavbar.jsx";
 
 function NotFound() {
   return <h2>This page doesn't exist</h2>;
