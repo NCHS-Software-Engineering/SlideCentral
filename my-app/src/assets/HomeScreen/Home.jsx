@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import LargeSlideCentralLogo from '../Media/images/sslogonobg1.png';
@@ -32,14 +33,18 @@ function Home() {
         console.log('Email: ' + payload.email);
 
         let userType;
-        if (payload.email === 'cafurby@stu.naperville203.org') {
-            // If the email is 'cafurby@stu.naperville203.org', ask the user to choose the user type
+        if (payload.email === 'cafurby@stu.naperville203.org' || payload.email === 'sryerabati@stu.naperville203.org'|| payload.email === 'pjprobst@stu.naperville203.org'|| payload.email === 'dtkosloski@stu.naperville203.org') {
             const isTeacher = window.confirm('Are you a teacher?');
             userType = isTeacher ? 'teacher' : 'student';
         } else {
             // Determine if the user is a student or a teacher based on the email domain
             userType = payload.email.endsWith('@stu.naperville203.org') ? 'student' : 'teacher';
         }
+
+        const userTypeTF = userType.endsWith('student') ? 0 : 1;
+
+        axios.post('http://localhost:5000/api/save', { sub: payload.sub, sub2: payload.name, sub3: userTypeTF })
+        axios.post('http://localhost:5000/api/activ', {sub: payload.sub})
         
         console.log('User type: ' + userType);
 

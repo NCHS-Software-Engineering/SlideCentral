@@ -1,4 +1,5 @@
 import axios from 'axios';
+import moment from 'moment';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Dashboard.css';
@@ -74,6 +75,10 @@ function DComponentActivities() {
     newActivities = [...activities, inputValue];
   }
   setActivities(newActivities);
+
+  const currentDateTime = moment().format('YYYY-MM-DD HH:mm:ss');
+  const activityID = inputValue.replace(' ', '').toLowerCase() + currentDateTime.replace('-', '');
+  axios.post('http://localhost:5000/api/activ', { sub2: activityID})
 
   const activitiesString = newActivities.join(' ');
 

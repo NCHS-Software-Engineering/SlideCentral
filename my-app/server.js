@@ -48,18 +48,18 @@ app.post('/api/save', (req, res) => {
   });
 });
 
-app.post('/api/activities', (req, res) => {
-  const { activities } = req.body;
-  activities.forEach(activity => {
-    const sqlInsert = "INSERT INTO user_matrix (activities_list) VALUES (?) ON DUPLICATE KEY UPDATE activities_list = VALUES(activities_list)";
-    db.query(sqlInsert, [activity], (err, result) => {
-      if (err) {
+app.post('/api/activ', (req, res) => {
+  const sub2 = req.body.sub2;
+  const sub = req.body.sub;
+  const sqlInsert = "INSERT INTO activity_sponser (user_id, activity_id) VALUES (?, ?)";
+  db.query(sqlInsert, [sub, sub2,], (err, result) => {
+    if (err) {
         console.error(err);
         res.status(500).send('Error saving to database.');
-      }
-    });
-  });
-  res.send('Activities saved successfully.');
+    } else {
+        res.send('Data saved successfully.');
+    }
+});
 });
 
 // Set up Multer storage
