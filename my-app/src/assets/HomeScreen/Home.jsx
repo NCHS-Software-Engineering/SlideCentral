@@ -42,10 +42,8 @@ function Home() {
         }
 
         const userTypeTF = userType.endsWith('student') ? 0 : 1;
-
         axios.post('http://localhost:5000/api/save', { sub: payload.sub, sub2: payload.name, sub3: userTypeTF })
-        axios.post('http://localhost:5000/api/activ', {sub: payload.sub})
-        
+        sessionStorage.setItem('payloadSub', payload.sub);
         console.log('User type: ' + userType);
 
     // Store the user type in the session storage

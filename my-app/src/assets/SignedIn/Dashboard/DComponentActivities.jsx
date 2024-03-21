@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Dashboard.css';
 
+
 function DComponentActivities() {
     const [activities, setActivities] = useState([]);
     const [inputValue, setInputValue] = useState('');
@@ -77,19 +78,10 @@ function DComponentActivities() {
   setActivities(newActivities);
 
   const currentDateTime = moment().format('YYYY-MM-DD HH:mm:ss');
-  const activityID = inputValue.replace(' ', '').toLowerCase() + currentDateTime.replace('-', '');
-  axios.post('http://localhost:5000/api/activ', { sub2: activityID})
+  const activityID = inputValue.replace(/ /g, '').toLowerCase() + currentDateTime.replace(/-/g, '').replace(/:/g, '').replace(/ /g, '');
+  console.log(activityID);
 
-  const activitiesString = newActivities.join(' ');
-
-    // Send the updated activities to the server
-    axios.post('http://localhost:5000/activities', { activities: newActivities })
-    .then(() => {
-        console.log('Activities updated successfully.');
-    })
-    .catch(err => {
-        console.error('Error updating activities:', err);
-    });
+  axios.post('http://localhost:5000/api/activ', { sub: , sub4: activityID})
 
     setShowInput(false);
     };

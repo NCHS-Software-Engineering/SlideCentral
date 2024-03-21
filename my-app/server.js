@@ -49,10 +49,10 @@ app.post('/api/save', (req, res) => {
 });
 
 app.post('/api/activ', (req, res) => {
-  const sub2 = req.body.sub2;
   const sub = req.body.sub;
+  const sub4 = req.body.sub4;
   const sqlInsert = "INSERT INTO activity_sponser (user_id, activity_id) VALUES (?, ?)";
-  db.query(sqlInsert, [sub, sub2,], (err, result) => {
+  db.query(sqlInsert, [sub, sub4,], (err, result) => {
     if (err) {
         console.error(err);
         res.status(500).send('Error saving to database.');
