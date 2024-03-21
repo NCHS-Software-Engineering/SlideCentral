@@ -5,6 +5,14 @@ const fs = require('fs');
 const sharp = require('sharp');
 const mysql = require('mysql2');
 const cors = require('cors');
+const session = require('express-session');
+const crypto = require('crypto');
+const cookieParser = require('cookie-parser');
+
+
+
+
+
 
 const app = express();
 const port = 5000;
@@ -32,11 +40,33 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json()); // Add this line to parse JSON body
+app.use(cookieParser());
+
+
+// EXPRESS SESSION STUFF ---------------------------------------------------
+
+
+// Generate a random secret key
+const secretKey = crypto.randomBytes(64).toString('hex');
+console.log('Secret key:', secretKey);
+
+// Session middleware
+app.use(session({
+  secret: secretKey,
+  resave: false,
+  saveUninitialized: true
+}));
+
+//-------------------------------------------------------------------------
+
 
 app.post('/api/save', (req, res) => {
-  const sub = req.body.sub;
-  const sub2 = req.body.sub2;
-  const sub3 = req.body.sub3;
+  const sub = req.body.sub; //user ID
+  const sub2 = req.body.sub2; //Username
+  const sub3 = req.body.sub3; //is_teacher
+  
+
+
   const sqlInsert = "INSERT INTO user_matrix (user_id, user_name, is_teacher) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE user_id = VALUES(user_id), user_name = VALUES(user_name), is_teacher = VALUES(is_teacher)";
   db.query(sqlInsert, [sub, sub2, sub3], (err, result) => {
       if (err) {
@@ -61,6 +91,7 @@ app.post('/api/activities', (req, res) => {
   });
   res.send('Activities saved successfully.');
 });
+
 
 // Set up Multer storage
 const storage = multer.memoryStorage(); // Using memory storage as we'll process the file before saving
