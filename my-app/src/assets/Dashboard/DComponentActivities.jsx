@@ -36,7 +36,7 @@ function DComponentActivities() {
             setActivities(newActivities);
       
             // Send the updated activities to the server
-            axios.post('http://localhost:5000/activities', { activities: newActivities })
+            axios.post('http://localhost:5001/activities', { activities: newActivities })
             .then(() => {
                 console.log('Activities updated successfully.');
               })
