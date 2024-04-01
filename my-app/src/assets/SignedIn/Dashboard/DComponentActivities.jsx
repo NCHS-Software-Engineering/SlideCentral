@@ -80,8 +80,9 @@ function DComponentActivities() {
   const currentDateTime = moment().format('YYYY-MM-DD HH:mm:ss');
   const activityID = inputValue.replace(/ /g, '').toLowerCase() + currentDateTime.replace(/-/g, '').replace(/:/g, '').replace(/ /g, '');
   console.log(activityID);
-
-  axios.post('http://localhost:5000/api/activ', { sub: , sub4: activityID})
+  const userId = sessionStorage.getItem("userId");
+  console.log(userId);
+  axios.post('http://localhost:5000/api/activ', { sub4: userId , sub5: activityID})
 
     setShowInput(false);
     };
