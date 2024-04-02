@@ -48,10 +48,10 @@ app.post('/api/save', (req, res) => {
   });
 });
 
-app.post('/api/activ', (req, res) => {
+app.post('/api/sponser', (req, res) => {
   const sub4 = req.body.sub4;
   const sub5 = req.body.sub5;
-  const sqlInsert = "INSERT INTO activity_sponser (user_id, activity_id) VALUES (?, ?)";
+  const sqlInsert = "INSERT INTO activity_sponser (activity_id, user_id) VALUES (?, ?)";
   db.query(sqlInsert, [sub4, sub5,], (err, result) => {
     if (err) {
         console.error(err);
@@ -60,6 +60,30 @@ app.post('/api/activ', (req, res) => {
         res.send('Data saved successfully.');
     }
 });
+});
+app.post('/api/activ', (req, res) => {
+  const sub6 = req.body.sub6;
+  const sub7 = req.body.sub7;
+  const sqlInsert = "INSERT INTO activity_matrix (activity_id, activity_name) VALUES (?, ?)";
+  db.query(sqlInsert, [sub6, sub7,], (err, result) => {
+    if (err) {
+        console.error(err);
+        res.status(500).send('Error saving to database.');
+    } else {
+        res.send('Data saved successfully.');
+    }
+});
+});
+app.delete('/activ/:activityID', (req, res) => {
+  const activityID = req.params.activityID;
+  const sqlDelete = "DELETE FROM activity_matrix WHERE activity_id = ?";
+  db.query(sqlDelete, [activityID], (err, result) => {    if (err) {
+      console.error(err);
+      res.status(500).send('Error deleting activity.');
+    } else {
+      res.send('Activity deleted successfully.');
+    }
+  });
 });
 
 // Set up Multer storage

@@ -6,6 +6,7 @@ import './Dashboard.css';
 
 
 function DComponentActivities() {
+    const currentDateTime = moment().format('YYYY-MM-DD HH:mm:ss');
     const [activities, setActivities] = useState([]);
     const [inputValue, setInputValue] = useState('');
     const [showInput, setShowInput] = useState(false);
@@ -33,18 +34,19 @@ function DComponentActivities() {
         if (confirmation) {
           const activityName = window.prompt('Please enter the name of the activity to confirm deletion:');
           if (activityName === activities[index]) {
+            const activityID = inputValue.replace(/ /g, '').toLowerCase() + currentDateTime.replace(/-/g, '').replace(/:/g, '').replace(/ /g, '');
+            console.log(activityID);
+            axios.delete(`http://localhost:5000/activ/${activityID}`)
+              .then(() => {
+                console.log('Activity deleted successfully.');
+              })
+              .catch(err => {
+                console.error('Error deleting activity:', err);
+              });
+              
             const newActivities = [...activities];
             newActivities.splice(index, 1);
             setActivities(newActivities);
-      
-            // Send the updated activities to the server
-            axios.post('http://localhost:5000/activities', { activities: newActivities })
-            .then(() => {
-                console.log('Activities updated successfully.');
-              })
-              .catch(err => {
-                console.error('Error updating activities:', err);
-              });
           } else {
             window.alert('The name you entered does not match the name of the activity. The activity was not deleted.');
           }
@@ -76,14 +78,12 @@ function DComponentActivities() {
     newActivities = [...activities, inputValue];
   }
   setActivities(newActivities);
-
-  const currentDateTime = moment().format('YYYY-MM-DD HH:mm:ss');
   const activityID = inputValue.replace(/ /g, '').toLowerCase() + currentDateTime.replace(/-/g, '').replace(/:/g, '').replace(/ /g, '');
   console.log(activityID);
   const userId = sessionStorage.getItem("userId");
   console.log(userId);
-  axios.post('http://localhost:5000/api/activ', { sub4: userId , sub5: activityID})
-
+  axios.post('http://localhost:5000/api/sponser', { sub4: activityID , sub5: userId})
+  axios.post('http://localhost:5000/api/activ', { sub6: activityID , sub7: inputValue})
     setShowInput(false);
     };
 
