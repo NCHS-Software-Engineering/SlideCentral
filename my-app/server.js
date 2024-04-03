@@ -85,6 +85,17 @@ app.delete('/activ/:activityID', (req, res) => {
     }
   });
 });
+app.delete('/sponser/:activityID', (req, res) => {
+  const activityID = req.params.activityID;
+  const sqlDelete = "DELETE FROM activity_sponser WHERE activity_id = ?";
+  db.query(sqlDelete, [activityID], (err, result) => {    if (err) {
+      console.error(err);
+      res.status(500).send('Error deleting activity.');
+    } else {
+      res.send('Activity deleted successfully.');
+    }
+  });
+});
 
 // Set up Multer storage
 const storage = multer.memoryStorage(); // Using memory storage as we'll process the file before saving

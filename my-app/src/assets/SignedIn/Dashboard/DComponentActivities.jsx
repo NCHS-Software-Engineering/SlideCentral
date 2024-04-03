@@ -34,16 +34,20 @@ function DComponentActivities() {
         if (confirmation) {
           const activityName = window.prompt('Please enter the name of the activity to confirm deletion:');
           if (activityName === activities[index]) {
-            const activityID = inputValue.replace(/ /g, '').toLowerCase() + currentDateTime.replace(/-/g, '').replace(/:/g, '').replace(/ /g, '');
-            console.log(activityID);
-            axios.delete(`http://localhost:5000/activ/${activityID}`)
+            axios.delete(`http://localhost:5000/activ/`+sessionStorage.getItem("activityID"))
               .then(() => {
                 console.log('Activity deleted successfully.');
               })
               .catch(err => {
                 console.error('Error deleting activity:', err);
               });
-              
+              axios.delete(`http://localhost:5000/sponser/`+sessionStorage.getItem("activityID"))
+              .then(() => {
+                console.log('Activity deleted successfully.');
+              })
+              .catch(err => {
+                console.error('Error deleting activity:', err);
+              });
             const newActivities = [...activities];
             newActivities.splice(index, 1);
             setActivities(newActivities);
@@ -80,6 +84,7 @@ function DComponentActivities() {
   setActivities(newActivities);
   const activityID = inputValue.replace(/ /g, '').toLowerCase() + currentDateTime.replace(/-/g, '').replace(/:/g, '').replace(/ /g, '');
   console.log(activityID);
+  sessionStorage.setItem("activityID", activityID);
   const userId = sessionStorage.getItem("userId");
   console.log(userId);
   axios.post('http://localhost:5000/api/sponser', { sub4: activityID , sub5: userId})
