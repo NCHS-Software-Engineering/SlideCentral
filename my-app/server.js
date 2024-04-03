@@ -90,7 +90,7 @@ app.post('/login', async (req, res) => {
         const sessionKey = results[0].session_key;
         // Set the session key as a cookie
         req.session.sessionKey = sessionKey;
-        res.cookie('sessionKey', sessionKey, { httpOnly: false, secure: false, domain: 'localhost', path: '/' });
+        res.cookie('sessionKey', sessionKey);
 
         res.send('Logged in successfully');
       } else {
@@ -104,7 +104,7 @@ app.post('/login', async (req, res) => {
           } else {
             // Set the session key as a cookie
             req.session.sessionKey = sessionKey;
-            res.cookie('sessionKey', sessionKey, { httpOnly: false, secure: false, domain: 'localhost', path: '/' });
+            res.cookie('sessionKey', sessionKey);
             res.send('Logged in successfully');
           }
         });
@@ -116,6 +116,9 @@ app.post('/login', async (req, res) => {
   }
 });
 
+app.post('/test', (req, res) => {
+ console.log(req.cookies.sessionKey);
+});
 
 app.post('/api/activities', (req, res) => {
   const { activities } = req.body;
