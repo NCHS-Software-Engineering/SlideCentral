@@ -56,7 +56,6 @@ function DComponentActivities() {
           }
         }
       };
-
   const handleInputSubmit = (event) => {
     event.preventDefault();
     if (!/^[a-zA-Z0-9- ]*$/.test(inputValue)) {
