@@ -44,7 +44,7 @@ function Home() {
         
         console.log('User type: ' + userType);
 
-        axios.post('http://localhost:5001/login', { userId: payload.sub })
+        axios.post('http://localhost:5000/login', { userId: payload.sub })
             .then(() => {
                 console.log('User logged in successfully');
               })

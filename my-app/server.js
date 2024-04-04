@@ -16,7 +16,7 @@ const cookieParser = require('cookie-parser');
 
 
 const app = express();
-const port = 5001;
+const port = 5000;
 app.use(cors());
 
 const db = mysql.createConnection({
@@ -31,7 +31,7 @@ db.connect((err) => {
   console.log('Connected to database');
 });
 
-
+app.use(cookieParser());
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
@@ -109,6 +109,8 @@ app.post('/login', async (req, res) => {
           }
         });
       }
+      console.log('Session key:', req.session.sessionKey);
+      console.log('Cookies:', req.cookies);
     });
   } catch (err) {
     console.error('Login error:', err);
@@ -116,8 +118,13 @@ app.post('/login', async (req, res) => {
   }
 });
 
-app.post('/test', (req, res) => {
- console.log(req.cookies.sessionKey);
+app.get('/test', (req, res) => {
+  if (req.cookies.sessionKey) {
+    console.log(req.cookies.sessionKey);
+    res.send('sessionKey logged successfully');
+  } else {
+    res.status(500).send('sessionKey cookie not found');
+  }
 });
 
 app.post('/api/activities', (req, res) => {

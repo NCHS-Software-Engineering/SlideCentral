@@ -22,7 +22,7 @@ function Dashboard() {
                 <DComponentNotifications />
             </div>
 
-            <button className="test" onClick={() => {axios.get('http://localhost:5001/api/test')}}>Test</button>
+            <button className="test" onClick={() => {axios.get('http://localhost:5000/test', {withCredentials: true})}}>Test</button>
         </main>
 
         
