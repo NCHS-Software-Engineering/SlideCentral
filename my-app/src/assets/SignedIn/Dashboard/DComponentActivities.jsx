@@ -1,6 +1,6 @@
 import axios from 'axios';
 import moment from 'moment';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Dashboard.css';
 
@@ -28,7 +28,7 @@ function DComponentActivities() {
         setInputValue(activities[index]);
         setEditIndex(index);
     };
-
+    
     const handleDeleteClick = (index) => {
         const confirmation = window.confirm('Are you sure you want to delete this activity?');
         if (confirmation) {
@@ -56,6 +56,26 @@ function DComponentActivities() {
           }
         }
       };
+  const handleSave = () => {
+    axios.get('http://localhost:5000/sponser/' + sessionStorage.getItem("userId"))
+      .then((response) => {
+        const activityIds = response.data.map(item => item.activity_id);
+        console.log('Activity saved successfully.');
+        setActivities([...activities, ...activityIds]);
+      })
+      .catch(err => {
+        console.error('Error saving activity:', err);
+      });
+
+    setShowInput(false);
+    setInputValue('');
+    setEditIndex(null);
+  }
+
+  useEffect(() => {
+    handleSave(); // Trigger handleSave when the component mounts
+  }, []);
+
   const handleInputSubmit = (event) => {
     event.preventDefault();
     if (!/^[a-zA-Z0-9- ]*$/.test(inputValue)) {
