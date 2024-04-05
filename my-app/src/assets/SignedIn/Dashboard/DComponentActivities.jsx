@@ -59,9 +59,9 @@ function DComponentActivities() {
   const handleSave = () => {
     axios.get('http://localhost:5000/sponser/' + sessionStorage.getItem("userId"))
       .then((response) => {
-        const activityIds = response.data.map(item => item.activity_id);
+        const activityNames = response.data.map(item => item.activity_name);
         console.log('Activity saved successfully.');
-        setActivities([...activities, ...activityIds]);
+        setActivities([...activities, ...activityNames]);
       })
       .catch(err => {
         console.error('Error saving activity:', err);

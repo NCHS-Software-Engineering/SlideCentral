@@ -96,6 +96,19 @@ app.delete('/sponser/:activityID', (req, res) => {
     }
   });
 });
+app.get('/sponser/:userId', (req, res) => {
+  const userId = req.params.userId;
+  const sqlSelect = "SELECT activity_name FROM activity_matrix JOIN activity_sponser ON activity_sponser.activity_id = activity_matrix.activity_id WHERE user_id = ?";
+  db.query(sqlSelect, [userId], (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error fetching activities.');
+    } else {
+      res.json(result);
+    }
+  });
+});
+
 
 // Set up Multer storage
 const storage = multer.memoryStorage(); // Using memory storage as we'll process the file before saving
