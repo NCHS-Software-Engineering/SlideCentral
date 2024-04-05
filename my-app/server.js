@@ -90,9 +90,9 @@ app.post('/login', async (req, res) => {
         const sessionKey = results[0].session_key;
         // Set the session key as a cookie
         req.session.sessionKey = sessionKey;
-        res.cookie('sessionKey', sessionKey);
-
-        res.send('Logged in successfully');
+        //localStorage.setItem('sessionKey', sessionKey);
+        
+        res.send({sessionKey: sessionKey, message: 'Logged in successfully'});
       } else {
         // User doesn't have a session yet, generate a new session key
         const sessionKey = crypto.randomBytes(64).toString('hex');
@@ -104,13 +104,14 @@ app.post('/login', async (req, res) => {
           } else {
             // Set the session key as a cookie
             req.session.sessionKey = sessionKey;
-            res.cookie('sessionKey', sessionKey);
-            res.send('Logged in successfully');
+  
+            //localStorage.setItem('sessionKey', sessionKey);
+            res.send({sessionKey: sessionKey, message: 'Logged in successfully'});
           }
         });
       }
-      console.log('Session key:', req.session.sessionKey);
-      console.log('Cookies:', req.cookies);
+      //console.log('Session key generated:', req.session.sessionKey);
+      //console.log('SessionKey stored:', localStorage.getItem('sessionKey'));
     });
   } catch (err) {
     console.error('Login error:', err);

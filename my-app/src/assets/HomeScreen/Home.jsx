@@ -45,8 +45,11 @@ function Home() {
         console.log('User type: ' + userType);
 
         axios.post('http://localhost:5000/login', { userId: payload.sub })
-            .then(() => {
+            .then((response) => {
                 console.log('User logged in successfully');
+
+                const sessionKey = response.data.sessionKey;
+                localStorage.setItem('sessionKey', sessionKey);
               })
               .catch(err => {
                 console.error('Error logging user in', err);
