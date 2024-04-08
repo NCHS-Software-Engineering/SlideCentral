@@ -5,6 +5,15 @@ const fs = require('fs');
 const sharp = require('sharp');
 const mysql = require('mysql2');
 const cors = require('cors');
+const session = require('express-session');
+const crypto = require('crypto');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+
+
+
+
+
 
 const app = express();
 const port = 5000;
@@ -22,7 +31,7 @@ db.connect((err) => {
   console.log('Connected to database');
 });
 
-
+app.use(cookieParser());
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
@@ -32,11 +41,31 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json()); // Add this line to parse JSON body
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+
+// EXPRESS SESSION STUFF ---------------------------------------------------
+
+
+
+
+// Session middleware
+app.use(session({
+  secret: crypto.randomBytes(64).toString('hex'),
+  resave: false,
+  saveUninitialized: true
+}));
+
+//-------------------------------------------------------------------------
+
 
 app.post('/api/save', (req, res) => {
-  const sub = req.body.sub;
-  const sub2 = req.body.sub2;
-  const sub3 = req.body.sub3;
+  const sub = req.body.sub; //user ID
+  const sub2 = req.body.sub2; //Username
+  const sub3 = req.body.sub3; //is_teacher
+  
+
   const sqlInsert = "INSERT INTO user_matrix (user_id, user_name, is_teacher) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE user_id = VALUES(user_id), user_name = VALUES(user_name), is_teacher = VALUES(is_teacher)";
   db.query(sqlInsert, [sub, sub2, sub3], (err, result) => {
       if (err) {
@@ -47,6 +76,49 @@ app.post('/api/save', (req, res) => {
       }
   });
 });
+
+app.post('/login', async (req, res) => {
+  try {
+    const { userId } = req.body;
+    // Check if the user already exists in the sessions table
+    db.query('SELECT * FROM sessions WHERE user_id = ?', [userId], async (err, results) => {
+      if (err) {
+        console.error('Login error:', err);
+        res.status(500).send('Error logging in');
+      } else if (results.length > 0) {
+        // User already has a session, retrieve their session key
+        const sessionKey = results[0].session_key;
+        // Set the session key as a cookie
+        req.session.sessionKey = sessionKey;
+        //localStorage.setItem('sessionKey', sessionKey);
+        
+        res.send({sessionKey: sessionKey, message: 'Logged in successfully'});
+      } else {
+        // User doesn't have a session yet, generate a new session key
+        const sessionKey = crypto.randomBytes(64).toString('hex');
+        // Store the session key in the database
+        db.query('INSERT INTO sessions (user_id, session_key) VALUES (?, ?)', [userId, sessionKey], (err, insertResults) => {
+          if (err) {
+            console.error('Session key insertion error:', err);
+            res.status(500).send('Error inserting session key');
+          } else {
+            // Set the session key as a cookie
+            req.session.sessionKey = sessionKey;
+  
+            //localStorage.setItem('sessionKey', sessionKey);
+            res.send({sessionKey: sessionKey, message: 'Logged in successfully'});
+          }
+        });
+      }
+      //console.log('Session key generated:', req.session.sessionKey);
+      //console.log('SessionKey stored:', localStorage.getItem('sessionKey'));
+    });
+  } catch (err) {
+    console.error('Login error:', err);
+    res.status(500).send('Error logging in');
+  }
+});
+
 
 app.post('/api/activities', (req, res) => {
   const { activities } = req.body;
@@ -61,6 +133,7 @@ app.post('/api/activities', (req, res) => {
   });
   res.send('Activities saved successfully.');
 });
+
 
 // Set up Multer storage
 const storage = multer.memoryStorage(); // Using memory storage as we'll process the file before saving

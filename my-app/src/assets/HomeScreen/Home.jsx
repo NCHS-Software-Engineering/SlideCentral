@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import LargeSlideCentralLogo from '../Media/images/sslogonobg1.png';
+import axios from 'axios';
 import './Background.css';
 import './Style.css';
 
@@ -42,6 +43,17 @@ function Home() {
         }
         
         console.log('User type: ' + userType);
+
+        axios.post('http://localhost:5000/login', { userId: payload.sub })
+            .then((response) => {
+                console.log('User logged in successfully');
+
+                const sessionKey = response.data.sessionKey;
+                localStorage.setItem('sessionKey', sessionKey);
+              })
+              .catch(err => {
+                console.error('Error logging user in', err);
+              });
 
     // Store the user type in the session storage
     sessionStorage.setItem('userType', userType);

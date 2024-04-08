@@ -3,6 +3,7 @@ import DComponentActivities from "./DComponentActivities";
 import DComponentStudentActivities from "./DComponentStudentActivities";
 import DComponentNotifications from "./DComponentNotifications";
 import './Dashboard.css';
+import axios from 'axios';
 
 function Dashboard() {
     const [userType, setUserType] = useState(null);
@@ -20,8 +21,14 @@ function Dashboard() {
                 {userType === 'student' && <DComponentStudentActivities />}
                 <DComponentNotifications />
             </div>
+
+            
         </main>
+
+        
     )
+
+
 }
 
 export default Dashboard;
