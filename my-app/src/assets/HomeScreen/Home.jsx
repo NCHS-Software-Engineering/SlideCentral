@@ -49,7 +49,7 @@ function Home() {
     sessionStorage.setItem('userId', payload.sub);
     sessionStorage.setItem('userType', userType);
 
-    navigate("/dashboard");
+    // navigate("/dashboard");
     }
 
     return (
