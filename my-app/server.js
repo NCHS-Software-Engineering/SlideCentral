@@ -119,14 +119,6 @@ app.post('/login', async (req, res) => {
   }
 });
 
-app.get('/test', (req, res) => {
-  if (req.cookies.sessionKey) {
-    console.log(req.cookies.sessionKey);
-    res.send('sessionKey logged successfully');
-  } else {
-    res.status(500).send('sessionKey cookie not found');
-  }
-});
 
 app.post('/api/activities', (req, res) => {
   const { activities } = req.body;
