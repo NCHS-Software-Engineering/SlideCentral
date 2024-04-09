@@ -1,9 +1,12 @@
 import axios from 'axios';
-import { useState } from 'react';
+import moment from 'moment';
+import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Dashboard.css';
 
+
 function DComponentActivities() {
+    const currentDateTime = moment().format('YYYY-MM-DD HH:mm:ss');
     const [activities, setActivities] = useState([]);
     const [inputValue, setInputValue] = useState('');
     const [showInput, setShowInput] = useState(false);
@@ -25,29 +28,53 @@ function DComponentActivities() {
         setInputValue(activities[index]);
         setEditIndex(index);
     };
-
+    
     const handleDeleteClick = (index) => {
         const confirmation = window.confirm('Are you sure you want to delete this activity?');
         if (confirmation) {
           const activityName = window.prompt('Please enter the name of the activity to confirm deletion:');
           if (activityName === activities[index]) {
+            axios.delete(`http://localhost:5000/activ/`+sessionStorage.getItem("activityID"))
+              .then(() => {
+                console.log('Activity deleted successfully.');
+              })
+              .catch(err => {
+                console.error('Error deleting activity:', err);
+              });
+              axios.delete(`http://localhost:5000/sponser/`+sessionStorage.getItem("activityID"))
+              .then(() => {
+                console.log('Activity deleted successfully.');
+              })
+              .catch(err => {
+                console.error('Error deleting activity:', err);
+              });
             const newActivities = [...activities];
             newActivities.splice(index, 1);
             setActivities(newActivities);
-      
-            // Send the updated activities to the server
-            axios.post('http://localhost:5000/activities', { activities: newActivities })
-            .then(() => {
-                console.log('Activities updated successfully.');
-              })
-              .catch(err => {
-                console.error('Error updating activities:', err);
-              });
           } else {
             window.alert('The name you entered does not match the name of the activity. The activity was not deleted.');
           }
         }
       };
+  const handleSave = () => {
+    axios.get('http://localhost:5000/sponser/' + sessionStorage.getItem("userId"))
+      .then((response) => {
+        const activityNames = response.data.map(item => item.activity_name);
+        console.log('Activity saved successfully.');
+        setActivities([...activities, ...activityNames]);
+      })
+      .catch(err => {
+        console.error('Error saving activity:', err);
+      });
+
+    setShowInput(false);
+    setInputValue('');
+    setEditIndex(null);
+  }
+
+  useEffect(() => {
+    handleSave(); // Trigger handleSave when the component mounts
+  }, []);
 
   const handleInputSubmit = (event) => {
     event.preventDefault();
@@ -74,18 +101,13 @@ function DComponentActivities() {
     newActivities = [...activities, inputValue];
   }
   setActivities(newActivities);
-
-  const activitiesString = newActivities.join(' ');
-
-    // Send the updated activities to the server
-    axios.post('http://localhost:5000/activities', { activities: newActivities })
-    .then(() => {
-        console.log('Activities updated successfully.');
-    })
-    .catch(err => {
-        console.error('Error updating activities:', err);
-    });
-
+  const activityID = inputValue.replace(/ /g, '').toLowerCase() + currentDateTime.replace(/-/g, '').replace(/:/g, '').replace(/ /g, '');
+  console.log(activityID);
+  sessionStorage.setItem("activityID", activityID);
+  const userId = sessionStorage.getItem("userId");
+  console.log(userId);
+  axios.post('http://localhost:5000/api/sponser', { sub4: activityID , sub5: userId})
+  axios.post('http://localhost:5000/api/activ', { sub6: activityID , sub7: inputValue})
     setShowInput(false);
     };
 

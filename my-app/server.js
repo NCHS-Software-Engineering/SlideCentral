@@ -126,13 +126,67 @@ app.post('/api/activities', (req, res) => {
     const sqlInsert = "INSERT INTO user_matrix (activities_list) VALUES (?) ON DUPLICATE KEY UPDATE activities_list = VALUES(activities_list)";
     db.query(sqlInsert, [activity], (err, result) => {
       if (err) {
+app.post('/api/sponser', (req, res) => {
+  const sub4 = req.body.sub4;
+  const sub5 = req.body.sub5;
+  const sqlInsert = "INSERT INTO activity_sponser (activity_id, user_id) VALUES (?, ?)";
+  db.query(sqlInsert, [sub4, sub5,], (err, result) => {
+    if (err) {
         console.error(err);
         res.status(500).send('Error saving to database.');
-      }
-    });
-  });
-  res.send('Activities saved successfully.');
+    } else {
+        res.send('Data saved successfully.');
+    }
 });
+});
+app.post('/api/activ', (req, res) => {
+  const sub6 = req.body.sub6;
+  const sub7 = req.body.sub7;
+  const sqlInsert = "INSERT INTO activity_matrix (activity_id, activity_name) VALUES (?, ?)";
+  db.query(sqlInsert, [sub6, sub7,], (err, result) => {
+    if (err) {
+        console.error(err);
+        res.status(500).send('Error saving to database.');
+    } else {
+        res.send('Data saved successfully.');
+    }
+});
+});
+app.delete('/activ/:activityID', (req, res) => {
+  const activityID = req.params.activityID;
+  const sqlDelete = "DELETE FROM activity_matrix WHERE activity_id = ?";
+  db.query(sqlDelete, [activityID], (err, result) => {    if (err) {
+      console.error(err);
+      res.status(500).send('Error deleting activity.');
+    } else {
+      res.send('Activity deleted successfully.');
+    }
+  });
+});
+app.delete('/sponser/:activityID', (req, res) => {
+  const activityID = req.params.activityID;
+  const sqlDelete = "DELETE FROM activity_sponser WHERE activity_id = ?";
+  db.query(sqlDelete, [activityID], (err, result) => {    if (err) {
+      console.error(err);
+      res.status(500).send('Error deleting activity.');
+    } else {
+      res.send('Activity deleted successfully.');
+    }
+  });
+});
+app.get('/sponser/:userId', (req, res) => {
+  const userId = req.params.userId;
+  const sqlSelect = "SELECT activity_name FROM activity_matrix JOIN activity_sponser ON activity_sponser.activity_id = activity_matrix.activity_id WHERE user_id = ?";
+  db.query(sqlSelect, [userId], (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error fetching activities.');
+    } else {
+      res.json(result);
+    }
+  });
+});
+
 
 
 // Set up Multer storage
