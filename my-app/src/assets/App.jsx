@@ -12,6 +12,9 @@ import Upload from './HomeScreen/Upload.jsx';
 import Dashboard from './Dashboard/Dashboard.jsx';
 import SignedInNavbar from "./Dashboard/SignedInNavbar.jsx";
 
+import ActivityDashboard from "./Dashboard/ActivityDashboard/ActivityDashboard.jsx";
+import SlideCreationHomePage from "./Dashboard/SlideCreation/SlideCreationHomePage.jsx";
+
 function NotFound() {
   return <h2>This page doesn't exist</h2>;
 }
@@ -45,7 +48,8 @@ function SignedInLayout() {
       <div className="signedin-content">
         <Routes>
           <Route index element={<Dashboard/>} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="activity-dashboard" element={<ActivityDashboard />} />
+          <Route path="activity-dashboard/slide-creation" element={<SlideCreationHomePage />} />
         </Routes>
       </div>
     </div>
