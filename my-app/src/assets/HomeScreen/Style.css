@@ -105,7 +105,20 @@ nav ul li img { /* logo picture */
 }
 
 
+/* Style.css */
 
+#sign-in-with-google {
+  outline: none;
+}
+
+.navbar-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logout-button-container {
+  order: 2;
+}
 
 
 /* 
@@ -193,13 +206,18 @@ html, body { /* defaults for the entire body */
 }
 
 #sign-in-with-google { /* google sign in button */
-  background-color: #4285f4;
-  color: white;
-  padding: 7px 15px;
-  margin-top: 10px;
   cursor: pointer;
-  border: 3px solid grey;
-  border-radius: 20px;
+}
+
+.signin-container {
+  background-color: darkred;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.signin-text {
+  color: white;
   margin-right: 10px;
 }
 
