@@ -56,6 +56,7 @@ function DComponentActivities() {
           }
         }
       };
+      
   const handleSave = () => {
     axios.get('http://localhost:5000/sponser/' + sessionStorage.getItem("userId"))
       .then((response) => {
@@ -149,7 +150,7 @@ function DComponentActivities() {
             </div>
         ))}
         {activities.length === 0 && <p className="no-activities-message">You have no current activities, click below to add one.</p>}
-        {activities.length < 3 && <button onClick={handleAddClick} className="add-activity-button">Add Activity</button>}
+        {activities.length < 5 && <button onClick={handleAddClick} className="add-activity-button">Add Activity</button>}
         {showInput && (
             <form onSubmit={handleInputSubmit} className="activity-form">
                 <label className="activity-label">

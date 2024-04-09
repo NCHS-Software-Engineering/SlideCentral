@@ -63,6 +63,7 @@ function MainHeader() {
     // navigate("/dashboard");
   }
 
+  // ...
   return (
     <header>
       <nav>
@@ -73,14 +74,17 @@ function MainHeader() {
           <li><NavLink to="/help" className="wordlinks">Help</NavLink></li>
           <li><NavLink to="/information" className="wordlinks">Information</NavLink></li>
           {isUserLoggedIn && <li><NavLink to="/dashboard" className="wordlinks">Dashboard</NavLink></li>}
-          {!isUserLoggedIn && 
-            <li>
-              <div className="signin-container">
-                <span className="signin-text">Sign in Here --</span>
-                <div id="sign-in-with-google"></div>
-              </div>
-            </li>
-          }
+            <div className="signin-container">
+              {isUserLoggedIn ? (
+                <>
+                  <button className="logout-button" onClick={handleLogout}>Log Out</button>
+                </>
+              ) : (
+                <>
+                  <div id="sign-in-with-google"></div>
+                </>
+              )}
+            </div>
         </ul>
       </nav>
     </header>   

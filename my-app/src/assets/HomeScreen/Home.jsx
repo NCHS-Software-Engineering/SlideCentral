@@ -49,10 +49,15 @@ function Home() {
             <section className="get-started">
                 <div className="get-started-content">
                     <h2>GET STARTED</h2>
-                    <p>It's really easy to make a slide for your club, activity, sport, or event! Simply sign in with your student or teacher Google account above to get started.</p>
-                    <div className = "mainbuttons">
-                        <Link to="/slideshow"><button className="view-slides">VIEW SLIDES</button></Link>
-                        <button onClick={handleDashboardClick} className="view-slides">USER DASHBOARD</button>
+                    <p>It's really easy to make a slide for your club, activity, sport, or event! Simply sign in with your student or teacher Google account above to get started. Then, visit your dashboard to begin creating activities and slides!</p>
+                    <div className="quicklinksfcontainer">
+                        <div className="quicklinks-1">
+                            <h5>Quick Links:</h5>
+                            <div className = "mainbuttons">
+                                <Link to="/slideshow"><button className="view-slides">VIEW SLIDES</button></Link>
+                                <button onClick={handleDashboardClick} className="udbutton">DASHBOARD</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>

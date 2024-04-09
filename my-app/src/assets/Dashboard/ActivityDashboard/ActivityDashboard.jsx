@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import SlidesComponent from "./SlidesComponent";
 
-function Dashboard() {
+function ActivityDashboard() {
 
     return (
         <main className="activity-dashboard-main-content">
@@ -12,4 +12,4 @@ function Dashboard() {
     )
 }
 
-export default Dashboard;
+export default ActivityDashboard;

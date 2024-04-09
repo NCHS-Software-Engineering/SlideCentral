@@ -9,12 +9,6 @@ const session = require('express-session');
 const crypto = require('crypto');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-
-
-
-
-
-
 const app = express();
 const port = 5000;
 app.use(cors());
@@ -46,9 +40,6 @@ app.use(bodyParser.json());
 
 
 // EXPRESS SESSION STUFF ---------------------------------------------------
-
-
-
 
 // Session middleware
 app.use(session({
@@ -126,6 +117,13 @@ app.post('/api/activities', (req, res) => {
     const sqlInsert = "INSERT INTO user_matrix (activities_list) VALUES (?) ON DUPLICATE KEY UPDATE activities_list = VALUES(activities_list)";
     db.query(sqlInsert, [activity], (err, result) => {
       if (err) {
+        console.error(err); 
+        res.status(500).send('Error saving to database.');
+      }
+    });
+  });
+});
+
 app.post('/api/sponser', (req, res) => {
   const sub4 = req.body.sub4;
   const sub5 = req.body.sub5;
@@ -139,6 +137,7 @@ app.post('/api/sponser', (req, res) => {
     }
 });
 });
+
 app.post('/api/activ', (req, res) => {
   const sub6 = req.body.sub6;
   const sub7 = req.body.sub7;
@@ -152,6 +151,7 @@ app.post('/api/activ', (req, res) => {
     }
 });
 });
+
 app.delete('/activ/:activityID', (req, res) => {
   const activityID = req.params.activityID;
   const sqlDelete = "DELETE FROM activity_matrix WHERE activity_id = ?";
@@ -163,6 +163,7 @@ app.delete('/activ/:activityID', (req, res) => {
     }
   });
 });
+
 app.delete('/sponser/:activityID', (req, res) => {
   const activityID = req.params.activityID;
   const sqlDelete = "DELETE FROM activity_sponser WHERE activity_id = ?";
@@ -174,6 +175,7 @@ app.delete('/sponser/:activityID', (req, res) => {
     }
   });
 });
+
 app.get('/sponser/:userId', (req, res) => {
   const userId = req.params.userId;
   const sqlSelect = "SELECT activity_name FROM activity_matrix JOIN activity_sponser ON activity_sponser.activity_id = activity_matrix.activity_id WHERE user_id = ?";
