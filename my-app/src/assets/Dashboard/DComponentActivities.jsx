@@ -90,6 +90,20 @@ function DComponentActivities() {
         const newActivities = [...activities];
         newActivities[editIndex] = inputValue;
         setActivities(newActivities);
+        axios.delete(`http://localhost:5000/activ/`+sessionStorage.getItem("activityID"))
+              .then(() => {
+                console.log('Activity deleted successfully.');
+              })
+              .catch(err => {
+                console.error('Error deleting activity:', err);
+              });
+              axios.delete(`http://localhost:5000/sponser/`+sessionStorage.getItem("activityID"))
+              .then(() => {
+                console.log('Activity deleted successfully.');
+              })
+              .catch(err => {
+                console.error('Error deleting activity:', err);
+              });
     } else {
         setActivities([...activities, inputValue]);
     }
@@ -97,6 +111,20 @@ function DComponentActivities() {
   if (editIndex !== null) {
     newActivities = [...activities];
     newActivities[editIndex] = inputValue;
+    axios.delete(`http://localhost:5000/activ/`+sessionStorage.getItem("activityID"))
+              .then(() => {
+                console.log('Activity deleted successfully.');
+              })
+              .catch(err => {
+                console.error('Error deleting activity:', err);
+              });
+              axios.delete(`http://localhost:5000/sponser/`+sessionStorage.getItem("activityID"))
+              .then(() => {
+                console.log('Activity deleted successfully.');
+              })
+              .catch(err => {
+                console.error('Error deleting activity:', err);
+              });
   } else {
     newActivities = [...activities, inputValue];
   }
