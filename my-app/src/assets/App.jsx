@@ -1,5 +1,5 @@
-import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from "react-router-dom"; 
-import { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; 
+import ProtectedRoute from './ProtectedRoute';
 import MainHeader from './HomeScreen/MainHeader.jsx';
 import Footer from './HomeScreen/Footer.jsx';
 
@@ -16,31 +16,11 @@ import ActivityDashboard from "./Dashboard/ActivityDashboard/ActivityDashboard.j
 import SlideCreationHomePage from "./Dashboard/SlideCreation/SlideCreationHomePage.jsx";
 
 function NotFound() {
-  const navigate = useNavigate();
-  const location = useLocation();
-  useEffect(() => {
-    navigate(location.state?.from || '/');
-  }, [navigate, location.state]);
-  return null;
+  return <h2>This page doesn't exist</h2>;
 }
-
-function ProtectedRoute(props) {
-  const isUserLoggedIn = sessionStorage.getItem('userId') !== null;
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!isUserLoggedIn) {
-      navigate('/');
-    }
-  }, [isUserLoggedIn, navigate]);
-
-  return (
-    <Route {...props} element={isUserLoggedIn ? props.element : <></>} />
-  );
-}
-
 
 function Layout() {
+
   return (
     <div className="App">
       <MainHeader />
@@ -70,24 +50,19 @@ function SignedInLayout() {
           <Route index element={<Dashboard/>} />
           <Route path="activity-dashboard" element={<ActivityDashboard />} />
           <Route path="activity-dashboard/slide-creation" element={<SlideCreationHomePage />} />
-          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </div>
   );
 }
 
-
 function App() {
+
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Layout />} />
-        <Route path="/slideshow" element={<Carousel />} />
-        <Route path="/help" element={<Help />} />
-        <Route path="/information" element={<Information />} />
-        <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-        <Route path="/dashboard/activity-dashboard" element={<ProtectedRoute><ActivityDashboard /></ProtectedRoute>} />
+        <Route path="/*" element={<Layout />} />
+        <Route path="dashboard/*" element={<ProtectedRoute component={SignedInLayout} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
