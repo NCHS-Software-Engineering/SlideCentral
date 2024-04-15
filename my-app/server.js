@@ -124,10 +124,10 @@ app.post('/api/activities', (req, res) => {
   });
 });
 
-app.post('/api/sponser', (req, res) => {
+app.post('/api/sponsor', (req, res) => {
   const sub4 = req.body.sub4;
   const sub5 = req.body.sub5;
-  const sqlInsert = "INSERT INTO activity_sponser (activity_id, user_id) VALUES (?, ?)";
+  const sqlInsert = "INSERT INTO activity_sponsor (activity_id, user_id) VALUES (?, ?)";
   db.query(sqlInsert, [sub4, sub5,], (err, result) => {
     if (err) {
         console.error(err);
@@ -164,9 +164,9 @@ app.delete('/activ/:activityID', (req, res) => {
   });
 });
 
-app.delete('/sponser/:activityID', (req, res) => {
+app.delete('/sponsor/:activityID', (req, res) => {
   const activityID = req.params.activityID;
-  const sqlDelete = "DELETE FROM activity_sponser WHERE activity_id = ?";
+  const sqlDelete = "DELETE FROM activity_sponsor WHERE activity_id = ?";
   db.query(sqlDelete, [activityID], (err, result) => {    if (err) {
       console.error(err);
       res.status(500).send('Error deleting activity.');
@@ -176,9 +176,9 @@ app.delete('/sponser/:activityID', (req, res) => {
   });
 });
 
-app.get('/sponser/:userId', (req, res) => {
+app.get('/sponsor/:userId', (req, res) => {
   const userId = req.params.userId;
-  const sqlSelect = "SELECT activity_name FROM activity_matrix JOIN activity_sponser ON activity_sponser.activity_id = activity_matrix.activity_id WHERE user_id = ?";
+  const sqlSelect = "SELECT activity_name FROM activity_matrix JOIN activity_sponsor ON activity_sponsor.activity_id = activity_matrix.activity_id WHERE user_id = ?";
   db.query(sqlSelect, [userId], (err, result) => {
     if (err) {
       console.error(err);

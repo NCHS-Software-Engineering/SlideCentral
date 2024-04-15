@@ -41,7 +41,7 @@ function DComponentActivities() {
               .catch(err => {
                 console.error('Error deleting activity:', err);
               });
-              axios.delete(`http://localhost:5000/sponser/`+sessionStorage.getItem("activityID"))
+              axios.delete(`http://localhost:5000/sponsor/`+sessionStorage.getItem("activityID"))
               .then(() => {
                 console.log('Activity deleted successfully.');
               })
@@ -58,7 +58,7 @@ function DComponentActivities() {
       };
       
   const handleSave = () => {
-    axios.get('http://localhost:5000/sponser/' + sessionStorage.getItem("userId"))
+    axios.get('http://localhost:5000/sponsor/' + sessionStorage.getItem("userId"))
       .then((response) => {
         const activityNames = response.data.map(item => item.activity_name);
         console.log('Activity saved successfully.');
@@ -98,7 +98,7 @@ function DComponentActivities() {
               .catch(err => {
                 console.error('Error deleting activity:', err);
               });
-              axios.delete(`http://localhost:5000/sponser/`+sessionStorage.getItem("activityID"))
+              axios.delete(`http://localhost:5000/sponsor/`+sessionStorage.getItem("activityID"))
               .then(() => {
                 console.log('Activity deleted successfully.');
               })
@@ -119,7 +119,7 @@ function DComponentActivities() {
               .catch(err => {
                 console.error('Error deleting activity:', err);
               });
-              axios.delete(`http://localhost:5000/sponser/`+sessionStorage.getItem("activityID"))
+              axios.delete(`http://localhost:5000/sponsor/`+sessionStorage.getItem("activityID"))
               .then(() => {
                 console.log('Activity deleted successfully.');
               })
@@ -135,7 +135,7 @@ function DComponentActivities() {
   sessionStorage.setItem("activityID", activityID);
   const userId = sessionStorage.getItem("userId");
   console.log(userId);
-  axios.post('http://localhost:5000/api/sponser', { sub4: activityID , sub5: userId})
+  axios.post('http://localhost:5000/api/sponsor', { sub4: activityID , sub5: userId})
   axios.post('http://localhost:5000/api/activ', { sub6: activityID , sub7: inputValue})
     setShowInput(false);
     };
