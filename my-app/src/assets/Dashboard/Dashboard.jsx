@@ -19,7 +19,6 @@ function Dashboard() {
             <div className="dashboard">
                 {userType === 'teacher' && <DComponentActivities/>}
                 {userType === 'student' && <DComponentStudentActivities />}
-                <DComponentNotifications />
             </div>
 
             
