@@ -109,10 +109,10 @@ function DComponentActivities() {
         setActivities([...activities, inputValue]);
     }
     let newActivities;
-  if (editIndex !== null) {
-    newActivities = [...activities];
-    newActivities[editIndex] = inputValue;
-    axios.delete(`http://localhost:5000/activ/`+sessionStorage.getItem("activityID"))
+    if (editIndex !== null) {
+      newActivities = [...activities];
+      newActivities[editIndex] = inputValue;
+      axios.delete(`http://localhost:5000/activ/`+sessionStorage.getItem("activityID"))
               .then(() => {
                 console.log('Activity deleted successfully.');
               })
@@ -126,22 +126,23 @@ function DComponentActivities() {
               .catch(err => {
                 console.error('Error deleting activity:', err);
               });
-  } else {
-    newActivities = [...activities, inputValue];
-  }
-  setActivities(newActivities);
-  const activityID = inputValue.replace(/ /g, '').toLowerCase() + currentDateTime.replace(/-/g, '').replace(/:/g, '').replace(/ /g, '');
-  console.log(activityID);
-  sessionStorage.setItem("activityID", activityID);
-  const userId = sessionStorage.getItem("userId");
-  console.log(userId);
-  axios.post('http://localhost:5000/api/sponsor', { sub4: activityID , sub5: userId})
-  axios.post('http://localhost:5000/api/activ', { sub6: activityID , sub7: inputValue})
+    } else {
+      newActivities = [...activities, inputValue];
+    }
+    setActivities(newActivities);
+    const activityID = inputValue.replace(/ /g, '').toLowerCase() + currentDateTime.replace(/-/g, '').replace(/:/g, '').replace(/ /g, '');
+    console.log(activityID);
+    sessionStorage.setItem("activityID", activityID);
+    const userId = sessionStorage.getItem("userId");
+    console.log(userId);
+    axios.post('http://localhost:5000/api/sponsor', { sub4: activityID , sub5: userId})
+    axios.post('http://localhost:5000/api/activ', { sub6: activityID , sub7: inputValue})
     setShowInput(false);
-    };
+  };
 
   return (
     <div className="activities-container">
+      <div className="smaller-activity-container">
         {activities.map((activity, index) => (
             <div key={index} className="activity-item">
                 <Link to={`${location.pathname}/${activity.replace(/\s/g, '-')}-dashboard`} className="activity-link"><span>{activity} Dashboard</span></Link>
@@ -151,17 +152,18 @@ function DComponentActivities() {
                 </div>
             </div>
         ))}
-        {activities.length === 0 && <p className="no-activities-message">You have no current activities, click below to add one.</p>}
-        {activities.length < 5 && <button onClick={handleAddClick} className="add-activity-button">Add Activity</button>}
-        {showInput && (
-            <form onSubmit={handleInputSubmit} className="activity-form">
-                <label className="activity-label">
-                    Enter Activity Name Here:
-                    <input type="text" value={inputValue} onChange={handleInputChange} className="activity-input" />
-                </label>
-                <button type="submit" className="submit-button">Submit</button>
-            </form>
-        )}
+      </div>
+      {activities.length === 0 && <p className="no-activities-message">You have no current activities, click below to add one.</p>}
+      {activities.length < 6 && <button onClick={handleAddClick} className="add-activity-button">Add Activity</button>}
+      {showInput && (
+          <form onSubmit={handleInputSubmit} className="activity-form">
+              <label className="activity-label">
+                  Enter Activity Name Here:
+                  <input type="text" value={inputValue} onChange={handleInputChange} className="activity-input" />
+              </label>
+              <button type="submit" className="submit-button">Submit</button>
+          </form>
+      )}
     </div>
   );
 }
