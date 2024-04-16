@@ -1,41 +1,25 @@
-.dashboard { 
+.dashboard {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Align activities in the start */
 }
 
-.dashboard > * {
-    flex: 1;
-}
-
-.main-content {
-    height: calc(100% - 71px);
-    overflow: auto;
-}
-
-.signedin-content { 
+activities-container {
     display: flex;
-    justify-content: left;
-    flex-direction: column;
-    margin-bottom: 70px;
-    min-height: 82.5vh;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100vw;
 }
-
-
-
-
-
-
-.activities-container {
-    margin: 10px;
-    padding: 15px 15px 5px;
-    border-radius: 10px;
-}
-
 .activity-item {
+    flex-basis: calc(33.33% - 20px);
+    margin: 10px;
+    padding: 15px;
+    border-radius: 10px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    margin-bottom: 10px;
-    border-bottom: 1px solid white;
+    justify-content: center;
+    text-align: center;
 }
 
 .activity-link {
@@ -44,30 +28,26 @@
     border-radius: 10px;
     padding: 5px;
     font-size: 25px;
-    flex-grow: 1;
     margin-bottom: 10px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .activity-link span {
     background-color: red;
     border: 3px solid white;
     border-radius: 10px;
-    padding: 50px 15px 50px 15px;
-}
-
-.edit-button, .delete-button {
-    margin-left: 1em;
-    margin-bottom: 13px;
-    background-color: #9b870c;
-    color: white;
-    border: 2px solid white;
-    border-radius: 10px;
-    padding: 10px 20px;
-    font-size: 15px;
-}
-
-.delete-button {
-    background-color: darkred;
+    padding: 15px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .no-activities-message {
@@ -123,7 +103,9 @@
     font-size: 15px;
 }
 
-.submit-button:hover, .add-activity-button:hover, .activity-link span:hover{
+.submit-button:hover,
+.add-activity-button:hover,
+.activity-link span:hover {
     background-color: darkred;
     border: 3px solid red;
     transition: 0.3s;
@@ -135,9 +117,29 @@
     transition: 0.3s;
 }
 
-.edit-button:hover, .delete-button:hover {
+.edit-button,
+.delete-button {
+    background-color: #9b870c;
+    color: white;
+    border: 2px solid white;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 15px;
+    width: 25%; /* Adjust the width as needed */
+    margin: 0px 10px;
+}
+
+.edit-button:hover,
+.delete-button:hover {
     background-color: darkred;
     border: 2px solid red;
     transition: 0.3s;
     color: red;
+}
+
+.activity-item-buttons {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex-direction: row;
 }

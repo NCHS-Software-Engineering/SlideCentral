@@ -145,8 +145,10 @@ function DComponentActivities() {
         {activities.map((activity, index) => (
             <div key={index} className="activity-item">
                 <Link to={`${location.pathname}/${activity.replace(/\s/g, '-')}-dashboard`} className="activity-link"><span>{activity} Dashboard</span></Link>
-                <button onClick={() => handleEditClick(index)} className="edit-button">Edit</button>
-                <button onClick={() => handleDeleteClick(index)} className="delete-button">Delete</button>
+                <div className="activity-item-buttons">
+                  <button onClick={() => handleEditClick(index)} className="edit-button">Edit</button>
+                  <button onClick={() => handleDeleteClick(index)} className="delete-button">Delete</button>
+                </div>
             </div>
         ))}
         {activities.length === 0 && <p className="no-activities-message">You have no current activities, click below to add one.</p>}
