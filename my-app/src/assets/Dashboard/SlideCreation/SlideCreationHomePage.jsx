@@ -5,6 +5,13 @@ const SlideCreationHomePage = () => {
   const handleCreateSlide = () => {
     // Logic for creating a slide
     console.log('Create Slide button clicked');
+
+    
+
+
+
+
+
   };
 
   const handleUploadSlide = () => {
@@ -14,11 +21,25 @@ const SlideCreationHomePage = () => {
 
   return (
     <div className={styles.slideCreationHomePage}>
-        <div className={styles.slideCreationContainer}>
-            <div className = {styles.buttons}>
-                <button className={styles.createButton} onClick={handleCreateSlide}>Create a Slide</button>
-                <button className={styles.uploadButton} onClick={handleUploadSlide}>Upload a Slide</button>
-            </div>
+        
+        <div>
+        <form className="slide-form">
+              <div>
+                <label className="slide-label">
+                    Enter Activity Name Here:
+                    <input type="text" className="slide-title-input" />
+                </label>
+              </div>
+              <div>
+                <label className="slide-label">
+                    Enter Activity Description Here:
+                    <textarea className="slide-content-input" />
+                </label>
+              </div>
+                <button className={styles.createButton} onClick={handleCreateSlide}>Create</button>
+
+                
+        </form>
         </div>
     </div>
   );
