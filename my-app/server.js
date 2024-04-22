@@ -68,7 +68,7 @@ app.post('/api/save', (req, res) => {
   });
 });
 
-app.post('/login', async (req, res) => {
+app.post('/api/login', async (req, res) => {
   try {
     const { userId } = req.body;
     // Check if the user already exists in the sessions table
@@ -101,7 +101,7 @@ app.post('/login', async (req, res) => {
           }
         });
       }
-      //console.log('Session key generated:', req.session.sessionKey);
+      console.log('Session key generated:', req.session.sessionKey);
       //console.log('SessionKey stored:', localStorage.getItem('sessionKey'));
     });
   } catch (err) {
@@ -142,6 +142,20 @@ app.post('/api/activ', (req, res) => {
   const sub6 = req.body.sub6;
   const sub7 = req.body.sub7;
   const sqlInsert = "INSERT INTO activity_matrix (activity_id, activity_name) VALUES (?, ?)";
+  db.query(sqlInsert, [sub6, sub7,], (err, result) => {
+    if (err) {
+        console.error(err);
+        res.status(500).send('Error saving to database.');
+    } else {
+        res.send('Data saved successfully.');
+    }
+});
+});
+
+app.post('/api/slide', (req, res) => {
+  const sub6 = req.body.sub6;
+  const sub7 = req.body.sub7;
+  const sqlInsert = "INSERT INTO slide_matrix (activity_id, activity_name) VALUES (?, ?)";
   db.query(sqlInsert, [sub6, sub7,], (err, result) => {
     if (err) {
         console.error(err);

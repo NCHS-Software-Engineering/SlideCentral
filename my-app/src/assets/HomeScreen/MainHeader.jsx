@@ -53,6 +53,22 @@ function MainHeader() {
 
         const userTypeTF = userType.endsWith('student') ? 0 : 1;
         axios.post('http://localhost:5000/api/save', { sub: payload.sub, sub2: payload.name, sub3: userTypeTF })
+          .then(response => {
+            console.log('Save successful:', response.data);
+          })
+          .catch(error => {
+            console.error('Error during save:', error);
+          });
+          axios.post('http://localhost:5000/login', { userId: payload.sub })
+          .then((response) => {
+              console.log('User logged in successfully');
+
+              const sessionKey = response.data.sessionKey;
+              localStorage.setItem('sessionKey', sessionKey);
+            })
+            .catch(err => {
+              console.error('Error logging user in', err);
+            });
         console.log('User type: ' + userType);
 
     // Store the user type in the session storage
