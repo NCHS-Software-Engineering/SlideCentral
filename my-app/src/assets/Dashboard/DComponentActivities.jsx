@@ -11,6 +11,7 @@ function DComponentActivities() {
     const [inputValue, setInputValue] = useState('');
     const [showInput, setShowInput] = useState(false);
     const [editIndex, setEditIndex] = useState(null);
+    const [showNoActivitiesMessage, setShowNoActivitiesMessage] = useState(true);
     const location = useLocation();
 
     const handleInputChange = (event) => {
@@ -18,15 +19,23 @@ function DComponentActivities() {
     };
 
     const handleAddClick = () => {
-        setShowInput(true);
-        setInputValue('');
-        setEditIndex(null);
+      setShowInput(true);
+      setInputValue('');
+      setEditIndex(null);
+      setShowNoActivitiesMessage(false);
     };
 
     const handleEditClick = (index) => {
         setShowInput(true);
         setInputValue(activities[index]);
         setEditIndex(index);
+    };
+
+    const handleCancelClick = () => {
+      setShowInput(false);
+      if (activities.length === 0) {
+          setShowNoActivitiesMessage(true);
+      }
     };
     
     const handleDeleteClick = (index) => {
@@ -153,19 +162,26 @@ function DComponentActivities() {
             </div>
         ))}
       </div>
-      {activities.length === 0 && <p className="no-activities-message">You have no current activities, click below to add one.</p>}
-      {activities.length < 6 && <button onClick={handleAddClick} className="add-activity-button">Add Activity</button>}
-      {showInput && (
-          <form onSubmit={handleInputSubmit} className="activity-form">
-              <label className="activity-label">
-                  Enter Activity Name Here:
-                  <input type="text" value={inputValue} onChange={handleInputChange} className="activity-input" />
-              </label>
-              <button type="submit" className="submit-button">Submit</button>
-          </form>
-      )}
-    </div>
-  );
+      <div>
+        {showNoActivitiesMessage && activities.length === 0 && <p className="no-activities-message">You have no current activities, click below to add one.</p>}
+      </div>
+      <div>
+        {activities.length < 6 && !showInput && <button onClick={handleAddClick} className="add-activity-button">Add Activity</button>}
+      </div>
+            {showInput && (
+                <form onSubmit={handleInputSubmit} className="activity-form">
+                <label className="activity-label">
+                    Enter Activity Name Here:
+                    <input type="text" value={inputValue} onChange={handleInputChange} className="activity-input" />
+                </label>
+                <div className="button-container">
+                    <button type="submit" className="submit-button">Submit</button>
+                    <button type="button" onClick={handleCancelClick} className="submit-button">Cancel</button>
+                </div>
+              </form>
+            )}
+        </div>
+    );
 }
 
 export default DComponentActivities;
