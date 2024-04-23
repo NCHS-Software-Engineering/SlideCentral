@@ -162,10 +162,8 @@ function DComponentActivities() {
             </div>
         ))}
       </div>
-      <div>
+      <div className="nothing-container">
         {showNoActivitiesMessage && activities.length === 0 && <p className="no-activities-message">You have no current activities, click below to add one.</p>}
-      </div>
-      <div>
         {activities.length < 6 && !showInput && <button onClick={handleAddClick} className="add-activity-button">Add Activity</button>}
       </div>
             {showInput && (
