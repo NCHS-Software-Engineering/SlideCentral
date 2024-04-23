@@ -7,11 +7,11 @@ import React, { useEffect, useState} from 'react';
 
 function MainHeader() {
   const navigate = useNavigate();
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(sessionStorage.getItem('userId') !== null);
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(localStorage.getItem('sessionKey') !== null);
 
   const handleLogout = () => {
     // Clear the session storage
-    sessionStorage.clear();
+    localStorage.removeItem('sessionKey');
     setIsUserLoggedIn(false);
     // Redirect the user to the home page
     navigate("/");
@@ -19,6 +19,11 @@ function MainHeader() {
 
 
   useEffect(() => {
+    //ADD TO SEE IF USER IS LOGGED IN AND THEN ADD THE USER INFO IN SESSION STORAGE !!!!!!
+
+
+
+    
     if (!isUserLoggedIn && window.google && !document.getElementById('sign-in-with-google').hasChildNodes()) {
       window.google.accounts.id.initialize({
         client_id: '850963190516-cr7nme98i8i30huscmvl4g79q7pbo12d.apps.googleusercontent.com',
@@ -59,7 +64,7 @@ function MainHeader() {
           .catch(error => {
             console.error('Error during save:', error);
           });
-          axios.post('http://localhost:5000/login', { userId: payload.sub })
+        axios.post('http://localhost:5000/login', { userId: payload.sub })
           .then((response) => {
               console.log('User logged in successfully');
 

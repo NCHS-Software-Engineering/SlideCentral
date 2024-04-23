@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './slidecreation.module.css';
 import moment from 'moment';
 import { useState } from 'react';
-
+import axios from 'axios';
 
 const currentDateTime = moment().format('YYYY-MM-DD HH:mm:ss');
 
@@ -27,9 +27,9 @@ const handleDateChange = (event) => {
     console.log('Create Slide button clicked');
 
     const slideID = titleInput.replace(/ /g, '').toLowerCase() + currentDateTime.replace(/-/g, '').replace(/:/g, '').replace(/ /g, '');
-    localStorage('Slide ID:', slideID);
+    
 
-
+    axios.post('http://localhost:5000/api/slide', { sub1: slideID , sub2: titleInput, sub3: descriptionInput, sub4: dateInput })
 
 
   };
