@@ -48,7 +48,7 @@ function SignedInLayout() {
       <div className="signedin-content">
         <Routes>
           <Route index element={<Dashboard/>} />
-          <Route path="activity-dashboard" element={<ActivityDashboard />} />
+          <Route path=":activityId-dashboard" element={<ActivityDashboard />} />
           <Route path="activity-dashboard/slide-creation" element={<SlideCreationHomePage />} />
         </Routes>
       </div>

@@ -124,6 +124,20 @@ app.post('/api/activities', (req, res) => {
   });
 });
 
+app.get('/api/activityID', (req, res) => {
+  const activityName = req.body.activityName;
+  const sqlSelect = "SELECT activity_id FROM activity_matrix WHERE activity_name = ?";
+  db.query(sqlSelect, [activityName], (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error fetching activity ID.');
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+
 app.post('/api/sponsor', (req, res) => {
   const sub4 = req.body.sub4;
   const sub5 = req.body.sub5;
