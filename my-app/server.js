@@ -101,7 +101,7 @@ app.post('/login', async (req, res) => {
           }
         });
       }
-      //console.log('Session key generated:', req.session.sessionKey);
+      
       //console.log('SessionKey stored:', localStorage.getItem('sessionKey'));
     });
   } catch (err) {
@@ -124,6 +124,20 @@ app.post('/api/activities', (req, res) => {
   });
 });
 
+app.get('/getID/:activityName', (req, res) => {
+  const activityName = req.params.activityName;
+  const sqlSelect = "SELECT activity_id FROM activity_matrix WHERE activity_name = ?";
+  db.query(sqlSelect, [activityName], (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error fetching activity ID.');
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+
 app.post('/api/sponsor', (req, res) => {
   const sub4 = req.body.sub4;
   const sub5 = req.body.sub5;
@@ -143,6 +157,26 @@ app.post('/api/activ', (req, res) => {
   const sub7 = req.body.sub7;
   const sqlInsert = "INSERT INTO activity_matrix (activity_id, activity_name) VALUES (?, ?)";
   db.query(sqlInsert, [sub6, sub7,], (err, result) => {
+    if (err) {
+        console.error(err);
+        res.status(500).send('Error saving to database.');
+    } else {
+        res.send('Data saved successfully.');
+    }
+});
+});
+
+app.post('/api/slide', (req, res) => {
+  const id = req.body.sub1;
+  const name = req.body.sub2;
+  const description = req.body.sub3;
+  const date = req.body.sub4;
+  const activityID = req.body.sub5;
+  const image1Path = req.body.sub6;
+
+  const sqlInsert = "INSERT INTO slide_matrix (slide_id, title, description, meeting_date, activity_id, image1) VALUES (?, ?, ?, ?, ?,?)";
+  
+  db.query(sqlInsert, [id,name,description,date,activityID,image1Path], (err, result) => {
     if (err) {
         console.error(err);
         res.status(500).send('Error saving to database.');
@@ -248,12 +282,26 @@ app.post('/upload', upload.single('image'), resizeTo16x9, (req, res) => {
       return res.status(500).send('Error saving file.');
     }
 
-    res.send('File uploaded, resized, and saved successfully.');
+    res.send(savePath);
   });
 });
 
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Start the server
 app.listen(port, () => {

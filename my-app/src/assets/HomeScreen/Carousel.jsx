@@ -139,7 +139,7 @@ export const Carousel = () => {
                             <div className="inner"
                                 style={{ transform: `translate(-${activeIndex * 100}%)` }}>
                                 {items.map((item) => {
-                                    return <CarouselItem item={item} isFullScreen={isFullScreen} />
+                                    return <CarouselItem width={"100%"} isFullScreen={isFullScreen} />
                                 })}
                             </div>
                         </FullScreen>
