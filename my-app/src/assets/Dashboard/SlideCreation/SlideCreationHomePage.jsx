@@ -92,7 +92,8 @@ const handleDateChange = (event) => {
   
       if (response.status === 200) {
         alert('Image uploaded successfully!');
-        setImagePath(imagePath);
+        setImagePath(response.data);
+        console.log(response.data);
         
       } else {
         alert('Failed to upload image.');

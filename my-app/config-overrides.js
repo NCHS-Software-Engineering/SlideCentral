@@ -10,8 +10,9 @@ module.exports = function override(config) {
         "assert": require.resolve("assert"),
         "http": require.resolve("stream-http"),
         "https": require.resolve("https-browserify"),
-        "os": require.resolve("os-browserify")
-    })
+        "os": require.resolve("os-browserify"),
+        "vm": require.resolve("vm-browserify")
+    });
     config.resolve.fallback = fallback;
     config.plugins = (config.plugins || []).concat([
         new webpack.ProvidePlugin({
