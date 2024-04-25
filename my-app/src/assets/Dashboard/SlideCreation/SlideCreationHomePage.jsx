@@ -13,6 +13,7 @@ const SlideCreationHomePage = () => {
   const [titleInput, setTitleInput] = useState('');
   const [descriptionInput, setDescriptionInput] = useState('');
   const [dateInput, setDateInput] = useState('');
+  const [imagePath, setImagePath] = useState(null);
 
   const handleTitleChange = (event) => {
     setTitleInput(event.target.value);
@@ -31,7 +32,7 @@ const handleDateChange = (event) => {
     const slideID = titleInput.replace(/ /g, '').toLowerCase() + currentDateTime.replace(/-/g, '').replace(/:/g, '').replace(/ /g, '');
     
 
-    axios.post('http://localhost:5000/api/slide', { sub1: slideID , sub2: titleInput, sub3: descriptionInput, sub4: dateInput, sub5: sessionStorage.getItem("currentActivityID") })
+    axios.post('http://localhost:5000/api/slide', { sub1: slideID , sub2: titleInput, sub3: descriptionInput, sub4: dateInput, sub5: sessionStorage.getItem("currentActivityID"), sub6: imagePath })
 
 
   };
@@ -65,7 +66,7 @@ const handleDateChange = (event) => {
 
 
 
-  const handleUploadSlide = e => {
+  const handleUploadSlide = async e => {
     // Logic for uploading a slide
     e.preventDefault();
 
@@ -82,21 +83,23 @@ const handleDateChange = (event) => {
     const formData = new FormData();
     formData.append('image', selectedFile);
 
-    fetch('http://localhost:5000/upload', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => {
-        if (response.ok) {
-            alert('Image uploaded successfully!');
-            const image1Path = response.path;
-        } else {
-            alert('Failed to upload image.');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+    try {
+      const response = await axios.post('http://localhost:5000/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+  
+      if (response.status === 200) {
+        alert('Image uploaded successfully!');
+        setImagePath(imagePath);
+        
+      } else {
+        alert('Failed to upload image.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
  
   
