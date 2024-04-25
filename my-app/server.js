@@ -281,7 +281,7 @@ app.post('/upload', upload.single('image'), resizeTo16x9, (req, res) => {
       return res.status(500).send('Error saving file.');
     }
 
-    res.send('File uploaded, resized, and saved successfully.');
+    res.send(savePath);
   });
 });
 
