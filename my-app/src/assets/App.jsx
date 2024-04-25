@@ -49,7 +49,7 @@ function SignedInLayout() {
         <Routes>
           <Route index element={<Dashboard/>} />
           <Route path=":activityId-dashboard" element={<ActivityDashboard />} />
-          <Route path="activity-dashboard/slide-creation" element={<SlideCreationHomePage />} />
+          <Route path=":activityId-dashboard/slide-creation" element={<SlideCreationHomePage />} />
         </Routes>
       </div>
     </div>

@@ -124,8 +124,8 @@ app.post('/api/activities', (req, res) => {
   });
 });
 
-app.get('/api/activityID', (req, res) => {
-  const activityName = req.body.activityName;
+app.get('/getID/:activityName', (req, res) => {
+  const activityName = req.params.activityName;
   const sqlSelect = "SELECT activity_id FROM activity_matrix WHERE activity_name = ?";
   db.query(sqlSelect, [activityName], (err, result) => {
     if (err) {
@@ -171,10 +171,11 @@ app.post('/api/slide', (req, res) => {
   const name = req.body.sub2;
   const description = req.body.sub3;
   const date = req.body.sub4;
+  const activityID = req.body.sub5;
 
-  const sqlInsert = "INSERT INTO slide_matrix (slide_id, title, description, meeting_date) VALUES (?, ?, ?, ?)";
+  const sqlInsert = "INSERT INTO slide_matrix (slide_id, title, description, meeting_date, activity_id) VALUES (?, ?, ?, ?, ?)";
   
-  db.query(sqlInsert, [id,name,description,date], (err, result) => {
+  db.query(sqlInsert, [id,name,description,date,activityID], (err, result) => {
     if (err) {
         console.error(err);
         res.status(500).send('Error saving to database.');

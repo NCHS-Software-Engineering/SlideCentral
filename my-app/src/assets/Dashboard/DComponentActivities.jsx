@@ -3,6 +3,7 @@ import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Dashboard.css';
+import session from 'express-session';
 
 
 function DComponentActivities() {
@@ -140,28 +141,27 @@ function DComponentActivities() {
     setShowInput(false);
     };
 
-    const onActivityClick = (event) => {
-        const activity_name = event.target.innerText.split(' ')[0];
+const onActivityClick = (event) => {
+        const activityName = event.target.innerText.split(' ')[0];
         
-        const getActivityID = async (activityName) => {
-          try {
-            const response = await axios.get('http://localhost:5000/api/activityID', {
-              params: {
-                activityName: activityName
-              }
-            });
-            console.log(response.data);
-          } catch (error) {
-            console.error(error);
-          }
-        };
+       
+          axios.get('http://localhost:5000/getID/' + activityName)
+            .then((response) => {
+              const activityID = response.data[0].activity_id;
+              console.log(activityID);
+              sessionStorage.setItem("currentActivityID", activityID);
+            })
+            .catch(err => {
+              console.error('Error getting Activity ID:', err);
+      
+          
         
-        sessionStorage.setItem("currentActivityID", getActivityID(activity_name));
 
-        
-        
-    };
 
+      
+        
+    });
+  };
 
 
 
@@ -169,7 +169,7 @@ function DComponentActivities() {
     <div className="activities-container">
         {activities.map((activity, index) => (
             <div key={index} className="activity-item">
-                <Link to={`${location.pathname}/${activity.replace(/\s/g, '-')}-dashboard`} className="activity-link" onClick={onActivityClick}><span>{activity} Dashboard</span></Link>
+                <Link to={`${location.pathname}/${activity.replace(/\s/g, '-')}-dashboard/slide-creation`} className="activity-link" onClick={onActivityClick}><span>{activity} Dashboard</span></Link>
                 <div className="activity-item-buttons">
                   <button onClick={() => handleEditClick(index)} className="edit-button">Edit</button>
                   <button onClick={() => handleDeleteClick(index)} className="delete-button">Delete</button>
