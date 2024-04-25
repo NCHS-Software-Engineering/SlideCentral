@@ -169,7 +169,7 @@ const onActivityClick = (event) => {
     <div className="activities-container">
         {activities.map((activity, index) => (
             <div key={index} className="activity-item">
-                <Link to={`${location.pathname}/${activity.replace(/\s/g, '-')}-dashboard/slide-creation`} className="activity-link" onClick={onActivityClick}><span>{activity} Dashboard</span></Link>
+                <Link to={`${location.pathname}/${activity.replace(/\s/g, '-')}-dashboard`} className="activity-link" onClick={onActivityClick}><span>{activity} Dashboard</span></Link>
                 <div className="activity-item-buttons">
                   <button onClick={() => handleEditClick(index)} className="edit-button">Edit</button>
                   <button onClick={() => handleDeleteClick(index)} className="delete-button">Delete</button>
