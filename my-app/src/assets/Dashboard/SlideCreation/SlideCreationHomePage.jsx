@@ -129,7 +129,7 @@ const handleDateChange = (event) => {
         <div className={styles.slideDateContainer}>
           <label className={styles.slideDate}>
             Enter Activity Meeting Date Here:
-            <input value={dateInput} onChange={handleDateChange} className={styles.slideDateInput} />
+            <input value={dateInput} onChange={handleDateChange} type="date" className={styles.slideDateInput} />
           </label>
         </div>
         <input type="file" name="image" id="imageInput" accept="image/*" onChange={onSelectFile} />
