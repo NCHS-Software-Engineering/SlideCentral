@@ -3,7 +3,10 @@ import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Dashboard.css';
+<<<<<<< Updated upstream
 import session from 'express-session';
+=======
+>>>>>>> Stashed changes
 
 
 function DComponentActivities() {
@@ -44,6 +47,12 @@ function DComponentActivities() {
         if (confirmation) {
           const activityName = window.prompt('Please enter the name of the activity to confirm deletion:');
           if (activityName === activities[index]) {
+<<<<<<< Updated upstream
+=======
+            const activityID = inputValue.replace(/ /g, '').toLowerCase() + currentDateTime.replace(/-/g, '').replace(/:/g, '').replace(/ /g, '');
+            console.log(activityID);
+            sessionStorage.setItem("activityID", activityID);
+>>>>>>> Stashed changes
             axios.delete(`http://localhost:5000/activ/`+sessionStorage.getItem("activityID"))
               .then(() => {
                 console.log('Activity deleted successfully.');
@@ -99,6 +108,12 @@ function DComponentActivities() {
     }
     if (editIndex !== null) {
         const newActivities = [...activities];
+<<<<<<< Updated upstream
+=======
+        const activityID = inputValue.replace(/ /g, '').toLowerCase() + currentDateTime.replace(/-/g, '').replace(/:/g, '').replace(/ /g, '');
+      console.log(activityID);
+      sessionStorage.setItem("activityID", activityID);
+>>>>>>> Stashed changes
         newActivities[editIndex] = inputValue;
         setActivities(newActivities);
         axios.delete(`http://localhost:5000/activ/`+sessionStorage.getItem("activityID"))
@@ -108,7 +123,11 @@ function DComponentActivities() {
               .catch(err => {
                 console.error('Error deleting activity:', err);
               });
+<<<<<<< Updated upstream
               axios.delete(`http://localhost:5000/sponsor/`+sessionStorage.getItem("activityID"))
+=======
+        axios.delete(`http://localhost:5000/sponsor/`+sessionStorage.getItem("activityID"))
+>>>>>>> Stashed changes
               .then(() => {
                 console.log('Activity deleted successfully.');
               })
@@ -121,6 +140,12 @@ function DComponentActivities() {
     let newActivities;
     if (editIndex !== null) {
       newActivities = [...activities];
+<<<<<<< Updated upstream
+=======
+      const activityID = inputValue.replace(/ /g, '').toLowerCase() + currentDateTime.replace(/-/g, '').replace(/:/g, '').replace(/ /g, '');
+      console.log(activityID);
+      sessionStorage.setItem("activityID", activityID);
+>>>>>>> Stashed changes
       newActivities[editIndex] = inputValue;
       axios.delete(`http://localhost:5000/activ/`+sessionStorage.getItem("activityID"))
               .then(() => {
@@ -150,6 +175,7 @@ function DComponentActivities() {
     setShowInput(false);
   };
 
+<<<<<<< Updated upstream
 const onActivityClick = (event) => {
         const activityName = event.target.innerText.split(' ')[0];
         
@@ -174,12 +200,18 @@ const onActivityClick = (event) => {
 
 
 
+=======
+>>>>>>> Stashed changes
   return (
     <div className="activities-container">
       <div className="smaller-activity-container">
         {activities.map((activity, index) => (
             <div key={index} className="activity-item">
+<<<<<<< Updated upstream
                 <Link to={`${location.pathname}/${activity.replace(/\s/g, '-')}-dashboard`} className="activity-link" onClick={onActivityClick}><span>{activity} Dashboard</span></Link>
+=======
+                <Link to={`${location.pathname}/${activity.replace(/\s/g, '-')}-dashboard`} className="activity-link"><span>{activity} Dashboard</span></Link>
+>>>>>>> Stashed changes
                 <div className="activity-item-buttons">
                   <button onClick={() => handleEditClick(index)} className="edit-button">Edit</button>
                   <button onClick={() => handleDeleteClick(index)} className="delete-button">Delete</button>
