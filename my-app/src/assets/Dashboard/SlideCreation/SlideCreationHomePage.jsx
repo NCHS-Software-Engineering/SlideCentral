@@ -107,38 +107,30 @@ const handleDateChange = (event) => {
 
   return (
     <div className={styles.slideCreationHomePage}>
-        
-        <div>
-        
-              <div>
-                <label className="slide-title">
-                    Enter Slide Title Here:
-                    <input value={titleInput} onChange = {handleTitleChange} type="text" className="slide-title-input" />
-                </label>
-              </div>
-              <div>
-                <label className="slide-description">
-                    Enter Activity Description Here:
-                    <textarea value={descriptionInput} onChange = {handleDescriptionChange} className="slide-description-input" />
-                </label>
-              </div>
-              <div>
-                <label className="slide-date">
-                    Enter Activity Meeting Date Here:
-                    <input value={dateInput} onChange = {handleDateChange} className="slide-date-input" />
-                </label>
-              </div>
-
-              <input type="file" name="image" id="imageInput" accept="image/*" onChange={onSelectFile} />
-                {selectedFile &&  <img id="output" src={preview} />}
-              <button onClick={handleUploadSlide} className={styles.uploadButton}>Upload</button>
-
-              
-              <button onClick ={handleCreateSlide} className={styles.createButton}>Create</button>
-
-               
-        
+      <div className={styles.slideCreationContainer}>
+        <div className={styles.sl}>
+          <label className={styles.slideTitle}>
+            Enter Slide Title Here:
+            <input value={titleInput} onChange={handleTitleChange} type="text" className={styles.slideTitleInput} />
+          </label>
         </div>
+        <div className={styles.slideDescriptionContainer}>
+          <label className={styles.slideDescription}>
+            Enter Activity Description Here:
+            <textarea value={descriptionInput} onChange={handleDescriptionChange} className={styles.slideDescriptionInput} />
+          </label>
+        </div>
+        <div className={styles.slideDateContainer}>
+          <label className={styles.slideDate}>
+            Enter Activity Meeting Date Here:
+            <input value={dateInput} onChange={handleDateChange} className={styles.slideDateInput} />
+          </label>
+        </div>
+        <input type="file" name="image" id="imageInput" accept="image/*" onChange={onSelectFile} />
+        {selectedFile && <img id="output" src={preview} className={styles.imagePreview} />}
+        <button onClick={handleUploadSlide} className={styles.uploadButton}>Upload</button>
+        <button onClick={handleCreateSlide} className={styles.createButton}>Create</button>
+      </div>
     </div>
   );
 };

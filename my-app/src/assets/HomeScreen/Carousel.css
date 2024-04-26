@@ -87,15 +87,18 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    height: 56vh;
+    height: 50vh;
     border: 10px solid red;
-    border-radius: 10px;
+    text-align: center;
+    box-sizing: border-box;
+    
 }
 
-.carousel-img{ /* This is the carousel image */
+.carousel-item-content{ /* This is the carousel image */
     width: 100%;
     height: 100%;
     object-fit: cover; 
+    
 }
 
 .carousel-buttons{ /* This is the container for the carousel buttons */
