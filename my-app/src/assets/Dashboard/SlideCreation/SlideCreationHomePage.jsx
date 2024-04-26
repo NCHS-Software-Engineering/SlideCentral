@@ -92,8 +92,14 @@ const handleDateChange = (event) => {
   
       if (response.status === 200) {
         alert('Image uploaded successfully!');
-        setImagePath(response.data);
-        console.log(response.data);
+
+        let imagePath = response.data;
+        imagePath = imagePath.replace(/\\/g, '/'); // Add this line
+        const baseIndex = imagePath.indexOf('SlideCentral');
+        if (baseIndex > -1) {
+            imagePath = imagePath.substring(baseIndex);
+        }
+        setImagePath(imagePath);
         
       } else {
         alert('Failed to upload image.');
