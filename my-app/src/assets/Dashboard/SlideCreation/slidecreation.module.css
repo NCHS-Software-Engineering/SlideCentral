@@ -1,41 +1,79 @@
 .slideCreationHomePage {
-  align-items: center;
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 50%;
+  width: 100%;
 }
-  
+
 .slideCreationContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   width: 50%;
+  margin: 0 auto; 
   background-color: red;
-  height: 50%;
-
+  border: 2px solid white;
+  box-sizing: border-box;
 }
 
-.createButton {
-  margin: 20px;
-}
-
-.uploadButton {
-  margin: 20px;
-}
-.uploadButton, .createButton {
+.createButton, .uploadButton {
+  margin: 5px;
+  padding: 10px 20px;
   background-color: red;
   color: white;
-  height: 50px;
-  width: 100px;
-  border-radius: 10px;
   border: 3px solid white;
-  font-size: 30px;
+  border-radius: 10px;
+  font-size: 15px;
+  
 }
+
+.createButton:hover, .uploadButton:hover {
+  background-color: darkred;
+  border: 3px solid red;
+  transition: 0.3s;
+  color: red;
+}
+
 .buttons {
   display: flex;
   justify-content: center;
+}
+
+.sl {
+  margin-bottom: 10px;
+}
+
+.slideTitle, .slideDescription, .slideDate {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.slideTitleInput, .slideDescriptionInput, .slideDateInput {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+#imageInput {
+  display: none;
+}
+
+#output {
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.slideDescriptionContainer, .slideDateContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.imagePreview {
+  width: 100%;
+  height: auto;
 }
