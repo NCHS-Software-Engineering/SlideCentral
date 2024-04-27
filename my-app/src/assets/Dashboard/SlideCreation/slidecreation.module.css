@@ -10,10 +10,14 @@
   flex-direction: column;
   align-items: center;
   width: 50%;
-  margin: 0 auto; 
-  background-color: red;
+  margin: 10px auto; 
+  border-radius: 10px;
   border: 2px solid white;
   box-sizing: border-box;
+  padding: 10px;
+  background: rgba( 255, 0, 0, 0.50 );
+  backdrop-filter: blur( 3.5px );
+  -webkit-backdrop-filter: blur( 3.5px );
 }
 
 .createButton, .uploadButton {
@@ -52,8 +56,18 @@
   width: 100%;
   padding: 10px;
   margin: 10px 0;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  padding: 0.5em;
+  border-radius: 10px;
+  border: 3px solid red;
+  font-size: 20px;
+}
+
+.slideTitleInput:focus, .slideDescriptionInput:focus, .slideDateInput:focus {
+  outline: none;
+  border: 3px solid darkred;
+  background-color: red;
+  color: white;
+  transition: 0.3s;
 }
 
 #imageInput {
