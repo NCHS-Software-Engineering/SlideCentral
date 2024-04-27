@@ -1,3 +1,21 @@
+
+.activityDashboardMainContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+  
+
+.activityDashboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+
 .slidesComponent {
     display: flex;
     flex-direction: column;
@@ -5,9 +23,63 @@
     justify-content: center;
     padding: 20px;
     border: 1px solid #ddd;
-    margin-top: 5px;
+    margin-top: 10px;
     border-radius: 10px;
+    width: 50%;
+    background: rgba( 255, 0, 0, 0.50 );
+    backdrop-filter: blur( 3.5px );
+    -webkit-backdrop-filter: blur( 3.5px );
 
+}
+
+.inviteStudentsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+}
+
+.inviteStudentsContainer h3 {
+    font-size: 20px;
+    margin-bottom: 0px;
+}
+
+.emailInput {
+    padding: 10px;
+    margin: 10px 0;
+    padding: 0.5em;
+    border-radius: 10px;
+    border: 3px solid red;
+    font-size: 20px;
+    width: 400px;
+}
+
+.emailInput:focus {
+    outline: none;
+    border: 3px solid darkred;
+    background-color: red;
+    color: white;
+    transition: 0.3s;
+}
+
+.submitEmailButton {
+    margin: 5px;
+    padding: 12.5px 25px;
+    background-color: red;
+    color: white;
+    border: 3px solid white;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.emailForm {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
 }
 
 .currentSlides {
