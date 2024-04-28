@@ -2,7 +2,6 @@
 import styles from './slidecreation.module.css';
 import moment from 'moment';
 import axios from 'axios';
-import Upload from '../../HomeScreen/Upload.jsx';
 import React, { useState, useEffect } from 'react';
 
 
@@ -14,6 +13,8 @@ const SlideCreationHomePage = () => {
   const [descriptionInput, setDescriptionInput] = useState('');
   const [dateInput, setDateInput] = useState('');
   const [imagePath, setImagePath] = useState(null);
+  const [currentStep, setCurrentStep] = useState(1);
+  const totalSteps = 4; // total number of steps in the form
 
   const handleTitleChange = (event) => {
     setTitleInput(event.target.value);
@@ -108,34 +109,116 @@ const handleDateChange = (event) => {
       console.error('Error:', error);
     }
   };
- 
   
 
+  const goNext = () => {
+    if (currentStep < totalSteps) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+
+  const goBack = () => {
+    if (currentStep > 1) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+
+  // Handle arrow key press to navigate the form
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'ArrowRight') {
+        goNext();
+      } else if (event.key === 'ArrowLeft') {
+        goBack();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    
+    // Cleanup listener
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [currentStep]);
+
+
+  const renderStepContent = () => {
+    switch (currentStep) {
+      case 1:
+        return (
+          <div className={styles.inputContainer}>
+            <div className={styles.inputTitle}>Slide Title</div>
+            <input 
+              value={titleInput} 
+              onChange={handleTitleChange} 
+              type="text" 
+              className={styles.slideTitleInput}
+              placeholder="Enter Slide Title Here" 
+            />
+          </div>
+        );
+      case 2:
+        return (
+          <div className={styles.inputContainer}>
+            <div className={styles.inputTitle}>Activity Description</div>
+            <textarea 
+              value={descriptionInput} 
+              onChange={handleDescriptionChange} 
+              className={styles.slideTitleInput}
+              placeholder="Enter Activity Description Here" 
+            />
+          </div>
+        );
+      case 3:
+        return (
+          <div className={styles.inputContainer}>
+            <div className={styles.inputTitle}>Event Date</div>
+            <input 
+              value={dateInput} 
+              onChange={handleDateChange} 
+              type="date" 
+              className={styles.slideTitleInput}
+            />
+          </div>
+        );
+      case 4:
+        return (
+          <div className={styles.inputContainer}>
+            <div className={styles.inputTitle}>Import Image</div>
+            <input 
+              type="file" 
+              name="image" 
+              id="imageInput" 
+              accept="image/*" 
+              onChange={onSelectFile}
+            />
+            {selectedFile && <img id="output" src={preview} className={styles.imagePreview} />}
+            <button onClick={handleUploadSlide} className={styles.uploadButton}>Upload</button>
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
+  
   return (
     <div className={styles.slideCreationHomePage}>
       <div className={styles.slideCreationContainer}>
-        <div className={styles.sl}>
-          <label className={styles.slideTitle}>
-            Enter Slide Title Here:
-            <input value={titleInput} onChange={handleTitleChange} type="text" className={styles.slideTitleInput} />
-          </label>
+        {renderStepContent()}
+        <div className={styles.navigationButtons}>
+          <button 
+            onClick={currentStep > 1 ? goBack : undefined}
+            className={`${styles.navButton} ${styles.navButtonLeft}`}
+            disabled={currentStep === 1} // Disables button on first step
+          >
+            <span className="material-symbols-outlined">arrow_back_ios</span>
+          </button>
+          <button 
+            onClick={currentStep < totalSteps ? goNext : undefined}
+            className={`${styles.navButton} ${styles.navButtonRight}`}
+            disabled={currentStep === totalSteps} // Disables button on last step
+          >
+            <span className="material-symbols-outlined">arrow_forward_ios</span>
+          </button>
         </div>
-        <div className={styles.slideDescriptionContainer}>
-          <label className={styles.slideDescription}>
-            Enter Activity Description Here:
-            <textarea value={descriptionInput} onChange={handleDescriptionChange} className={styles.slideDescriptionInput} />
-          </label>
-        </div>
-        <div className={styles.slideDateContainer}>
-          <label className={styles.slideDate}>
-            Enter Activity Meeting Date Here:
-            <input value={dateInput} onChange={handleDateChange} type="date" className={styles.slideDateInput} />
-          </label>
-        </div>
-        <input type="file" name="image" id="imageInput" accept="image/*" onChange={onSelectFile} />
-        {selectedFile && <img id="output" src={preview} className={styles.imagePreview} />}
-        <button onClick={handleUploadSlide} className={styles.uploadButton}>Upload</button>
-        <button onClick={handleCreateSlide} className={styles.createButton}>Create</button>
       </div>
     </div>
   );

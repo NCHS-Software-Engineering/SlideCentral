@@ -119,7 +119,7 @@
     border-radius: 10px;
     font-size: 15px;
 }
-.addButton:hover, .removeButton:hover, .confirmButton:hover, .cancelButton:hover {
+.addButton:hover, .removeButton:hover, .confirmButton:hover, .cancelButton:hover, .submitEmailButton:hover {
     background-color: darkred;
     border: 3px solid red;
     transition: 0.3s;
