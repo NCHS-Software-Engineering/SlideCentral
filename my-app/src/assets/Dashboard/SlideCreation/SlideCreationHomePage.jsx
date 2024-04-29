@@ -13,8 +13,9 @@ const SlideCreationHomePage = () => {
   const [descriptionInput, setDescriptionInput] = useState('');
   const [dateInput, setDateInput] = useState('');
   const [imagePath, setImagePath] = useState(null);
+  const [imagePath2, setImagePath2] = useState(null);
   const [currentStep, setCurrentStep] = useState(1);
-  const totalSteps = 4; // total number of steps in the form
+  const totalSteps = 8; // total number of steps in the form
 
   const handleTitleChange = (event) => {
     setTitleInput(event.target.value);
@@ -145,7 +146,7 @@ const handleDateChange = (event) => {
       case 1:
         return (
           <div className={styles.inputContainer}>
-            <div className={styles.inputTitle}>Slide Title</div>
+            <div className={styles.inputTitle}>1. Slide Title</div>
             <input 
               value={titleInput} 
               onChange={handleTitleChange} 
@@ -158,7 +159,7 @@ const handleDateChange = (event) => {
       case 2:
         return (
           <div className={styles.inputContainer}>
-            <div className={styles.inputTitle}>Activity Description</div>
+            <div className={styles.inputTitle}>2. Activity Description / Message</div>
             <textarea 
               value={descriptionInput} 
               onChange={handleDescriptionChange} 
@@ -170,7 +171,7 @@ const handleDateChange = (event) => {
       case 3:
         return (
           <div className={styles.inputContainer}>
-            <div className={styles.inputTitle}>Event Date</div>
+            <div className={styles.inputTitle}>3. Event Date</div>
             <input 
               value={dateInput} 
               onChange={handleDateChange} 
@@ -182,7 +183,7 @@ const handleDateChange = (event) => {
       case 4:
         return (
           <div className={styles.inputContainer}>
-            <div className={styles.inputTitle}>Import Image</div>
+            <div className={styles.inputTitle}>4. Import Image 1</div>
             <input 
               type="file" 
               name="image" 
@@ -192,6 +193,47 @@ const handleDateChange = (event) => {
             />
             {selectedFile && <img id="output" src={preview} className={styles.imagePreview} />}
             <button onClick={handleUploadSlide} className={styles.uploadButton}>Upload</button>
+          </div>
+        );
+      case 5:
+        return (
+          <div className={styles.inputContainer}>
+            <div className={styles.inputTitle}>5. Import Image 2</div>
+            <input
+              type="file"
+              name="image2"
+              accept="image/*"
+            />
+            {/* Display the second image preview if available */}
+            {imagePath2 && <img src={imagePath2} className={styles.imagePreview} />}
+          </div>
+        );
+      case 6:
+        return (
+          <div className={styles.inputContainer}>
+            <div className={styles.inputTitle}>6. Background Color</div>
+            <input
+              type="color"
+              className={styles.colorInput}
+            />
+          </div>
+        );
+      case 7:
+        return (
+          <div className={styles.inputContainer}>
+            <div className={styles.inputTitle}>7. Text Color</div>
+            <input
+              type="color"
+              className={styles.colorInput}
+            />
+          </div>
+        );
+      case 8:
+        return (
+          <div className={styles.inputContainer}>
+            <button className={styles.createButton}>
+              Create Slide
+            </button>
           </div>
         );
       default:
