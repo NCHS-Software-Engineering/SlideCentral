@@ -93,6 +93,15 @@
   transition: 0.3s;
 }
 
+.colorInput {
+  padding: 0.5em;
+  border-radius: 10px;
+  border: 2px solid red; 
+  font-size: 16px;
+  margin: 10px 0; 
+}
+
+
 #imageInput {
   display: none;
 }
