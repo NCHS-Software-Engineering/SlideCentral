@@ -173,10 +173,12 @@ app.post('/api/slide', (req, res) => {
   const date = req.body.sub4;
   const activityID = req.body.sub5;
   const image1Path = req.body.sub6;
+  const background = req.body.sub7;
+  const textColor = req.body.sub8;
 
-  const sqlInsert = "INSERT INTO slide_matrix (slide_id, title, description, meeting_date, activity_id, image1) VALUES (?, ?, ?, ?, ?,?)";
+  const sqlInsert = "INSERT INTO slide_matrix (slide_id, title, description, meeting_date, activity_id, image1, background_color, text_color) VALUES (?, ?, ?, ?, ?,?,?,?)";
   
-  db.query(sqlInsert, [id,name,description,date,activityID,image1Path], (err, result) => {
+  db.query(sqlInsert, [id,name,description,date,activityID,image1Path,background,textColor], (err, result) => {
     if (err) {
         console.error(err);
         res.status(500).send('Error saving to database.');

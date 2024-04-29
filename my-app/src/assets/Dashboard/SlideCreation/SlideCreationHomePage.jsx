@@ -16,6 +16,8 @@ const SlideCreationHomePage = () => {
   const [imagePath2, setImagePath2] = useState(null);
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = 8; // total number of steps in the form
+  const [backgroundColor, setBackgroundColor] = useState('#ffffff'); 
+  const [textColor, setTextColor] = useState('#000000'); 
 
   const handleTitleChange = (event) => {
     setTitleInput(event.target.value);
@@ -34,7 +36,7 @@ const handleDateChange = (event) => {
     const slideID = titleInput.replace(/ /g, '').toLowerCase() + currentDateTime.replace(/-/g, '').replace(/:/g, '').replace(/ /g, '');
     
 
-    axios.post('http://localhost:5000/api/slide', { sub1: slideID , sub2: titleInput, sub3: descriptionInput, sub4: dateInput, sub5: sessionStorage.getItem("currentActivityID"), sub6: imagePath })
+    axios.post('http://localhost:5000/api/slide', { sub1: slideID , sub2: titleInput, sub3: descriptionInput, sub4: dateInput, sub5: sessionStorage.getItem("currentActivityID"), sub6: imagePath, sub7:backgroundColor, sub8: textColor })
 
 
   };
@@ -215,6 +217,8 @@ const handleDateChange = (event) => {
             <input
               type="color"
               className={styles.colorInput}
+              value = {backgroundColor}
+              onChange={(event) => setBackgroundColor(event.target.value)} // Update backgroundColor when the user selects a color
             />
           </div>
         );
@@ -225,13 +229,15 @@ const handleDateChange = (event) => {
             <input
               type="color"
               className={styles.colorInput}
+              value = {textColor}
+              onChange={(event) => setTextColor(event.target.value)} // Update textColor when the user selects a color
             />
           </div>
         );
       case 8:
         return (
           <div className={styles.inputContainer}>
-            <button className={styles.createButton}>
+            <button className={styles.createButton} onClick = {handleCreateSlide}>
               Create Slide
             </button>
           </div>
