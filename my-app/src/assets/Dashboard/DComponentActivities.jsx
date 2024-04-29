@@ -3,12 +3,12 @@ import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Dashboard.css';
-import session from 'express-session';
 
 
 function DComponentActivities() {
     const currentDateTime = moment().format('YYYY-MM-DD HH:mm:ss');
     const [activities, setActivities] = useState([]);
+    const [activityID, setActivityID] = useState([]);
     const [inputValue, setInputValue] = useState('');
     const [showInput, setShowInput] = useState(false);
     const [editIndex, setEditIndex] = useState(null);
@@ -61,6 +61,9 @@ function DComponentActivities() {
             const newActivities = [...activities];
             newActivities.splice(index, 1);
             setActivities(newActivities);
+            const newActivityID = [...activityID];
+            newActivityID.splice(index, 1);
+            setActivityID(newActivityID);
           } else {
             window.alert('The name you entered does not match the name of the activity. The activity was not deleted.');
           }
@@ -70,13 +73,16 @@ function DComponentActivities() {
   const handleSave = () => {
     axios.get('http://localhost:5000/sponsor/' + sessionStorage.getItem("userId"))
       .then((response) => {
-        const activityNames = response.data.map(item => item.activity_name);
+        const activityNames = response.data.map(item => item.activity_name.splice(0, item.activity_name.length-14));
+        const activityIDs = response.data.map(item => item.activity_name);
         console.log('Activity saved successfully.');
         setActivities([...activities, ...activityNames]);
+        setActivityID([...activityID, ...activityIDs]);
       })
       .catch(err => {
         console.error('Error saving activity:', err);
       });
+      
 
     setShowInput(false);
     setInputValue('');
@@ -101,14 +107,14 @@ function DComponentActivities() {
         const newActivities = [...activities];
         newActivities[editIndex] = inputValue;
         setActivities(newActivities);
-        axios.delete(`http://localhost:5000/activ/`+sessionStorage.getItem("activityID"))
+        axios.delete(`http://localhost:5000/activ/`+ activityIDs[editIndex])
               .then(() => {
                 console.log('Activity deleted successfully.');
               })
               .catch(err => {
                 console.error('Error deleting activity:', err);
               });
-              axios.delete(`http://localhost:5000/sponsor/`+sessionStorage.getItem("activityID"))
+              axios.delete(`http://localhost:5000/sponsor/`+ activityIDs[editIndex])
               .then(() => {
                 console.log('Activity deleted successfully.');
               })
