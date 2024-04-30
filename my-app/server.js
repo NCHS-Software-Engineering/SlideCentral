@@ -214,7 +214,7 @@ app.delete('/sponsor/:activityID', (req, res) => {
 
 app.get('/sponsor/:userId', (req, res) => {
   const userId = req.params.userId;
-  const sqlSelect = "SELECT activity_name FROM activity_matrix JOIN activity_sponsor ON activity_sponsor.activity_id = activity_matrix.activity_id WHERE user_id = ?";
+  const sqlSelect = "SELECT activity_id FROM activity_sponsor WHERE user_id = ?";
   db.query(sqlSelect, [userId], (err, result) => {
     if (err) {
       console.error(err);

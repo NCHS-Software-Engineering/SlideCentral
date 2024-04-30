@@ -44,14 +44,14 @@ function DComponentActivities() {
         if (confirmation) {
           const activityName = window.prompt('Please enter the name of the activity to confirm deletion:');
           if (activityName === activities[index]) {
-            axios.delete(`http://localhost:5000/activ/`+sessionStorage.getItem("activityID"))
+            axios.delete(`http://localhost:5000/activ/`+ activityID[index])
               .then(() => {
                 console.log('Activity deleted successfully.');
               })
               .catch(err => {
                 console.error('Error deleting activity:', err);
               });
-              axios.delete(`http://localhost:5000/sponsor/`+sessionStorage.getItem("activityID"))
+              axios.delete(`http://localhost:5000/sponsor/`+ activityID[index])
               .then(() => {
                 console.log('Activity deleted successfully.');
               })
@@ -107,14 +107,14 @@ function DComponentActivities() {
         const newActivities = [...activities];
         newActivities[editIndex] = inputValue;
         setActivities(newActivities);
-        axios.delete(`http://localhost:5000/activ/`+ activityIDs[editIndex])
+        axios.delete(`http://localhost:5000/activ/`+ activityID[editIndex])
               .then(() => {
                 console.log('Activity deleted successfully.');
               })
               .catch(err => {
                 console.error('Error deleting activity:', err);
               });
-              axios.delete(`http://localhost:5000/sponsor/`+ activityIDs[editIndex])
+              axios.delete(`http://localhost:5000/sponsor/`+ activityID[editIndex])
               .then(() => {
                 console.log('Activity deleted successfully.');
               })
