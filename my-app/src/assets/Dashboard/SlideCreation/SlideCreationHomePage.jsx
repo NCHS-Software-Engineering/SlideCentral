@@ -45,7 +45,9 @@ const handleDateChange = (event) => {
 
 
   const [selectedFile, setSelectedFile] = useState(null);
-    const [preview, setPreview] = useState();
+  const [selectedFile2, setSelectedFile2] = useState(null);
+  const [preview, setPreview] = useState();
+  const [preview2, setPreview2] = useState();
 
     useEffect(() => {
         if (!selectedFile) {
@@ -60,56 +62,97 @@ const handleDateChange = (event) => {
     }, [selectedFile]);
 
     const onSelectFile = e => {
-        if (!e.target.files || e.target.files.length === 0) {
-            setSelectedFile(undefined);
-            return;
-        }
+      if (!e.target.files || e.target.files.length === 0) {
+          setSelectedFile(undefined);
+          return;
+      }
+  
+      setSelectedFile(e.target.files[0]);
+  };
+  
+  const onSelectFile2 = e => {
+      if (!e.target.files || e.target.files.length === 0) {
+          setSelectedFile2(undefined);
+          return;
+      }
+  
+      setSelectedFile2(e.target.files[0]);
+  };
 
-        setSelectedFile(e.target.files[0]);
-    };
+    useEffect(() => {
+      if (!selectedFile2) {
+          setPreview2(undefined);
+          return;
+      }
+  
+      const objectUrl2 = URL.createObjectURL(selectedFile2);
+      setPreview2(objectUrl2);
+  
+      return () => URL.revokeObjectURL(objectUrl2);
+  }, [selectedFile2]);
 
 
+
+  const [key1, setKey1] = useState(Date.now());
+  const [key2, setKey2] = useState(Date.now());
 
   const handleUploadSlide = async e => {
-    // Logic for uploading a slide
     e.preventDefault();
-
-    if (!selectedFile) {
-        alert('No file selected for upload.');
-        return;
+  
+    if (!selectedFile || !selectedFile2) {
+      alert('No file selected for upload.');
+      return;
     }
-
-    if (selectedFile.type !== 'image/jpeg' && selectedFile.type !== 'image/png'     && selectedFile.type !== 'image/jpg') {
-        alert('Only image files can be uploaded.');
-        return;
+  
+    if (
+      (selectedFile.type !== 'image/jpeg' && selectedFile.type !== 'image/png' && selectedFile.type !== 'image/jpg') ||
+      (selectedFile2.type !== 'image/jpeg' && selectedFile2.type !== 'image/png' && selectedFile2.type !== 'image/jpg')
+    ) {
+      alert('Only image files can be uploaded.');
+      return;
     }
-
-    const formData = new FormData();
-    formData.append('image', selectedFile);
-
+  
+    const formData1 = new FormData();
+    formData1.append('image', selectedFile);
+  
+    const formData2 = new FormData();
+    formData2.append('image', selectedFile2);
+  
     try {
-      const response = await axios.post('http://localhost:5000/upload', formData, {
+      const response1 = await axios.post('http://localhost:5000/upload', formData1, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
   
-      if (response.status === 200) {
-        alert('Image uploaded successfully!');
+      const response2 = await axios.post('http://localhost:5000/upload', formData2, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+  
+      if (response1.status === 200 && response2.status === 200) {
+        alert('Images uploaded successfully!');
+        setKey1(Date.now());
+        setKey2(Date.now());
 
-        let imagePath = response.data;
-        imagePath = imagePath.replace(/\\/g, '/'); // Add this line
-        const baseIndex = imagePath.indexOf('SlideCentral');
-        if (baseIndex > -1) {
-            imagePath = imagePath.substring(baseIndex);
+  
+        let imagePath1 = response1.data;
+        imagePath1 = imagePath1.replace(/\\/g, '/');
+        const baseIndex1 = imagePath1.indexOf('SlideCentral');
+        if (baseIndex1 > -1) {
+          imagePath1 = imagePath1.substring(baseIndex1);
         }
-        setImagePath(imagePath);
-        
-      } else {
-        alert('Failed to upload image.');
+  
+        let imagePath2 = response2.data;
+        imagePath2 = imagePath2.replace(/\\/g, '/');
+        const baseIndex2 = imagePath2.indexOf('SlideCentral');
+        if (baseIndex2 > -1) {
+          imagePath2 = imagePath2.substring(baseIndex2);
+        }
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error(error);
     }
   };
   
@@ -187,6 +230,7 @@ const handleDateChange = (event) => {
           <div className={styles.inputContainer}>
             <div className={styles.inputTitle}>4. Import Image 1</div>
             <input 
+              key={key1}
               type="file" 
               name="image" 
               id="imageInput" 
@@ -202,12 +246,15 @@ const handleDateChange = (event) => {
           <div className={styles.inputContainer}>
             <div className={styles.inputTitle}>5. Import Image 2</div>
             <input
+              key={key2}
               type="file"
               name="image2"
               accept="image/*"
+              onChange={onSelectFile2}
             />
             {/* Display the second image preview if available */}
-            {imagePath2 && <img src={imagePath2} className={styles.imagePreview} />}
+            {selectedFile2 && <img id="output" src={preview2} className={styles.imagePreview} />}
+            <button onClick={handleUploadSlide} className={styles.uploadButton}>Upload</button>
           </div>
         );
       case 6:
