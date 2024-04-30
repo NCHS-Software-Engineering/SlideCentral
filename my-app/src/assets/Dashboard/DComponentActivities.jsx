@@ -73,8 +73,8 @@ function DComponentActivities() {
   const handleSave = () => {
     axios.get('http://localhost:5000/sponsor/' + sessionStorage.getItem("userId"))
       .then((response) => {
-        const activityNames = response.data.map(item => item.activity_name.splice(0, item.activity_name.length-14));
-        const activityIDs = response.data.map(item => item.activity_name);
+        const activityNames = response.data.map(item => item.activity_id.slice(0, -14));
+        const activityIDs = response.data.map(item => item.activity_id);
         console.log('Activity saved successfully.');
         setActivities([...activities, ...activityNames]);
         setActivityID([...activityID, ...activityIDs]);
@@ -95,6 +95,7 @@ function DComponentActivities() {
 
   const handleInputSubmit = (event) => {
     event.preventDefault();
+    const aID = inputValue.replace(/ /g, '').toLowerCase() + currentDateTime.replace(/-/g, '').replace(/:/g, '').replace(/ /g, '');
     if (!/^[a-zA-Z0-9- ]*$/.test(inputValue)) {
         window.alert('Invalid Club Name, please use letters, numbers, dashes or spaces');
         return;
@@ -107,6 +108,9 @@ function DComponentActivities() {
         const newActivities = [...activities];
         newActivities[editIndex] = inputValue;
         setActivities(newActivities);
+        const newActivityID = [...activityID];
+        newActivityID[editIndex] = aID;
+        setActivityID(newActivityID);
         axios.delete(`http://localhost:5000/activ/`+ activityID[editIndex])
               .then(() => {
                 console.log('Activity deleted successfully.');
@@ -123,19 +127,23 @@ function DComponentActivities() {
               });
     } else {
         setActivities([...activities, inputValue]);
+        setActivityID([...activityID, aID]);
     }
     let newActivities;
+    let newActivityID;
     if (editIndex !== null) {
       newActivities = [...activities];
       newActivities[editIndex] = inputValue;
-      axios.delete(`http://localhost:5000/activ/`+sessionStorage.getItem("activityID"))
+      newActivityID = [...activityID];
+      newActivityID[editIndex] = aID;
+      axios.delete(`http://localhost:5000/activ/`+ activityID[editIndex])
               .then(() => {
                 console.log('Activity deleted successfully.');
               })
               .catch(err => {
                 console.error('Error deleting activity:', err);
               });
-              axios.delete(`http://localhost:5000/sponsor/`+sessionStorage.getItem("activityID"))
+              axios.delete(`http://localhost:5000/sponsor/`+ activityID[editIndex])
               .then(() => {
                 console.log('Activity deleted successfully.');
               })
@@ -144,15 +152,14 @@ function DComponentActivities() {
               });
     } else {
       newActivities = [...activities, inputValue];
+      newActivityID = [...activityID, aID];
     }
     setActivities(newActivities);
-    const activityID = inputValue.replace(/ /g, '').toLowerCase() + currentDateTime.replace(/-/g, '').replace(/:/g, '').replace(/ /g, '');
-    console.log(activityID);
-    sessionStorage.setItem("activityID", activityID);
+    setActivityID(newActivityID);
     const userId = sessionStorage.getItem("userId");
     console.log(userId);
-    axios.post('http://localhost:5000/api/sponsor', { sub4: activityID , sub5: userId})
-    axios.post('http://localhost:5000/api/activ', { sub6: activityID , sub7: inputValue})
+    axios.post('http://localhost:5000/api/sponsor', { sub4: aID , sub5: userId})
+    axios.post('http://localhost:5000/api/activ', { sub6: aID , sub7: inputValue})
     setShowInput(false);
   };
 
@@ -168,13 +175,6 @@ const onActivityClick = (event) => {
             })
             .catch(err => {
               console.error('Error getting Activity ID:', err);
-      
-          
-        
-
-
-      
-        
     });
   };
 
