@@ -284,6 +284,7 @@ const handleDateChange = (event) => {
       case 8:
         return (
           <div className={styles.inputContainer}>
+            <div className={styles.inputTitle}>8. Create Slide Templates!</div>
             <button className={styles.createButton} onClick = {handleCreateSlide}>
               Create Slide
             </button>
@@ -313,6 +314,9 @@ const handleDateChange = (event) => {
           >
             <span className="material-symbols-outlined">arrow_forward_ios</span>
           </button>
+        </div>
+        <div className={styles.stepCounter}>
+          <p>Step {currentStep} of {totalSteps}</p>
         </div>
       </div>
     </div>

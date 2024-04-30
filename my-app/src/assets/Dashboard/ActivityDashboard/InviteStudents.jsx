@@ -39,9 +39,10 @@ const InviteStudents = () => {
                     />
                     <button type="submit" className={styles.submitEmailButton}>Submit</button>
                 </form>
-                {message && <p>{message}</p>}
             </div>
+            {message && <p>{message}</p>}
         </div>
+        
     );
 };
 

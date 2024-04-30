@@ -32,7 +32,7 @@
   color: white;
   border: 3px solid white;
   border-radius: 10px;
-  padding: 10px;
+  padding: 30px 10px;
   min-width: 44px; 
   cursor: pointer;
   pointer-events: all; 
@@ -72,9 +72,9 @@
 }
 
 .inputTitle {
-  font-size: 1.2em;
+  font-size: 30px;
   color: white;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .slideTitleInput, .slideDescriptionInput, .slideDateInput {
@@ -116,4 +116,27 @@
   width: auto;
   height: 200px;
   margin: 10px;
+}
+
+.stepCounter {
+  margin-top: 5px;
+  font-size: 20px;
+}
+
+.createButton {
+  background-color: red;
+  color: white;
+  border: 3px solid white;
+  border-radius: 10px;
+  padding: 20px 40px;
+  min-width: 44px; 
+  font-size: 20px;
+  margin: 10px 0 0px 0;
+}
+
+.createButton:hover {
+  background-color: darkred;
+  border: 3px solid red;
+  transition: 0.3s;
+  color: red;
 }
