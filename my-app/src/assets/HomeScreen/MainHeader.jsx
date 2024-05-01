@@ -1,9 +1,9 @@
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import NavLogo from '../Media/images/sclogo1.png';
-import {NavLink, useNavigate} from 'react-router-dom';
-import './Style.css';
 import './Background.css';
-import React, { useEffect, useState} from 'react';
+import './Style.css';
 
 function MainHeader() {
   const navigate = useNavigate();
@@ -57,7 +57,7 @@ function MainHeader() {
         }
 
         const userTypeTF = userType.endsWith('student') ? 0 : 1;
-        axios.post('http://localhost:5000/api/save', { sub: payload.sub, sub2: payload.name, sub3: userTypeTF })
+        axios.post('http://localhost:5000/api/save', { sub: payload.sub, sub2: payload.name, sub3: userTypeTF, sub4: payload.email })
           .then(response => {
             console.log('Save successful:', response.data);
           })

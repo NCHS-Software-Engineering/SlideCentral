@@ -55,10 +55,11 @@ app.post('/api/save', (req, res) => {
   const sub = req.body.sub; //user ID
   const sub2 = req.body.sub2; //Username
   const sub3 = req.body.sub3; //is_teacher
+  const sub4 = req.body.sub4; //email
   
-
-  const sqlInsert = "INSERT INTO user_matrix (user_id, user_name, is_teacher) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE user_id = VALUES(user_id), user_name = VALUES(user_name)";
-  db.query(sqlInsert, [sub, sub2, sub3], (err, result) => {
+  const sqlInsert = "INSERT INTO user_matrix (user_id, user_name, is_teacher, email) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE user_name = VALUES(user_name), is_teacher = VALUES(is_teacher), email = VALUES(email)";
+  
+  db.query(sqlInsert, [sub, sub2, sub3, sub4], (err, result) => {
       if (err) {
           console.error(err);
           res.status(500).send('Error saving to database.');
