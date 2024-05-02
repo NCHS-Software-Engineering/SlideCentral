@@ -48,12 +48,43 @@ function MainHeader() {
         console.log('Email: ' + payload.email);
 
         let userType;
-        if (payload.email === 'cafurby@stu.naperville203.org' || payload.email === 'sryerabati@stu.naperville203.org'|| payload.email === 'pjprobst@stu.naperville203.org'|| payload.email === 'dtkosloski@stu.naperville203.org') {
-            const isTeacher = window.confirm('Are you a teacher?');
-            userType = isTeacher ? 'teacher' : 'student';
+
+        // Check if payload.email is defined before accessing its properties
+        if (payload && payload.email) {
+            if (payload.email === 'cafurby@stu.naperville203.org' ||
+                payload.email === 'sryerabati@stu.naperville203.org' ||
+                payload.email === 'pjprobst@stu.naperville203.org' ||
+                payload.email === 'dtkosloski@stu.naperville203.org') {
+                // Display modal for teacher confirmation
+                const modalHTML = `
+                <div id="teacherModal" style="display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
+                  <div style="background-color: white; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 80%; max-width: 400px; text-align: center;">
+                    <h2>Are you a teacher?</h2>
+                    <button id="yesButton" style="margin: 5px;">Yes</button>
+                    <button id="noButton" style="margin: 5px;">No</button>
+                  </div>
+                </div>
+                `;
+                document.body.insertAdjacentHTML('beforeend', modalHTML);
+        
+                // Button event listeners
+                document.getElementById("yesButton").addEventListener("click", function() {
+                    userType = 'teacher';
+                    document.getElementById("teacherModal").style.display = "none"; // Hide modal
+                });
+                document.getElementById("noButton").addEventListener("click", function() {
+                    userType = 'student';
+                    document.getElementById("teacherModal").style.display = "none"; // Hide modal
+                });
+                document.getElementById("teacherModal").style.display = "block";
+            } else if (payload.email.endsWith('@stu.naperville203.org')) {
+                userType = 'student';
+            } else {
+                userType = 'teacher'; // Default to teacher for all other email addresses
+            }
         } else {
-            // Determine if the user is a student or a teacher based on the email domain
-            userType = payload.email.endsWith('@stu.naperville203.org') ? 'student' : 'teacher';
+            // Handle case where payload.email is undefined
+            console.error("Email is undefined.");
         }
 
         const userTypeTF = userType.endsWith('student') ? 0 : 1;
