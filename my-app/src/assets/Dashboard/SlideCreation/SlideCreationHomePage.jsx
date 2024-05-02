@@ -83,7 +83,7 @@ const SlideCreationHomePage = () => {
 
   const UploadImageStep2 = ({ selectedFile2, setSelectedFile2, preview2, handleUploadSlide2, imageKey2 }) => (
     <div className={styles.inputContainer}>
-      <div className={styles.inputTitle}>Import Image</div>
+      <div className={styles.inputTitle}>Import Image 2 (optional)</div>
       <input 
         key={selectedFile2 ? 'uploaded' : 'not-uploaded'}
         type="file" 
