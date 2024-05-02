@@ -215,16 +215,19 @@ app.delete('/sponsor/:activityID', (req, res) => {
 
 app.get('/sponsor/:userId', (req, res) => {
   const userId = req.params.userId;
-  const sqlSelect = "SELECT activity_id FROM activity_sponsor WHERE user_id = ?";
+  const sqlSelect = "SELECT activity_sponsor.activity_id, activity_name FROM activity_sponsor JOIN activity_matrix ON activity_sponsor.activity_id = activity_matrix.activity_id WHERE user_id = ?";
   db.query(sqlSelect, [userId], (err, result) => {
     if (err) {
       console.error(err);
       res.status(500).send('Error fetching activities.');
     } else {
-      res.json(result);
+      const activityIds = result.map(activity => activity.activity_id);
+      const activityNames = result.map(activity => activity.activity_name);
+      res.json({ activityIds, activityNames });
     }
   });
 });
+
 
 
 
