@@ -81,19 +81,19 @@ const SlideCreationHomePage = () => {
     </div>
   );
 
-  const UploadImageStep2 = ({ selectedFile, setSelectedFile, preview, handleUploadSlide, imageKey }) => (
+  const UploadImageStep2 = ({ selectedFile2, setSelectedFile2, preview2, handleUploadSlide2, imageKey2 }) => (
     <div className={styles.inputContainer}>
       <div className={styles.inputTitle}>Import Image</div>
       <input 
-        key={selectedFile ? 'uploaded' : 'not-uploaded'}
+        key={selectedFile2 ? 'uploaded' : 'not-uploaded'}
         type="file" 
         name="image" 
-        id={`imageInput-${imageKey}`} 
+        id={`imageInput-${imageKey2}`} 
         accept="image/*" 
-        onChange={e => setSelectedFile(e.target.files[0])}
+        onChange={e => setSelectedFile2(e.target.files[0])}
       />
-      {selectedFile && <img src={preview} className={styles.imagePreview} />}
-      <button onClick={handleUploadSlide} className={styles.uploadButton}>Upload</button>
+      {selectedFile && <img src={preview2} className={styles.imagePreview} />}
+      <button onClick={handleUploadSlide2} className={styles.uploadButton}>Upload</button>
     </div>
   );
 
@@ -305,21 +305,21 @@ const SlideCreationHomePage = () => {
   const renderFormSteps = () => {
     switch (currentStep) {
       case 1:
-        return <SlideTitleStep />;
+        return <SlideTitleStep titleInput = {titleInput} handleTitleChange = {handleTitleChange}/>;
       case 2:
-        return <DescriptionStep />;
+        return <DescriptionStep descriptionInput = {descriptionInput} handleDescriptionChange = {handleDescriptionChange}/>;
       case 3:
-        return <EventDateStep />;
+        return <EventDateStep dateInput = {dateInput} handleDateChange = {handleDateChange}/>;
       case 4:
-        return <UploadImageStep imageKey='image1' />;
+        return <UploadImageStep selectedFile = {selectedFile} setSelectedFile = {setSelectedFile} preview = {preview} handleUploadSlide = {handleUploadSlide} imageKey='image1' />;
       case 5:
-        return <UploadImageStep2 imageKey='image2' />;
+        return <UploadImageStep2 selectedFile2 = {selectedFile2} setSelectedFile2 = {setSelectedFile2} preview2 = {preview2} handleUploadSlide = {handleUploadSlide} imageKey='image2' />;
       case 6:
-        return <BackgroundColorStep />;
+        return <BackgroundColorStep backgroundColor = {backgroundColor} setBackgroundColor = {setBackgroundColor}/>;
       case 7:
-        return <TextColorStep />;
+        return <TextColorStep textColor = {textColor} setTextColor = {setTextColor}/>;
       case 8:
-        return <CreateSlideStep />;
+        return <CreateSlideStep handleCreateSlide = {handleCreateSlide}/>;
       default:
         return null;
     }
