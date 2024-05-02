@@ -142,3 +142,21 @@
   transition: 0.3s;
   color: red;
 }
+
+.optionButton {
+  background-color: red;
+  color: white;
+  border: 3px solid white;
+  border-radius: 10px;
+  padding: 20px 40px;
+  min-width: 44px; 
+  font-size: 20px;
+  margin: 10px 5px 0px 5px;
+}
+
+.optionButton:hover {
+  background-color: darkred;
+  border: 3px solid red;
+  transition: 0.3s;
+  color: red;
+}

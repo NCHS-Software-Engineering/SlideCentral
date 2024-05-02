@@ -145,8 +145,10 @@ const SlideCreationHomePage = () => {
   const renderInitialQuestion = () => (
     <div className={styles.inputContainer}>
       <div className={styles.inputTitle}>How would you like to create a slide?</div>
-      <button onClick={() => handleMethodSelection('form')} className={styles.optionButton}>Generate with Form</button>
-      <button onClick={() => handleMethodSelection('image')} className={styles.optionButton}>Upload Slide Image</button>
+      <div className={styles.initialQuestionButtons}>
+        <button onClick={() => handleMethodSelection('form')} className={styles.optionButton}>Generate with Form</button>
+        <button onClick={() => handleMethodSelection('image')} className={styles.optionButton}>Upload Slide Image</button>
+      </div>
     </div>
   );
 
