@@ -12,7 +12,7 @@ const SlideCreationHomePage = () => {
   const [titleInput, setTitleInput] = useState('');
   const [descriptionInput, setDescriptionInput] = useState('');
   const [dateInput, setDateInput] = useState('');
-  const [imagePath, setImagePath] = useState(null);
+  const [imagePath1, setImagePath1] = useState(null);
   const [imagePath2, setImagePath2] = useState(null);
   const [currentStep, setCurrentStep] = useState(0);
   const [backgroundColor, setBackgroundColor] = useState('#ffffff'); 
@@ -165,7 +165,7 @@ const SlideCreationHomePage = () => {
   const handleCreateSlide = () => {
     console.log('Create Slide button clicked');
     const slideID = titleInput.replace(/ /g, '').toLowerCase() + currentDateTime.replace(/-/g, '').replace(/:/g, '').replace(/ /g, '');
-    axios.post('http://localhost:5000/api/slide', { sub1: slideID , sub2: titleInput, sub3: descriptionInput, sub4: dateInput, sub5: sessionStorage.getItem("currentActivityID"), sub6: imagePath, sub7:backgroundColor, sub8: textColor })
+    axios.post('http://localhost:5000/api/slide', { sub1: slideID , sub2: titleInput, sub3: descriptionInput, sub4: dateInput, sub5: sessionStorage.getItem("currentActivityID"), sub6: imagePath1, sub7: imagePath2, sub8: backgroundColor, sub9: textColor })
   };
 
   useEffect(() => {
@@ -210,24 +210,18 @@ const SlideCreationHomePage = () => {
 
   const handleUploadSlide = async e => {
     e.preventDefault();
-    if (!selectedFile || !selectedFile2) {
+    if (!selectedFile) {
       alert('No file selected for upload.');
       return;
     }
-
-    if (
-      (selectedFile.type !== 'image/jpeg' && selectedFile.type !== 'image/png' && selectedFile.type !== 'image/jpg') ||
-      (selectedFile2.type !== 'image/jpeg' && selectedFile2.type !== 'image/png' && selectedFile2.type !== 'image/jpg')
-    ) {
+  
+    if (selectedFile.type !== 'image/jpeg' && selectedFile.type !== 'image/png' && selectedFile.type !== 'image/jpg') {
       alert('Only image files can be uploaded.');
       return;
     }
   
     const formData1 = new FormData();
     formData1.append('image', selectedFile);
-  
-    const formData2 = new FormData();
-    formData2.append('image', selectedFile2);
   
     try {
       const response1 = await axios.post('http://localhost:5000/upload', formData1, {
@@ -236,31 +230,42 @@ const SlideCreationHomePage = () => {
         },
       });
   
+      if (response1.status === 200) {
+        alert('Image 1 uploaded successfully!');
+        setImagePath1(response1.data.imagePath);
+        setKey1(Date.now());
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
+  const handleUploadSlide2 = async e => {
+    e.preventDefault();
+    if (!selectedFile2) {
+      alert('No file selected for upload.');
+      return;
+    }
+  
+    if (selectedFile2.type !== 'image/jpeg' && selectedFile2.type !== 'image/png' && selectedFile2.type !== 'image/jpg') {
+      alert('Only image files can be uploaded.');
+      return;
+    }
+  
+    const formData2 = new FormData();
+    formData2.append('image', selectedFile2);
+  
+    try {
       const response2 = await axios.post('http://localhost:5000/upload', formData2, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
   
-      if (response1.status === 200 && response2.status === 200) {
-        alert('Images uploaded successfully!');
-        setKey1(Date.now());
+      if (response2.status === 200) {
+        alert('Image 2 uploaded successfully!');
+        setImagePath2(response2.data.imagePath);
         setKey2(Date.now());
-
-  
-        let imagePath1 = response1.data;
-        imagePath1 = imagePath1.replace(/\\/g, '/');
-        const baseIndex1 = imagePath1.indexOf('SlideCentral');
-        if (baseIndex1 > -1) {
-          imagePath1 = imagePath1.substring(baseIndex1);
-        }
-  
-        let imagePath2 = response2.data;
-        imagePath2 = imagePath2.replace(/\\/g, '/');
-        const baseIndex2 = imagePath2.indexOf('SlideCentral');
-        if (baseIndex2 > -1) {
-          imagePath2 = imagePath2.substring(baseIndex2);
-        }
       }
     } catch (error) {
       console.error(error);
@@ -330,11 +335,11 @@ const SlideCreationHomePage = () => {
   const renderImageUploadSteps = () => {
     switch (currentStep) {
       case 1:
-        return <EventDateStep />;
+        return <EventDateStep dateInput = {dateInput} handleDateChange = {handleDateChange}/>;
       case 2:
-        return <UploadImageStep imageKey='image' />;
+        return <UploadImageStep selectedFile = {selectedFile} setSelectedFile = {setSelectedFile} preview = {preview} handleUploadSlide = {handleUploadSlide} imageKey='image1' />;
       case 3:
-        return <CreateSlideStep />;
+        return <CreateSlideStep handleCreateSlide = {handleCreateSlide}/>;
       default:
         return null;
     }
