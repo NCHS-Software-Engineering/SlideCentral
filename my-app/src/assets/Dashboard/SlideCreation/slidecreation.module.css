@@ -74,7 +74,7 @@
 .inputTitle {
   font-size: 30px;
   color: white;
-  margin-bottom: 10px;
+  margin-bottom: 25px;
 }
 
 .slideTitleInput, .slideDescriptionInput, .slideDateInput {
@@ -116,6 +116,8 @@
   width: auto;
   height: 200px;
   margin: 10px;
+  border: 3px solid white;
+  border-radius: 10px;
 }
 
 .stepCounter {
