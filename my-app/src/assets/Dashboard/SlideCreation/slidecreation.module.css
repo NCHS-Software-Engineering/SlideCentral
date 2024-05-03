@@ -74,7 +74,13 @@
 .inputTitle {
   font-size: 30px;
   color: white;
-  margin-bottom: 25px;
+  margin-bottom: 0;
+  font-family: Luminari, fantasy;
+  font-weight: lighter;
+  font-size: 2.5rem;
+  margin-top: -25px;
+  text-decoration: underline;
+  text-decoration-color: red;
 }
 
 .slideTitleInput, .slideDescriptionInput, .slideDateInput {
@@ -94,11 +100,12 @@
 }
 
 .colorInput {
-  padding: 0.5em;
+  padding: 30px 40%;
   border-radius: 10px;
   border: 2px solid red; 
   font-size: 16px;
   margin: 10px 0; 
+  background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
 }
 
 
@@ -123,6 +130,7 @@
 .stepCounter {
   margin-top: 5px;
   font-size: 20px;
+  margin-bottom: -25px;
 }
 
 .createButton {
@@ -133,7 +141,7 @@
   padding: 20px 40px;
   min-width: 44px; 
   font-size: 20px;
-  margin: 10px 0 0px 0;
+  margin: 20px 0 0px 0;
 }
 
 .createButton:hover {
@@ -155,6 +163,27 @@
 }
 
 .optionButton:hover {
+  background-color: darkred;
+  border: 3px solid red;
+  transition: 0.3s;
+  color: red;
+}
+
+.exampleText {
+  margin: 0;
+}
+
+.uploadButton {
+  background-color: red;
+  color: white;
+  border: 3px solid white;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 15px;
+  margin: 5px 0 0px 0;
+}
+
+.uploadButton:hover {
   background-color: darkred;
   border: 3px solid red;
   transition: 0.3s;

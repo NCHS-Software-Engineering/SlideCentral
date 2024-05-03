@@ -28,6 +28,7 @@ const SlideCreationHomePage = () => {
   const SlideTitleStep = ({ titleInput, handleTitleChange }) => (
     <div className={styles.inputContainer}>
       <div className={styles.inputTitle}>Slide Title</div>
+      <div className = {styles.exampleText}><p>(ex: BPA CLUB ANNOUNCEMENT or Join Girls Who Code!)</p></div>
       <input 
         value={titleInput} 
         onChange={handleTitleChange} 
@@ -42,6 +43,7 @@ const SlideCreationHomePage = () => {
   const DescriptionStep = ({ descriptionInput, handleDescriptionChange }) => (
     <div className={styles.inputContainer}>
       <div className={styles.inputTitle}>Activity Description / Message</div>
+      <div className = {styles.exampleText}><p>(ex: Come join us in room 52 for fun and games!)</p></div>
       <textarea 
         value={descriptionInput} 
         onChange={handleDescriptionChange} 
@@ -54,12 +56,14 @@ const SlideCreationHomePage = () => {
   // EventDateStep Component
   const EventDateStep = ({ dateInput, handleDateChange }) => (
     <div className={styles.inputContainer}>
-      <div className={styles.inputTitle}>Event Date</div>
+      <div className={styles.inputTitle}>Event Date(s)</div>
+      <div className = {styles.exampleText}><p>(ex: Every other Thursday or 4/17, 4/19 and 4/30)</p></div>
       <input 
         value={dateInput} 
         onChange={handleDateChange} 
-        type="date" 
+        type="text" 
         className={styles.slideTitleInput}
+        placeholder='Enter Event Date(s) Here'
       />
     </div>
   );
@@ -68,7 +72,9 @@ const SlideCreationHomePage = () => {
   const UploadImageStep = ({ selectedFile, setSelectedFile, preview, handleUploadSlide, imageKey }) => (
     <div className={styles.inputContainer}>
       <div className={styles.inputTitle}>Import Image</div>
+      <div className = {styles.exampleText}><p>Try to have an image that is 1920x1080 for best results, accepts jpg and png files only</p></div>
       <input 
+        className={styles.imageInput}
         key={selectedFile ? 'uploaded' : 'not-uploaded'}
         type="file" 
         name="image" 
@@ -84,6 +90,7 @@ const SlideCreationHomePage = () => {
   const UploadImageStep2 = ({ selectedFile2, setSelectedFile2, preview2, handleUploadSlide2, imageKey2 }) => (
     <div className={styles.inputContainer}>
       <div className={styles.inputTitle}>Import Image 2 (optional)</div>
+      <div className = {styles.exampleText}><p>Try to have an image that is 1920x1080 for best results, accepts jpg and png files only</p></div>
       <input 
         key={selectedFile2 ? 'uploaded' : 'not-uploaded'}
         type="file" 
@@ -101,6 +108,7 @@ const SlideCreationHomePage = () => {
   const BackgroundColorStep = ({ backgroundColor, setBackgroundColor }) => (
     <div className={styles.inputContainer}>
       <div className={styles.inputTitle}>Background Color</div>
+      <div className = {styles.exampleText}><p>Click on the rainbow box below to select a background color for your slide</p></div>
       <input
         type="color"
         className={styles.colorInput}
@@ -114,6 +122,7 @@ const SlideCreationHomePage = () => {
   const TextColorStep = ({ textColor, setTextColor }) => (
     <div className={styles.inputContainer}>
       <div className={styles.inputTitle}>Text Color</div>
+      <div className = {styles.exampleText}><p>Click on the rainbow box below to select a text color for your slide</p></div>
       <input
         type="color"
         className={styles.colorInput}
@@ -287,17 +296,23 @@ const SlideCreationHomePage = () => {
 
   // Handle arrow key press to navigate the form
   useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.key === 'ArrowRight' || event.key === 'Enter' && currentStep > 0) {
-        goNext();
-      } else if (event.key === 'ArrowLeft' && currentStep > 1) {
-        goBack();
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentStep, creationMethod]);
+  const handleKeyDown = (event) => {
+    // Check if 'Enter' is pressed and not on the description textarea
+    if (event.key === 'Enter' && document.activeElement.tagName !== 'TEXTAREA' && currentStep > 0) {
+      goNext();
+    } else if (event.key === 'ArrowRight' && currentStep > 0) {
+      goNext();
+    } else if (event.key === 'ArrowLeft' && currentStep > 1) {
+      goBack();
+    }
+  };
 
+  window.addEventListener('keydown', handleKeyDown);
+
+  return () => {
+    window.removeEventListener('keydown', handleKeyDown);
+  };
+}, [currentStep, creationMethod]);
 
   const renderStepContent = () => {
     if (currentStep === 0) return renderInitialQuestion();
