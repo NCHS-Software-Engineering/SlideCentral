@@ -178,7 +178,7 @@ app.post('/api/slide', (req, res) => {
   const background = req.body.sub8;
   const textColor = req.body.sub9;
 
-  const sqlInsert = "INSERT INTO slide_matrix (slide_id, title, description, meeting_date, activity_id, image1,image2, background_color, text_color) VALUES (?, ?, ?, ?, ?,?,?,?,?)";
+  const sqlInsert = "INSERT INTO slide_matrix (slide_id, title, description, meeting_date, activity_id, image1,image2, background_color, text_color) VALUES (?, ?, ?, ?, ?,?,?,?,?  )";
   
   db.query(sqlInsert, [id,name,description,date,activityID,image1Path,image2Path,background,textColor], (err, result) => {
     if (err) {

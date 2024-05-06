@@ -80,7 +80,7 @@ const SlideCreationHomePage = () => {
         name="image" 
         id={`imageInput-${imageKey}`} 
         accept="image/*" 
-        onChange={e => setSelectedFile(e.target.files[0])}
+        onChange= {onSelectFile}
       />
       {selectedFile && <img src={preview} className={styles.imagePreview} />}
       <button onClick={handleUploadSlide} className={styles.uploadButton}>Upload</button>
@@ -97,12 +97,22 @@ const SlideCreationHomePage = () => {
         name="image" 
         id={`imageInput-${imageKey2}`} 
         accept="image/*" 
-        onChange={e => setSelectedFile2(e.target.files[0])}
+        onChange={onSelectFile2}
       />
       {selectedFile && <img src={preview2} className={styles.imagePreview} />}
       <button onClick={handleUploadSlide2} className={styles.uploadButton}>Upload</button>
     </div>
   );
+
+  useEffect(() => {
+    console.log(selectedFile);
+  }, [selectedFile]);
+  
+  useEffect(() => {
+    console.log(selectedFile2);
+  }, [selectedFile2]);
+
+
 
   // BackgroundColorStep Component
   const BackgroundColorStep = ({ backgroundColor, setBackgroundColor }) => (
@@ -194,6 +204,7 @@ const SlideCreationHomePage = () => {
       return;
     }
     setSelectedFile(e.target.files[0]);
+    console.log(selectedFile);
   };
   
   const onSelectFile2 = e => {
@@ -241,7 +252,15 @@ const SlideCreationHomePage = () => {
   
       if (response1.status === 200) {
         alert('Image 1 uploaded successfully!');
-        setImagePath1(response1.data.imagePath);
+
+        let imagePath = response1.data;
+            
+        if (imagePath.includes("my-app")) {
+          imagePath = "my-app" + imagePath.split("my-app")[1];
+        }
+      
+        setImagePath1(imagePath);
+        console.log("image path:" + imagePath);
         setKey1(Date.now());
       }
     } catch (error) {
