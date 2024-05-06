@@ -81,6 +81,7 @@
   margin-top: -25px;
   text-decoration: underline;
   text-decoration-color: red;
+  text-align: center;
 }
 
 .slideTitleInput, .slideDescriptionInput, .slideDateInput {
