@@ -70,24 +70,23 @@ function DComponentActivities() {
         }
       };
       
-  const handleSave = () => {
-    axios.get('http://localhost:5000/sponsor/' + sessionStorage.getItem("userId"))
-      .then((response) => {
-        const activityNames = response.data.map(item => item.activity_id.slice(0, -14));
-        const activityIDs = response.data.map(item => item.activity_id);
-        console.log('Activity saved successfully.');
-        setActivities([...activities, ...activityNames]);
-        setActivityID([...activityID, ...activityIDs]);
-      })
-      .catch(err => {
-        console.error('Error saving activity:', err);
-      });
-      
-
-    setShowInput(false);
-    setInputValue('');
-    setEditIndex(null);
-  }
+      const handleSave = () => {
+        axios.get('http://localhost:5000/sponsor/' + sessionStorage.getItem("userId"))
+          .then((response) => {
+            const activityIDs = response.data.activityIds; // Access activityIds key
+            console.log('Activity ID saved successfully.');
+            setActivityID([...activityID, ...activityIDs]);
+            const activityNames = response.data.activityNames; // Access activityNames key
+            console.log('Activity saved successfully.');
+            setActivities([...activities, ...activityNames]);
+          })
+          .catch(err => {
+            console.error('Error saving activity:', err);
+          });
+        setShowInput(false);
+        setInputValue('');
+        setEditIndex(null);
+      }
 
   useEffect(() => {
     handleSave(); // Trigger handleSave when the component mounts

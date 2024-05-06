@@ -48,11 +48,12 @@ function MainHeader() {
         console.log('Email: ' + payload.email);
 
         let userType;
+
         if (payload.email === 'cafurby@stu.naperville203.org' || payload.email === 'sryerabati@stu.naperville203.org'|| payload.email === 'pjprobst@stu.naperville203.org'|| payload.email === 'dtkosloski@stu.naperville203.org') {
-            const isTeacher = window.confirm('Are you a teacher?');
-            userType = isTeacher ? 'teacher' : 'student';
-        } else {
-            // Determine if the user is a student or a teacher based on the email domain
+          const isTeacher = window.confirm('Are you a teacher?');
+          userType = isTeacher ? 'teacher' : 'student';
+        }
+        else {
             userType = payload.email.endsWith('@stu.naperville203.org') ? 'student' : 'teacher';
         }
 
