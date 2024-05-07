@@ -15,6 +15,7 @@ function Home() {
             alert("You need to sign in first to view the dashboard");
         } else {
             setIsUserLoggedIn(true);
+            
             navigate("/dashboard");
         }
     };

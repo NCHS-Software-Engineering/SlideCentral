@@ -62,8 +62,9 @@ const SlideCreationHomePage = () => {
   const [selectedFile2, setSelectedFile2] = useState(null);
   const [preview, setPreview] = useState();
   const [preview2, setPreview2] = useState();
+  const [slideID, setSlideID] = useState('');
   const navigate = useNavigate();
-
+ 
 
   // UploadImageStep Component
   const UploadImageStep = ({ selectedFile, setSelectedFile, preview, handleUploadSlide, imageKey }) => (
@@ -173,7 +174,7 @@ const SlideCreationHomePage = () => {
 
   const handleCreateSlide = () => {
     console.log('Create Slide button clicked');
-    const slideID = titleInput.replace(/ /g, '').toLowerCase() + currentDateTime.replace(/-/g, '').replace(/:/g, '').replace(/ /g, '');
+    
     axios.post('http://localhost:5000/api/slide', { sub1: slideID , sub2: titleInput, sub3: descriptionInput, sub4: dateInput, sub5: sessionStorage.getItem("currentActivityID"), sub6: imagePath1, sub7: imagePath2, sub8: backgroundColor, sub9: textColor })
   };
 
@@ -224,6 +225,9 @@ const SlideCreationHomePage = () => {
       alert('No file selected for upload.');
       return;
     }
+
+    setSlideID(titleInput.replace(/ /g, '').toLowerCase() + Date.now());
+    console.log(slideID);
   
     if (selectedFile.type !== 'image/jpeg' && selectedFile.type !== 'image/png' && selectedFile.type !== 'image/jpg') {
       alert('Only image files can be uploaded.');
@@ -232,13 +236,13 @@ const SlideCreationHomePage = () => {
   
     const formData1 = new FormData();
     formData1.append('image', selectedFile);
-  
+    
     try {
-      const response1 = await axios.post('http://localhost:5000/upload', formData1, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      const response1 = await axios.post(`http://localhost:5000/upload/${slideID}`, formData1, {
+      headers: {
+      'Content-Type': 'multipart/form-data',
+  },
+});
   
       if (response1.status === 200) {
         alert('Image 1 uploaded successfully!');
