@@ -123,14 +123,14 @@ nav ul li img { /* logo picture */
 }
 
 .logout-button {
-  background-color: white;
-  color: black;
+  background-color: rgb(146, 16, 16);
+  color: white;
   padding: 8px 92.5px;
   cursor: pointer;
   border: none;
   border-radius: 10px;
-  font-family: Luminari, fantasy;
-  font-weight: lighter;
+  font-family: Helvetica, sans-serif;
+  font-weight: bold;
   font-size: 20px;
 }
 
