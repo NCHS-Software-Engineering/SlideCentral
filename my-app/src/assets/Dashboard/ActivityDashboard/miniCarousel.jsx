@@ -162,21 +162,7 @@ export const MiniCarousel = () => {
                         <span class="material-symbols-outlined">arrow_forward_ios</span>
                     </button>
                 </div>
-                <div className="pbaronecontainerone">
-                    <div className="pbaronecontainertwo">
-                        <div style={{ width: `${progress}%` }} className="pbarone"></div>
-                    </div>
-                </div>
-                <div className="carousel-buttons">
-                    <label>
-                        Slide:
-                        <input type="number" value={activeIndex + 1} onChange={handleInputChange} min="1" max={items.length} className="slide-input" />
-                    </label>
-                    <button className="fullscreen-button" onClick={handle.enter}>
-                        <span class="material-symbols-outlined">fullscreen</span>
-                    </button>
-                </div>
-            </div>  
+            </div>
             )}
         </div>
     )
