@@ -2,14 +2,27 @@ import React, { useState } from 'react';
 import styles from './activitydashboard.module.css';
 import { Link } from 'react-router-dom';
 import MiniCarousel from './miniCarousel';
+import { useEffect } from 'react';
 
-const SlidesComponent = ({activityID}) => {
+const SlidesComponent = () => {
   const [slides, setSlides] = useState([]);
   const [isConfirmingDelete, setIsConfirmingDelete] = useState(null);
 
+
+  const [isCarouselReady, setIsCarouselReady] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsCarouselReady(true);
+    }, 500);
+
+    return () => clearTimeout(timer); // cleanup on unmount
+  }, []);
+  
   const handleAddSlide = () => {
     // Logic to add a new slide
   };
+  const { activityID } = sessionStorage.getItem('currentActivityID');
 
   const handleDeleteSlide = (index) => {
     setIsConfirmingDelete(index);
@@ -28,7 +41,7 @@ const SlidesComponent = ({activityID}) => {
     <div className={styles.slidesComponent}>
       <div className={styles.currentSlides}>
         <h2>CURRENT SLIDES:</h2>
-        <MiniCarousel activityID={activityID}/>
+        {isCarouselReady && <MiniCarousel/>}
       </div>
       {slides.length < 3 && (
         <Link to="./slide-creation">

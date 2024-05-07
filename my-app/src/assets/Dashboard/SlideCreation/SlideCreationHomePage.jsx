@@ -101,13 +101,7 @@ const SlideCreationHomePage = () => {
     </div>
   );
 
-  useEffect(() => {
-    console.log(selectedFile);
-  }, [selectedFile]);
-  
-  useEffect(() => {
-    console.log(selectedFile2);
-  }, [selectedFile2]);
+
 
 
 

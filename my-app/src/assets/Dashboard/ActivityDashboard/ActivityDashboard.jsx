@@ -7,7 +7,7 @@ import styles from './activitydashboard.module.css';
 
   
 function ActivityDashboard() {
-    const { activityID } = useParams();
+    
     const [userType, setUserType] = useState(null);
 
     useEffect(() => {
@@ -19,8 +19,7 @@ function ActivityDashboard() {
     return (
         <main className={styles.activityDashboardMainContent}>
             <div className={styles.activityDashboard}>
-                <SlidesComponent activityID={activityID}/>
-                {console.log("it is" + activityID)}
+                <SlidesComponent/>
                 {userType === 'teacher' && <InviteStudents/>}
             </div>
         </main>

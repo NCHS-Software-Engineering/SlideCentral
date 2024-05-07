@@ -240,21 +240,11 @@ app.get('/imageTemplate:activityID', (req, res) => {
     } else {
       const images = result.map(row => row.image1);
       res.json(images);
+      console.log(images);
     }
   });
 });
 
-app.get('/getAllIDs', (req, res) => {
-  const sqlSelect = "SELECT activity_id FROM activity_matrix";
-  db.query(sqlSelect, (err, result) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send('Error fetching activity IDs.');
-    } else {
-      res.json(result);
-    }
-  });
-});
 
 
 app.get('/sponsor/:userId', (req, res) => {

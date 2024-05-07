@@ -5,7 +5,7 @@ import { CarouselItem } from '../../HomeScreen/CarouselItem2';
 import '../../HomeScreen/Carousel.css';
 import axios from 'axios';
 
-export const MiniCarousel = ({activityID}) => { 
+export const MiniCarousel = () => { 
     
     const handle = useFullScreenHandle(); // Create a handle for the full screen mode
     const [ activeIndex, setActiveIndex ] = React.useState(0) // Create a state for the active index
@@ -14,10 +14,11 @@ export const MiniCarousel = ({activityID}) => {
     const [isLoading, setIsLoading] = useState(true); // Create a state for loading status
     const [items, setItems] = useState([]); // Create a state for the images
 
-    
+    const activityID  = sessionStorage.getItem('currentActivityID');
+
     useEffect(() => {
-        
-        axios.get('http://localhost:5000/imageTemplate:'+ activityID)
+        console.log(activityID);
+        axios.get(`http://localhost:5000/imageTemplate${activityID}`)
           .then(response => {
             const updatedItems = response.data.map(item => item.replace('http://localhost:3000', ''));
             setItems(updatedItems);

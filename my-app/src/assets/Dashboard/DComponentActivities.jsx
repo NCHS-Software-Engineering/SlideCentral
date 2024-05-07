@@ -8,7 +8,6 @@ import './Dashboard.css';
 function DComponentActivities() {
     const currentDateTime = moment().format('YYYY-MM-DD HH:mm:ss');
     const [activities, setActivities] = useState([]);
-    const [activityIDs, setActivityIDs] = useState([]);
     const [activityID, setActivityID] = useState([]);
     const [inputValue, setInputValue] = useState('');
     const [showInput, setShowInput] = useState(false);
@@ -178,16 +177,7 @@ const onActivityClick = (event) => {
               console.error('Error getting Activity ID:', err);
     });
   };
-  useEffect(() => {
-    axios.get('http://localhost:5000/getAllIDs')
-      .then((response) => {
-        setActivityIDs(response.data.map(item => item.activity_id));
-        console.log(activityIDs);
-      })
-      .catch(err => {
-        console.error('Error getting Activity IDs:', err);
-      });
-  }, []);
+
 
 
   return (
@@ -195,7 +185,7 @@ const onActivityClick = (event) => {
       <div className="smaller-activity-container">
         {activities.map((activity, index) => (
             <div key={index} className="activity-item">
-                <Link to={`${location.pathname}/${activityIDs[index]}-dashboard`} className="activity-link" onClick={onActivityClick}><span>{activity} Dashboard</span></Link>
+                <Link to={`${location.pathname}/${activity.replace(/\s/g, '-')}-dashboard`} className="activity-link" onClick={onActivityClick}><span>{activity} Dashboard</span></Link>
                 <div className="activity-item-buttons">
                   <button onClick={() => handleEditClick(index)} className="edit-button">Edit</button>
                   <button onClick={() => handleDeleteClick(index)} className="delete-button">Delete</button>
