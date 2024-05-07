@@ -37,7 +37,7 @@ const SlidesComponent = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsCarouselReady(true);
-    }, 100);
+    }, 300);
 
     return () => clearTimeout(timer); // cleanup on unmount
   }, []);
