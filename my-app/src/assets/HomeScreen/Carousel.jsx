@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
 import { CarouselItem } from './CarouselItem2';
 import './Carousel.css';
-import { images } from '../Media/slides';
+import axios from 'axios';
 
 export const Carousel = () => { 
     
@@ -12,11 +12,19 @@ export const Carousel = () => {
     const [ progress, setProgress ] = useState(0); // Create a state for the progress bar
     const [ isFullScreen, setIsFullScreen ] = useState(false); // Create a state for fullscreen mode
     const [isLoading, setIsLoading] = useState(true); // Create a state for loading status
-    const items = images.map((image, index) => ({ // Create an array of items for the carousel
-        
-        title: `Example ${index + 1}`,
-        icon: image,
-    }));
+    const [items, setItems] = useState([]); // Create a state for the images
+
+
+    useEffect(() => {
+        axios.get('http://localhost:5000/imageTemplate')
+          .then(response => {
+            setItems(response.data);
+            console.log(items);
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+      }, []);
 
   
     const updateIndex = (newIndex) => { // Update the activeIndex state
@@ -39,7 +47,7 @@ export const Carousel = () => {
         // Simulate image loading
         const loadImages = async () => {
             await Promise.all(
-                images.map((image) => {
+                items.map((image) => {
                     return new Promise((resolve, reject) => {
                         const loadImg = new Image()
                         loadImg.src = image
