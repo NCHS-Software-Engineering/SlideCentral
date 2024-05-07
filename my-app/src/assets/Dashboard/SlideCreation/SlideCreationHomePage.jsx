@@ -143,8 +143,7 @@ const SlideCreationHomePage = () => {
   const CreateSlideStep = ({ handleCreateSlide }) => (
     <div className={styles.inputContainer}>
       <div className={styles.inputTitle}>Create Slide Templates!</div>
-      <button className={styles.createButton} onClick={() => navigate(-1)}>
-        Create Slide
+      <button className={styles.createButton} onClick={() => { handleCreateSlide(); navigate(-1); }}>        Create Slide
       </button>
     </div>
   );
