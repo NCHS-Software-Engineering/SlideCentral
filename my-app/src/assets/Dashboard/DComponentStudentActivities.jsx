@@ -182,6 +182,7 @@ const onActivityClick = (event) => {
 
   return (
     <div className="activities-container">
+      <p className="no-activities-message">You have no current activities, ask your teacher to invite you to one.</p>
       <div className="smaller-activity-container">
         {activities.map((activity, index) => (
             <div key={index} className="activity-item">
