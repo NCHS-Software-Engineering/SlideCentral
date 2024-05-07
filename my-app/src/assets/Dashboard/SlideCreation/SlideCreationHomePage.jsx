@@ -2,8 +2,8 @@ import styles from './slidecreation.module.css';
 import moment from 'moment';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 const currentDateTime = moment().format('YYYY-MM-DD HH:mm:ss');
-
 
 // Define components outside of the SlideCreationHomePage function
 const SlideTitleStep = ({ titleInput, handleTitleChange }) => (
@@ -62,6 +62,7 @@ const SlideCreationHomePage = () => {
   const [selectedFile2, setSelectedFile2] = useState(null);
   const [preview, setPreview] = useState();
   const [preview2, setPreview2] = useState();
+  const navigate = useNavigate();
 
 
   // UploadImageStep Component
@@ -142,7 +143,7 @@ const SlideCreationHomePage = () => {
   const CreateSlideStep = ({ handleCreateSlide }) => (
     <div className={styles.inputContainer}>
       <div className={styles.inputTitle}>Create Slide Templates!</div>
-      <button className={styles.createButton} onClick={handleCreateSlide}>
+      <button className={styles.createButton} onClick={() => navigate(-1)}>
         Create Slide
       </button>
     </div>

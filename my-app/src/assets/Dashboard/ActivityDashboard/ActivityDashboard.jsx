@@ -8,11 +8,19 @@ import styles from './activitydashboard.module.css';
   
 function ActivityDashboard() {
     const { activityId } = useParams();
+    const [userType, setUserType] = useState(null);
+
+    useEffect(() => {
+        // Get the user type from the session storage when the component mounts
+        const userType = sessionStorage.getItem('userType');
+        setUserType(userType);
+    }, []);
+    
     return (
         <main className={styles.activityDashboardMainContent}>
             <div className={styles.activityDashboard}>
                 <SlidesComponent activityId={activityId}/>
-                <InviteStudents />
+                {userType === 'teacher' && <InviteStudents/>}
             </div>
         </main>
     )
