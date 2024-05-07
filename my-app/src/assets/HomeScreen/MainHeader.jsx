@@ -109,7 +109,7 @@ function MainHeader() {
             </div>
         </ul>
       </nav>
-    </header>   
+    </header>
   );
 }
 

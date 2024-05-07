@@ -216,6 +216,20 @@ app.delete('/sponsor/:activityID', (req, res) => {
   });
 });
 
+app.delete('/sponsor2/', (req, res) => {
+  const activityID = req.query.activityId;
+  const userId = req.query.userId;
+  const sqlDelete = "DELETE FROM activity_sponsor WHERE activity_id = ? AND user_id = ?";
+  db.query(sqlDelete, [activityID, userId], (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error deleting activity.');
+    } else {
+      res.send('Activity deleted successfully.');
+    }
+  });
+});
+
 app.get('/imageTemplate', (req, res) => {
   const sqlSelect = "SELECT image1 FROM slide_matrix";
   db.query(sqlSelect, (err, result) => {

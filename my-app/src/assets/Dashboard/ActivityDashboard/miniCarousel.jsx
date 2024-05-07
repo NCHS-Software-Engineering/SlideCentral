@@ -64,9 +64,9 @@ export const MiniCarousel = () => {
         loadImages()
     }, [])
 
-    useEffect(() => { // Add event listeners for the left and right arrow keys
+    useEffect(() => {
         const handleKeyDown = (event) => {
-            switch (event.key) {
+            switch(event.key) {
                 case 'ArrowLeft':
                     updateIndex(activeIndex - 1);
                     break;
@@ -76,13 +76,13 @@ export const MiniCarousel = () => {
                 default:
                     break;
             }
-        }
+        };
 
-        document.addEventListener('keydown', handleKeyDown);
+        window.addEventListener('keydown', handleKeyDown);
 
         return () => {
-            document.removeEventListener('keydown', handleKeyDown);
-        }
+            window.removeEventListener('keydown', handleKeyDown);
+        };
     }, [activeIndex]);
 
     useEffect(() => { // Create a timer to change the activeIndex state every 15 seconds

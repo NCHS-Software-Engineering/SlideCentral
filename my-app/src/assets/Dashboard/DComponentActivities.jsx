@@ -104,6 +104,8 @@ function DComponentActivities() {
         return;
     }
     if (editIndex !== null) {
+      sessionStorage.setItem("pastActivityID", activityID[editIndex]);
+      sessionStorage.setItem("currentActivityID", aID);
         const newActivities = [...activities];
         newActivities[editIndex] = inputValue;
         setActivities(newActivities);
@@ -131,6 +133,8 @@ function DComponentActivities() {
     let newActivities;
     let newActivityID;
     if (editIndex !== null) {
+      sessionStorage.setItem("pastActivityID", activityID[editIndex]);
+      sessionStorage.setItem("currentActivityID", aID);
       newActivities = [...activities];
       newActivities[editIndex] = inputValue;
       newActivityID = [...activityID];
