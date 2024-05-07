@@ -216,6 +216,19 @@ app.delete('/sponsor/:activityID', (req, res) => {
   });
 });
 
+app.get('/imageTemplate', (req, res) => {
+  const sqlSelect = "SELECT image1 FROM slide_matrix";
+  db.query(sqlSelect, (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error fetching images.');
+    } else {
+      const images = result.map(row => row.image1);
+      res.json(images);
+    }
+  });
+});
+
 app.get('/sponsor/:userId', (req, res) => {
   const userId = req.params.userId;
   const sqlSelect = "SELECT activity_sponsor.activity_id, activity_name FROM activity_sponsor JOIN activity_matrix ON activity_sponsor.activity_id = activity_matrix.activity_id WHERE user_id = ?";

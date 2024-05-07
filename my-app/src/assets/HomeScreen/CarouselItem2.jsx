@@ -6,7 +6,7 @@ export const CarouselItem = ({ item, isFullScreen }) => {
     <div className={`carousel-item ${isFullScreen ? 'fullscreen' : ''}`}>
         
         <div></div>
-        <img className = "carousel-img" src = {item.icon} />
+        <img className = "carousel-img" src = {item} />
         
     </div>
   );
