@@ -3,6 +3,8 @@ import styles from './activitydashboard.module.css';
 import { Link } from 'react-router-dom';
 import MiniCarousel from './miniCarousel';
 import { useEffect } from 'react';
+import axios from 'axios';
+
 
 const SlidesComponent = () => {
   const [slides, setSlides] = useState([]);
@@ -10,11 +12,32 @@ const SlidesComponent = () => {
 
 
   const [isCarouselReady, setIsCarouselReady] = useState(false);
+  const [slidesReady, setSlidesReady] = useState(true);
+  const activityID = sessionStorage.getItem('currentActivityID');
+
+
+
+  useEffect(() => {
+
+
+    axios.get(`http://localhost:5000/numSlides${activityID}`)
+          .then(response => {
+            const numSlides = response.data.numSlides;
+            if (numSlides === 0) {
+              setSlidesReady(false);
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+  
+  });
+
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsCarouselReady(true);
-    }, 500);
+    }, 100);
 
     return () => clearTimeout(timer); // cleanup on unmount
   }, []);
@@ -22,7 +45,7 @@ const SlidesComponent = () => {
   const handleAddSlide = () => {
     // Logic to add a new slide
   };
-  const { activityID } = sessionStorage.getItem('currentActivityID');
+  
 
   const handleDeleteSlide = (index) => {
     setIsConfirmingDelete(index);
@@ -41,7 +64,7 @@ const SlidesComponent = () => {
     <div className={styles.slidesComponent}>
       <div className={styles.currentSlides}>
         <h2>CURRENT SLIDES:</h2>
-        {isCarouselReady && <MiniCarousel/>}
+        { slidesReady && isCarouselReady ? <MiniCarousel/> : <p>NO SLIDES</p>}
       </div>
       {slides.length < 3 && (
         <Link to="./slide-creation">
