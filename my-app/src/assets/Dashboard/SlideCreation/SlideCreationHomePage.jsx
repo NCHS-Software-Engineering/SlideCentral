@@ -251,8 +251,8 @@ const SlideCreationHomePage = () => {
 
         let imagePath = response1.data;
             
-        if (imagePath.includes("my-app")) {
-          imagePath = "my-app" + imagePath.split("my-app")[1];
+        if (imagePath.includes("public")) {
+          imagePath = imagePath.split("public")[1];
         }
       
         setImagePath1(imagePath);

@@ -311,7 +311,7 @@ app.post('/upload', upload.single('image'), resizeTo16x9, (req, res) => {
   // At this point, req.file.buffer contains the resized image
 
   // Define the directory where the image will be saved
-  const saveDir = path.join(__dirname, 'src', 'assets', 'Media', 'slides');
+  const saveDir = path.join(__dirname, 'public', 'slides');
 
   // Count the number of images in the directory
   const imageCount = countImagesInDirectory(saveDir);

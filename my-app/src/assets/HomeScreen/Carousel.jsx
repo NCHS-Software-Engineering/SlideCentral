@@ -18,8 +18,9 @@ export const Carousel = () => {
     useEffect(() => {
         axios.get('http://localhost:5000/imageTemplate')
           .then(response => {
-            setItems(response.data);
-            console.log(items);
+            const updatedItems = response.data.map(item => item.replace('http://localhost:3000', ''));
+            setItems(updatedItems);
+            console.log(updatedItems);
           })
           .catch(error => {
             console.error('Error:', error);
@@ -148,6 +149,7 @@ export const Carousel = () => {
                                 style={{ transform: `translate(-${activeIndex * 100}%)` }}>
                                 {items.map((item) => {
                                     return <CarouselItem item={item} isFullScreen={isFullScreen} />
+                                    
                                 })}
                             </div>
                         </FullScreen>
