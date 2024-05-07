@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import styles from './activitydashboard.module.css';
+import axios from 'axios';
+import session from 'express-session';
 
 const InviteStudents = () => {
     const [email, setEmail] = useState('');
@@ -22,7 +24,7 @@ const InviteStudents = () => {
         .then((response) => {
             const user_id = response.data[0].user_id;
             console.log(user_id);
-            axios.post('http://localhost:5000/api/sponsor', { sub: user_id , sub2: aID})
+            axios.post('http://localhost:5000/api/sponsor', { sub4: user_id , sub5: sessionStorage.getItem("currentActivityID")})
         })
           .catch(err => {
             console.error('Error getting Activity ID:', err);

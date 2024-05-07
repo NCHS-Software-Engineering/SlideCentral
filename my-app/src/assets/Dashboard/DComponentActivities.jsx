@@ -163,8 +163,9 @@ function DComponentActivities() {
   };
 
 const onActivityClick = (event) => {
-        const activityName = event.target.innerText.split(' ')[0];
-        
+         const activityName = event.target.innerText.split(' Dashboard')[0];
+         console.log(activityName);
+
        
           axios.get('http://localhost:5000/getID/' + activityName)
             .then((response) => {
