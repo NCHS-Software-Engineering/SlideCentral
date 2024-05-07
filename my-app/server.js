@@ -352,17 +352,16 @@ app.get('/', (req, res) => {
 });
 
 // Use upload middleware followed by resizing middleware
-app.post('/upload', upload.single('image'), resizeTo16x9, (req, res) => {
+app.post('/upload/:slideID', upload.single('image'), resizeTo16x9, (req, res) => {
   // At this point, req.file.buffer contains the resized image
 
   // Define the directory where the image will be saved
   const saveDir = path.join(__dirname, 'public', 'slides');
 
-  // Count the number of images in the directory
-  const imageCount = countImagesInDirectory(saveDir);
+
 
   // Generate a new filename based on the image count
-  const newFilename = `slide${imageCount + 1}.png`; // Change the extension if needed
+  const newFilename = req.params.slideID + '.png'; // Change the extension if needed
 
   // Define the full path where the image will be saved
   const savePath = path.join(saveDir, newFilename);
@@ -375,6 +374,7 @@ app.post('/upload', upload.single('image'), resizeTo16x9, (req, res) => {
     }
 
     res.send(savePath);
+    console.log(newFilename);
   });
 });
 
