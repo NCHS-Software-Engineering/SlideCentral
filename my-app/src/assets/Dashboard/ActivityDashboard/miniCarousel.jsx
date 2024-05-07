@@ -114,13 +114,6 @@ export const MiniCarousel = () => {
                 case 'ArrowRight':
                     updateIndex(activeIndex + 1);
                     break;
-                case 'f':
-                    if (isFullScreen) {
-                        handle.exit();
-                    } else {
-                        handle.enter();
-                    }
-                    break;
                 default:
                     break;
             }
