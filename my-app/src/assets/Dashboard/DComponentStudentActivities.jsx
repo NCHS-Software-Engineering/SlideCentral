@@ -193,6 +193,9 @@ const onActivityClick = (event) => {
             </div>
         ))}
       </div>
+      <div className="nothing-container">
+        {showNoActivitiesMessage && activities.length === 0 && <p className="no-activities-message">You have no current activities, ask a teacher to invite you.</p>}
+      </div>
       
         </div>
     );
