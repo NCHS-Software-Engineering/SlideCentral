@@ -15,8 +15,8 @@ function DComponentActivities() {
         if (confirmation) {
           const activityName = window.prompt('Please enter the name of the activity to confirm deletion:');
           if (activityName === activities[index]) {
-              axios.delete(`http://localhost:5000/sponsor2/`+ activityID[index])
-              .then(() => {
+            axios.delete(`http://localhost:5000/sponsor2/?activityId=${activityID[index]}&userId=${sessionStorage.getItem("userId")}`)
+            .then(() => {
                 console.log('Activity deleted successfully.');
               })
               .catch(err => {

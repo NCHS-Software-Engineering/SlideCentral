@@ -216,10 +216,12 @@ app.delete('/sponsor/:activityID', (req, res) => {
   });
 });
 
-app.delete('/sponsor2/:activityID', (req, res) => {
-  const activityID = req.params.activityID;
-  const sqlDelete = "DELETE FROM activity_sponsor WHERE activity_id = ? AND user_id = " + sessionStorage.getItem("userId");
-  db.query(sqlDelete, [activityID], (err, result) => {    if (err) {
+app.delete('/sponsor2/', (req, res) => {
+  const activityID = req.query.activityId;
+  const userId = req.query.userId;
+  const sqlDelete = "DELETE FROM activity_sponsor WHERE activity_id = ? AND user_id = ?";
+  db.query(sqlDelete, [activityID, userId], (err, result) => {
+    if (err) {
       console.error(err);
       res.status(500).send('Error deleting activity.');
     } else {
