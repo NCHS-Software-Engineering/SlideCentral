@@ -93,8 +93,8 @@ function DComponentActivities() {
   }, []);
 
   const handleInputSubmit = (event) => {
+    aID = '';
     event.preventDefault();
-    const aID = inputValue.replace(/ /g, '').toLowerCase() + currentDateTime.replace(/-/g, '').replace(/:/g, '').replace(/ /g, '');
     if (!/^[a-zA-Z0-9- ]*$/.test(inputValue)) {
         window.alert('Invalid Club Name, please use letters, numbers, dashes or spaces');
         return;
@@ -104,14 +104,9 @@ function DComponentActivities() {
         return;
     }
     if (editIndex !== null) {
-      sessionStorage.setItem("pastActivityID", activityID[editIndex]);
-      sessionStorage.setItem("currentActivityID", aID);
         const newActivities = [...activities];
         newActivities[editIndex] = inputValue;
         setActivities(newActivities);
-        const newActivityID = [...activityID];
-        newActivityID[editIndex] = aID;
-        setActivityID(newActivityID);
         axios.delete(`http://localhost:5000/activ/`+ activityID[editIndex])
               .then(() => {
                 console.log('Activity deleted successfully.');
@@ -119,7 +114,7 @@ function DComponentActivities() {
               .catch(err => {
                 console.error('Error deleting activity:', err);
               });
-              axios.delete(`http://localhost:5000/sponsor/`+ activityID[editIndex])
+        axios.delete(`http://localhost:5000/sponsor/`+ activityID[editIndex])
               .then(() => {
                 console.log('Activity deleted successfully.');
               })
@@ -128,17 +123,14 @@ function DComponentActivities() {
               });
     } else {
         setActivities([...activities, inputValue]);
+        aID = inputValue.replace(/ /g, '').toLowerCase() + currentDateTime.replace(/-/g, '').replace(/:/g, '').replace(/ /g, '');
         setActivityID([...activityID, aID]);
     }
     let newActivities;
     let newActivityID;
     if (editIndex !== null) {
-      sessionStorage.setItem("pastActivityID", activityID[editIndex]);
-      sessionStorage.setItem("currentActivityID", aID);
       newActivities = [...activities];
       newActivities[editIndex] = inputValue;
-      newActivityID = [...activityID];
-      newActivityID[editIndex] = aID;
       axios.delete(`http://localhost:5000/activ/`+ activityID[editIndex])
               .then(() => {
                 console.log('Activity deleted successfully.');
@@ -155,14 +147,15 @@ function DComponentActivities() {
               });
     } else {
       newActivities = [...activities, inputValue];
+      aID = inputValue.replace(/ /g, '').toLowerCase() + currentDateTime.replace(/-/g, '').replace(/:/g, '').replace(/ /g, '');
       newActivityID = [...activityID, aID];
     }
     setActivities(newActivities);
     setActivityID(newActivityID);
     const userId = sessionStorage.getItem("userId");
     console.log(userId);
-    axios.post('http://localhost:5000/api/sponsor', { sub4: aID , sub5: userId})
-    axios.post('http://localhost:5000/api/activ', { sub6: aID , sub7: inputValue})
+    axios.post('http://localhost:5000/api/sponsor', { sub4: activityID[editIndex] , sub5: userId})
+    axios.post('http://localhost:5000/api/activ', { sub6: activityID[editIndex] , sub7: inputValue})
     setShowInput(false);
   };
 
