@@ -5,7 +5,47 @@ import React, { useState, useEffect } from 'react';
 const currentDateTime = moment().format('YYYY-MM-DD HH:mm:ss');
 
 
+// Define components outside of the SlideCreationHomePage function
+const SlideTitleStep = ({ titleInput, handleTitleChange }) => (
+  <div className={styles.inputContainer}>
+    <div className={styles.inputTitle}>Slide Title</div>
+    <div className={styles.exampleText}><p>(ex: BPA CLUB ANNOUNCEMENT or Join Girls Who Code!)</p></div>
+    <input 
+      value={titleInput} 
+      onChange={handleTitleChange} 
+      type="text" 
+      className={styles.slideTitleInput}
+      placeholder="Enter Slide Title Here" 
+    />
+  </div>
+);
 
+const DescriptionStep = ({ descriptionInput, handleDescriptionChange }) => (
+  <div className={styles.inputContainer}>
+    <div className={styles.inputTitle}>Activity Description / Message</div>
+    <div className={styles.exampleText}><p>(ex: Come join us in room 52 for fun and games!)</p></div>
+    <textarea 
+      value={descriptionInput} 
+      onChange={handleDescriptionChange} 
+      className={styles.slideTitleInput}
+      placeholder="Enter Activity Description Here" 
+    />
+  </div>
+);
+
+const EventDateStep = ({ dateInput, handleDateChange }) => (
+  <div className={styles.inputContainer}>
+    <div className={styles.inputTitle}>Event Date(s)</div>
+    <div className={styles.exampleText}><p>(ex: Every other Thursday or 4/17, 4/19 and 4/30)</p></div>
+    <input 
+      value={dateInput} 
+      onChange={handleDateChange} 
+      type="text" 
+      className={styles.slideTitleInput}
+      placeholder='Enter Event Date(s) Here'
+    />
+  </div>
+);
 
 const SlideCreationHomePage = () => {
 
@@ -23,50 +63,6 @@ const SlideCreationHomePage = () => {
   const [preview, setPreview] = useState();
   const [preview2, setPreview2] = useState();
 
-
-  // SlideTitleStep Component
-  const SlideTitleStep = ({ titleInput, handleTitleChange }) => (
-    <div className={styles.inputContainer}>
-      <div className={styles.inputTitle}>Slide Title</div>
-      <div className = {styles.exampleText}><p>(ex: BPA CLUB ANNOUNCEMENT or Join Girls Who Code!)</p></div>
-      <input 
-        value={titleInput} 
-        onChange={handleTitleChange} 
-        type="text" 
-        className={styles.slideTitleInput}
-        placeholder="Enter Slide Title Here" 
-      />
-    </div>
-  );
-
-  // DescriptionStep Component
-  const DescriptionStep = ({ descriptionInput, handleDescriptionChange }) => (
-    <div className={styles.inputContainer}>
-      <div className={styles.inputTitle}>Activity Description / Message</div>
-      <div className = {styles.exampleText}><p>(ex: Come join us in room 52 for fun and games!)</p></div>
-      <textarea 
-        value={descriptionInput} 
-        onChange={handleDescriptionChange} 
-        className={styles.slideTitleInput}
-        placeholder="Enter Activity Description Here" 
-      />
-    </div>
-  );
-
-  // EventDateStep Component
-  const EventDateStep = ({ dateInput, handleDateChange }) => (
-    <div className={styles.inputContainer}>
-      <div className={styles.inputTitle}>Event Date(s)</div>
-      <div className = {styles.exampleText}><p>(ex: Every other Thursday or 4/17, 4/19 and 4/30)</p></div>
-      <input 
-        value={dateInput} 
-        onChange={handleDateChange} 
-        type="text" 
-        className={styles.slideTitleInput}
-        placeholder='Enter Event Date(s) Here'
-      />
-    </div>
-  );
 
   // UploadImageStep Component
   const UploadImageStep = ({ selectedFile, setSelectedFile, preview, handleUploadSlide, imageKey }) => (
@@ -308,7 +304,7 @@ const SlideCreationHomePage = () => {
   };
 
   const goBack = () => {
-    if (currentStep > 1) {
+    if (currentStep > 0) {
       setCurrentStep(currentStep - 1);
     }
   };
@@ -387,7 +383,7 @@ const SlideCreationHomePage = () => {
         <div className={styles.navigationButtons}>
           <button 
             onClick={goBack}
-            disabled={currentStep <= 1}
+            disabled={currentStep <= 0}
             className={`${styles.navButton} ${styles.navButtonLeft}`}
           >
             <span className="material-symbols-outlined">arrow_back_ios</span>
