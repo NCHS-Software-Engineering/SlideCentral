@@ -139,6 +139,8 @@ app.get('/getID/:activityName', (req, res) => {
 });
 
 
+
+
 app.post('/api/sponsor', (req, res) => {
   const sub4 = req.body.sub4;
   const sub5 = req.body.sub5;
@@ -229,7 +231,32 @@ app.get('/sponsor/:userId', (req, res) => {
   });
 });
 
+app.get('/user_matrix/:email', (req, res) => {
+  const email = req.params.email;
+  const sqlSelect = "SELECT user_id FROM user_matrix WHERE email = ?";
+  db.query(sqlSelect, [email], (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error fetching userID.');
+    } else {
+      res.json(result);
+      }
+  });
+});
 
+app.post('/api/sponsor', (req, res) => {
+  const user_id = req.body.sub;
+  const activity_id = req.body.sub2;
+  const sqlInsert = "INSERT INTO activity_sponsor (user_id, activity_id) VALUES (?, ?)";
+  db.query(sqlInsert, [user_id, activity_id], (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error saving to database.');
+    } else {
+      res.send('Data saved successfully.');
+    }
+  });
+});
 
 
 // Set up Multer storage

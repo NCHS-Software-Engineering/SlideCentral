@@ -18,7 +18,15 @@ const InviteStudents = () => {
         
         console.log(email);
         setMessage(`${email} has been successfully invited!`);
-
+        axios.get('http://localhost:5000/user_matrix/' + email)
+        .then((response) => {
+            const user_id = response.data[0].user_id;
+            console.log(user_id);
+            axios.post('http://localhost:5000/api/sponsor', { sub: user_id , sub2: aID})
+        })
+          .catch(err => {
+            console.error('Error getting Activity ID:', err);
+        });
         setEmail('');
         setTimeout(() => {
             setMessage('');
