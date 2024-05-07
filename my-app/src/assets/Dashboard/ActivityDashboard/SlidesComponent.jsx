@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import styles from './activitydashboard.module.css';
 import { Link } from 'react-router-dom';
+import MiniCarousel from './miniCarousel';
 
-const SlidesComponent = () => {
+const SlidesComponent = ({activityID}) => {
   const [slides, setSlides] = useState([]);
   const [isConfirmingDelete, setIsConfirmingDelete] = useState(null);
 
@@ -27,22 +28,7 @@ const SlidesComponent = () => {
     <div className={styles.slidesComponent}>
       <div className={styles.currentSlides}>
         <h2>CURRENT SLIDES:</h2>
-        {slides.length === 0 ? (
-          <p>- None</p>
-        ) : (
-          slides.map((slide, index) => (
-            <div key={index} className={styles.slide}>
-              <img src={slide.imageUrl} alt={`Slide ${index + 1}`} />
-              <p>Expires {slide.expiryDate}</p>
-              <button
-                className={styles.removeButton}
-                onClick={() => handleDeleteSlide(index)}
-              >
-                REMOVE
-              </button>
-            </div>
-          ))
-        )}
+        <MiniCarousel activityID={activityID}/>
       </div>
       {slides.length < 3 && (
         <Link to="./slide-creation">
