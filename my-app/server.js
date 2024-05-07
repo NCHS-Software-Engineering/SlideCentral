@@ -245,7 +245,20 @@ app.get('/imageTemplate:activityID', (req, res) => {
   });
 });
 
-
+app.get('/numSlides:activityID', (req, res) => {
+  const activityID = req.params.activityID;
+  
+  const sqlSelect = "SELECT COUNT(*) AS numSlides FROM slide_matrix WHERE activity_id = ?";
+  db.query(sqlSelect, [activityID], (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error fetching number of slides.');
+    } else {
+      const numSlides = result[0] ? result[0].numSlides : 0;
+      res.json({ numSlides });
+    }
+  });
+});
 
 app.get('/sponsor/:userId', (req, res) => {
   const userId = req.params.userId;
