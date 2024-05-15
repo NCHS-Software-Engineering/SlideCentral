@@ -386,22 +386,24 @@ const SlideCreationHomePage = () => {
     <div className={styles.slideCreationHomePage}>
       <div className={styles.slideCreationContainer}>
         {renderStepContent()}
-        <div className={styles.navigationButtons}>
-          <button 
-            onClick={goBack}
-            disabled={currentStep <= 0}
-            className={`${styles.navButton} ${styles.navButtonLeft}`}
-          >
-            <span className="material-symbols-outlined">arrow_back_ios</span>
-          </button>
-          <button 
-            onClick={goNext}
-            disabled={currentStep >= totalSteps || currentStep === 0}
-            className={`${styles.navButton} ${styles.navButtonRight}`}
-          >
-            <span className="material-symbols-outlined">arrow_forward_ios</span>
-          </button>
-        </div>
+        {currentStep > 0 && (
+          <div className={styles.navigationButtons}>
+            <button 
+              onClick={goBack}
+              disabled={currentStep <= 0}
+              className={`${styles.navButton} ${styles.navButtonLeft}`}
+            >
+              <span className="material-symbols-outlined">arrow_back_ios</span>
+            </button>
+            <button 
+              onClick={goNext}
+              disabled={currentStep >= totalSteps || currentStep === 0}
+              className={`${styles.navButton} ${styles.navButtonRight}`}
+            >
+              <span className="material-symbols-outlined">arrow_forward_ios</span>
+            </button>
+          </div>
+        )}
         {currentStep > 0 && (
           <div className={styles.stepCounter}>
             <p>Step {currentStep} of {totalSteps}</p>
