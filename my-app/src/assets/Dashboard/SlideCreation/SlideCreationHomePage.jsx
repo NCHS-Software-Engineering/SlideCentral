@@ -81,7 +81,7 @@ const SlideCreationHomePage = () => {
         onChange= {onSelectFile}
       />
       {selectedFile && <img src={preview} className={styles.imagePreview} />}
-      <button onClick={handleUploadSlide} className={styles.uploadButton}>Upload</button>
+      <button  disabled = {selectedFile === null}onClick={handleUploadSlide} className={selectedFile === null ? `${styles.optionButton} ${styles.disabledButton}` : `${styles.optionButton} ${styles.UploadButton}`}>Upload</button>
     </div>
   );
 
