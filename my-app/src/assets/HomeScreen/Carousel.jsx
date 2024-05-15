@@ -1,9 +1,9 @@
 
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
-import { CarouselItem } from './CarouselItem2';
 import './Carousel.css';
-import axios from 'axios';
+import { CarouselItem } from './CarouselItem2';
 
 export const Carousel = () => { 
     
@@ -18,7 +18,7 @@ export const Carousel = () => {
     useEffect(() => {
         axios.get('http://localhost:5000/imageTemplate')
           .then(response => {
-            const updatedItems = response.data.map(item => item.replace('http://localhost:3000', ''));
+            const updatedItems = response.data.map(item => item ? item.replace('http://localhost:3000', '') : '');
             setItems(updatedItems);
             console.log(updatedItems);
           })
