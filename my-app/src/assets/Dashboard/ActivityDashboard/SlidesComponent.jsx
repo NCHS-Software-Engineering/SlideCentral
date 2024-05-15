@@ -66,14 +66,14 @@ const SlidesComponent = () => {
         <h2>CURRENT SLIDES:</h2>
         { slidesReady && isCarouselReady ? <MiniCarousel/> : <p>NO SLIDES</p>}
       </div>
-      {slides.length < 3 && (
+      {slides.length < 10 && (
         <Link to="./slide-creation">
             <button className={styles.addButton} onClick={handleAddSlide}>
             + Add a slide
             </button>
         </Link>
       )}
-      {slides.length === 3 && <p>You have reached the maximum number of slides for this activity.</p>}
+      {slides.length === 10 && <p>You have reached the maximum number of slides for this activity.</p>}
       
       {isConfirmingDelete !== null && (
         <div className={styles.confirmationDialog}>

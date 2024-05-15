@@ -163,6 +163,12 @@
   margin: 10px 5px 0px 5px;
 }
 
+.disabledButton {
+  background-color: grey;
+  cursor: not-allowed;
+  opacity: 0.5; /* Optional: makes it look more disabled */
+}
+
 .optionButton:hover {
   background-color: darkred;
   border: 3px solid red;

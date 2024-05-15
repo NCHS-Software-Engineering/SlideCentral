@@ -103,7 +103,7 @@ export const Carousel = () => {
         }
     }, [activeIndex]);
 
-    useEffect(() => { // Add event listeners for the left and right arrow keys and the f key for fullscreen mode
+    useEffect(() => {
         const handleKeyDown = (event) => {
             switch (event.key) {
                 case 'ArrowLeft':
@@ -113,11 +113,7 @@ export const Carousel = () => {
                     updateIndex(activeIndex + 1);
                     break;
                 case 'f':
-                    if (isFullScreen) {
-                        handle.exit();
-                    } else {
-                        handle.enter();
-                    }
+                    isFullScreen ? handle.exit() : handle.enter();
                     break;
                 default:
                     break;
@@ -129,12 +125,12 @@ export const Carousel = () => {
         return () => {
             document.removeEventListener('keydown', handleKeyDown);
         }
-    }, [activeIndex, isFullScreen]);
+    }, [updateIndex, isFullScreen, handle]);
 
     return (
         <div>
             {isLoading ? (
-                <div>Loading...</div> // Replace this with your loading spinner
+                <div>Loading...</div>
             ) : (
             <div className="carousel-container">
                 <div className="carousel-wrapper">
