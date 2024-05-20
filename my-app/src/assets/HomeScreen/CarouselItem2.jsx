@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import './Carousel.css';
 
 export const CarouselItem = ({ item, isFullScreen }) => {
@@ -6,7 +6,7 @@ export const CarouselItem = ({ item, isFullScreen }) => {
     <div className={`carousel-item ${isFullScreen ? 'fullscreen' : ''}`}>
         
         <div></div>
-        <img className = "carousel-img" src = {item} />
+        <img className = "carousel-img" src = {item} alt="User Uploaded Slide"/>
         
     </div>
   );
