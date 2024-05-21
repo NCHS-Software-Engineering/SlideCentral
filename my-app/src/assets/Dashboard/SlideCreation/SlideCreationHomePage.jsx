@@ -157,8 +157,8 @@ const SlideCreationHomePage = () => {
       <div className={styles.inputTitle}>How would you like to create a slide?</div>
       <div className={styles.initialQuestionButtons}>
         <button 
-          className={`${styles.optionButton} ${styles.disabledButton}`}
-          disabled={true}
+          className={styles.optionButton}
+          disabled={false}
           onClick={() => handleMethodSelection('form')}
         >
           Generate with Form
